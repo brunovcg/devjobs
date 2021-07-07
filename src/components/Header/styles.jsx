@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Links = styled(Link)`
-font-size: 1.5rem;
+font-size: 1.2rem;
 font-family: 'Carrois Gothic', sans-serif;
   text-decoration: none;
   color: var(--dark-grey);
@@ -53,6 +53,4 @@ export const DevJobs = styled.div`
   }
 `;
 
-// @media only screen and (min-width: 768px) {
 
-// }
