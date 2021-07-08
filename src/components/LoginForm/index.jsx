@@ -39,7 +39,7 @@ const LoginForm = () => {
         .then((response) => {
             const { accessToken } = response.data;
 
-            localStorage.setItem('@Kenziehub:token', JSON.stringify(accessToken));
+            localStorage.setItem('@DevJobs:token', JSON.stringify(accessToken));
 
             return history.push('/dashboard')
         })
