@@ -3,18 +3,20 @@ import dev from "../../assets/dev.png";
 import resumeHome from "../../assets/resumeHome.png";
 import notebook from "../../assets/notebook.png";
 import { members } from "../../utils/groupMembers";
-import {Container} from './styles'
+import { Container } from "./styles";
 
 export const Home = () => {
   return (
     <Container>
       <section className="presentation">
-        <img src={notebook} alt="" />
+        <figure>
+          <img src={notebook} alt="" />
+        </figure>
       </section>
 
       <section className="forCompanies">
         <div className="companiesTitle">
-            <h2>For Companies</h2>
+          <h2>For Companies</h2>
           <div className="companiesTitleBox">
             <p>Go to our Search Engine...</p>
             <div className="buttonBox">
@@ -26,8 +28,13 @@ export const Home = () => {
         </div>
 
         <div className="companiesText">
-            <p>You can search easily form DEVs with the skills needed using our filters.</p>
+          <p>
+            You can search easily form DEVs with the skills needed using our
+            filters.
+          </p>
+          <figure>
             <img src={resumeHome} alt="resumeHome" />
+          </figure>
         </div>
       </section>
 
@@ -47,17 +54,22 @@ export const Home = () => {
 
       <section className="aboutUs">
         <h2>About Us</h2>
-        <button onClick={() => console.log(members)}>teste</button>
+        <p>Click photos to check linked-in</p>
+
         <div className="group">
           {members.map((item, index) => (
             <div className="groupMember" key={index}>
-              <img src={item.image} alt={item.name} />
-              <div>
+
+              <a href={item.linkedin} target="_blank" rel="noreferrer">
+              <figure>
+                <img src={item.image} alt={item.name} />
+              </figure>
+              </a>
+             
                 <p>{item.role}</p>
                 <p>{item.name}</p>
-                <a href={item.role}>Linked-In</a>
               </div>
-            </div>
+      
           ))}
         </div>
       </section>

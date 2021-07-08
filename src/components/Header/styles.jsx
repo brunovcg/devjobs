@@ -11,9 +11,8 @@ export const Links = styled(Link)`
   }
 `;
 export const HalfMoon = styled.div`
-  background-color: #ececec;
-
-  z-index: -1;
+  background: var(--white);
+  z-index: 1;
   text-align: center;
   border-radius: 50% / 0 0 100% 100%;
   width: 50%;
@@ -30,6 +29,7 @@ export const Container = styled.div`
   justify-content: space-evenly;
   padding-right: 4px;
   padding-left: 4px;
+  background: #ececec ;
   Link {
     text-decoration: none;
   }
