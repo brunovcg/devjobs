@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 export const userContext = createContext();
 
 export const userProvider = ({ children }) => {
-  const [userToken, setUserToken] = useState( JSON.parse(localStorage.getItem("token") || "") );
+  const [userToken, setUserToken] = useState( JSON.parse(localStorage.getItem("@DevJobs:token") || "") );
   const [userId, setUserId] = useState();
 
   useEffect(() => {
