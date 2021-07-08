@@ -7,14 +7,7 @@ const App = () => {
     <div className="App">
       <Header/>
       <Routes/>
-      <Input
-        type="text"
-        placeholder="teste"
-        error="teste erro de novo"
-        setHeight="60px"
-        setWidth="300px"
-        />
-    
+      
     </div>
   );
 }
