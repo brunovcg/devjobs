@@ -1,18 +1,21 @@
+import { HalfMoon, Container, DevJobs, Links } from "./styles";
 
 const Header = () => {
   return (
+    <Container>
+    <Links>Resume</Links>
+    <HalfMoon>
+      <DevJobs>
+        <h1>DevJobs</h1>
+      </DevJobs>
+    </HalfMoon>
     <div>
-      <h2>Resume</h2>
-      <div>
-        <h3>DevJobs</h3>
-      </div>
-      <div>
-        <button>Logout</button>
-      </div>
+      <Links>Logout</Links>
     </div>
+  </Container>
   )
 
 
 }
 
-export const Header
+export default Header

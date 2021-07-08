@@ -1,3 +1,6 @@
+import MyButton from './styles'
+
+
 const Button = ({children, setColor, setSize, setClick}) => {
   return(
     <button
