@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Links = styled(Link)`
-font-size: 1.2rem;
-font-family: 'Carrois Gothic', sans-serif;
+  font-size: 1.2rem;
+  font-family: "Carrois Gothic", sans-serif;
   text-decoration: none;
   color: var(--dark-grey);
   :hover {
@@ -11,12 +11,12 @@ font-family: 'Carrois Gothic', sans-serif;
   }
 `;
 export const HalfMoon = styled.div`
-  background-color: var(--white);
-  border: 1px solid var(--dark-grey);
+  background-color: #ececec;
+
   z-index: -1;
   text-align: center;
   border-radius: 50% / 0 0 100% 100%;
-  width: 400px;
+  width: 50%;
   height: 70px;
   display: flex;
   align-items: center;
@@ -24,7 +24,6 @@ export const HalfMoon = styled.div`
 `;
 
 export const Container = styled.div`
- 
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -39,18 +38,16 @@ export const Container = styled.div`
 export const DevJobs = styled.div`
   background-color: var(--blue);
   color: white;
-  height: 100px;
-  width: 100px;
+  height: 12.3%;
+  width: 12.3%;
   border-radius: 50%;
   text-align: center;
   position: absolute;
   z-index: 1;
   border: 6px double var(--white);
-  margin-top: 2.5rem;
+  margin-top: 35px;
   h1 {
-    margin-top: 2.2rem;
+    margin-top: 35px;
     font-size: 1.2rem;
   }
 `;
-
-
