@@ -87,7 +87,7 @@ const RegisterForm = ({}) => {
         <Input placeholder='E-mail*' {...register('email')} />
         {errors.email?.message}
         
-        <Input placeholder='Country, State, Address' {...register('address')} />
+        <Input placeholder='Address' {...register('address')} />
         {errors.address?.message}
 
         <Input placeholder='Birth Date*' type='date' {...register('birthDate')} />
