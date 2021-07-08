@@ -50,9 +50,10 @@ const RegisterForm = ({}) => {
         api
         .post('/users', user)
         .then((response)=> {
-            toast.success('Conta criada com sucesso.');
-            
-
+            toast.success('Conta criada com sucesso.'); 
+                       
+            const { accessToken } = response.data;
+            localStorage.setItem('@Kenziehub:token', JSON.stringify(accessToken));
 
             return history.push('/dashboard')
         })
