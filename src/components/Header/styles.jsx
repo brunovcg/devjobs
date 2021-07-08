@@ -38,8 +38,8 @@ export const Container = styled.div`
 export const DevJobs = styled.div`
   background-color: var(--blue);
   color: white;
-  height: 12.3%;
-  width: 12.3%;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
   text-align: center;
   position: absolute;
