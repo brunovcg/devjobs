@@ -33,6 +33,9 @@ export const Container = styled.div`
   Link {
     text-decoration: none;
   }
+  h3 {
+    font-size: 15px;
+  }
 `;
 
 export const DevJobs = styled.div`
