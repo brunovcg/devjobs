@@ -37,10 +37,9 @@ const LoginForm = () => {
         api
         .post('/sessions', data)
         .then((response) => {
-            const { token, user } = response.data;
+            const { accessToken } = response.data;
 
-            localStorage.setItem('@Kenziehub:token', JSON.stringify(token));
-            localStorage.setItem('@Kenziehub:user', JSON.stringify(user));
+            localStorage.setItem('@Kenziehub:token', JSON.stringify(accessToken));
 
             return history.push('/dashboard')
         })
