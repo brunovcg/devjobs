@@ -3,15 +3,16 @@ import dev from "../../assets/dev.png";
 import resumeHome from "../../assets/resumeHome.png";
 import notebook from "../../assets/notebook.png";
 import { members } from "../../utils/groupMembers";
+import {Container} from './styles'
 
 export const Home = () => {
   return (
-    <div>
-      <div className="presentation">
+    <Container>
+      <section className="presentation">
         <img src={notebook} alt="" />
-      </div>
+      </section>
 
-      <div className="forCompanies">
+      <section className="forCompanies">
         <div className="companiesTitle">
             <h2>For Companies</h2>
           <div className="companiesTitleBox">
@@ -28,9 +29,9 @@ export const Home = () => {
             <p>You can search easily form DEVs with the skills needed using our filters.</p>
             <img src={resumeHome} alt="resumeHome" />
         </div>
-      </div>
+      </section>
 
-      <div className="forDevs">
+      <section className="forDevs">
         <div className="forDevsTitle">
           <h2>and for DEVs</h2>
         </div>
@@ -42,9 +43,9 @@ export const Home = () => {
             receive a message from them.
           </p>
         </div>
-      </div>
+      </section>
 
-      <div className="aboutUs">
+      <section className="aboutUs">
         <h2>About Us</h2>
         <button onClick={() => console.log(members)}>teste</button>
         <div className="group">
@@ -59,7 +60,7 @@ export const Home = () => {
             </div>
           ))}
         </div>
-      </div>
-    </div>
+      </section>
+    </Container>
   );
 };
