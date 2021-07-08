@@ -15,27 +15,42 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterForm = ({}) => {
     const PasswordStrength = (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/);
+    const NameValidation = (/^[a-z][a-z\s]*$/i);
+    const PhoneValidation = (/^\([0-9]{2}\)[0-9]{5}-[0-9]{4}/)
 
     const schema = yup.object().shape({
-        name: yup
-                .string()
-                .required('Campo obrigatório'),
+        firstName: yup
+            .string()
+            .required('Campo obrigatório')
+            .matches(NameValidation),
+        lastName: yup
+            .string()
+            .required('Campo obrigatório')
+            .matches(NameValidation),
         email: yup
-                .string()
-                .email('Email inválido')
-                .required('Campo obrigatório'),
-        birthdate: yup
+            .string()
+            .email('Email inválido')
+            .required('Campo obrigatório'),
+        birthDate: yup
             .date()
             .required('Campo obrigatório'),
         password: yup
-                    .string()
-                    .min(6, 'Mínimo de 6 digitos')
-                    .required('Campo obrigatório')
-                    .matches(PasswordStrength, 'Sua senha é fraca, use letras minúsculas, maiúsculas, números e símbolos.'),
+            .string()
+            .min(6, 'Mínimo de 6 digitos')
+            .required('Campo obrigatório')
+            .matches(PasswordStrength, 'Sua senha é fraca, use letras minúsculas, maiúsculas, números e símbolos.'),
+        linkedinProfile: yup
+            .string(),
+        address: yup
+            .string(),
+        phone: yup
+            .string()
+            .required("Endereço obrigatório")
+            .matches(PhoneValidation, '(xx)xxxxx-xxxx'),
         confirmPassword: yup
-                        .string()
-                        .required('Campo obrigatório')
-                        .oneOf([yup.ref('password')], 'Senhas diferentes')
+            .string()
+            .required('Campo obrigatório')
+            .oneOf([yup.ref('password')], 'Senhas diferentes')
     })
 
     const history = useHistory();
@@ -44,11 +59,9 @@ const RegisterForm = ({}) => {
         resolver: yupResolver(schema)
     });
 
-    const onSubmitFunction = ({ birthdate, password, name, email }) => {
-        const user = { birthdate, password, name, email} ;
-
+    const onSubmitFunction = ({ data }) => {
         api
-        .post('/users', user)
+        .post('/users', data)
         .then((response)=> {
             toast.success('Conta criada com sucesso.'); 
                        
@@ -63,20 +76,36 @@ const RegisterForm = ({}) => {
         });
     }
     return (
-    <Form onSubmit={handleSubmit(onSubmitFunction)}>
+    <Form>
 
-        <Input placeholder='Name' {...register('name')} />
-        {errors.name?.message}
-        <Input placeholder='E-mail' {...register('email')} />
+        <Input placeholder='First Name*' {...register('firstName')} />
+        {errors.firstName?.message}
+        
+        <Input placeholder='Last Name*' {...register('lastName')} />
+        {errors.lastName?.message}
+        
+        <Input placeholder='E-mail*' {...register('email')} />
         {errors.email?.message}
-        <Input placeholder='BirthDate' type='date' {...register('birthdate')} />
-        {errors.birthdate?.message}
-        <Input placeholder='Password' type='password' {...register('password')} />
+        
+        <Input placeholder='Country, State, Address' {...register('address')} />
+        {errors.address?.message}
+
+        <Input placeholder='Birth Date*' type='date' {...register('birthDate')} />
+        {errors.birthDate?.message}
+
+        <Input placeholder='Linkedin Profile' {...register('linkedinProfile')} />
+        {errors.linkedinProfile?.message}        
+        
+        <Input placeholder='Phone' {...register('phone')} />
+        {errors.phone?.message}
+        
+        <Input placeholder='Password*' type='password' {...register('password')} />
         {errors.password?.message}
-        <Input placeholder='ConfirmPassword' type='password' {...register('confirmPassword')} />
+        
+        <Input placeholder='ConfirmPassword*' type='password' {...register('confirmPassword')} />
         {errors.passwordConfirm?.message}
 
-        <Button type='submit'>Enviar</Button>
+        <Button setClick={handleSubmit(onSubmitFunction)}>Enviar</Button>
 
     </Form>
     );
