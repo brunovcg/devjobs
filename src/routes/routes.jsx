@@ -14,8 +14,8 @@ const Routes = () => {
       <Route path="/search" exact component={Search} />
       <Route path="/login" exact component={userLogin} />
       <Route path="/register" exact component={Register} />      
-      <Route path="/dashboard" exact component={Dashboard} />      
-      <Route isPrivate={true} component={PageNotFound} />      
+      <Route isPrivate={true} path="/dashboard" exact component={Dashboard} />      
+      <Route component={PageNotFound} />      
     </Switch>
   );
 };
