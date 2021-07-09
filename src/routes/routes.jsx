@@ -5,7 +5,7 @@ import Search from "../pages/Search";
 import Dashboard from "../pages/Dashboard";
 import PageNotFound from "../pages/PageNotFound";
 import Messages from "../pages/Messages";
-import ResumeVisualization from "../pages/Resume-Visualization";
+import ResumeVisualization from "../pages/ResumeVisualization";
 const Routes = () => {
   return (
     <Switch>
@@ -21,7 +21,7 @@ const Routes = () => {
       <Route path="/messages">
         <Messages />
       </Route>
-      <Route path="/resumeVisualization">
+      <Route path="/resumevisualization">
         <ResumeVisualization />
       </Route>
       <Route>
