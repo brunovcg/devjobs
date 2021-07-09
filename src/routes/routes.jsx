@@ -17,11 +17,11 @@ const Routes = () => {
       <Route path="/dashboard">
         <Dashboard />
       </Route>
-      <Route>
-        <PageNotFound />
-      </Route>
       <Route path="/messages">
         <Messages />
+      </Route>
+      <Route>
+        <PageNotFound />
       </Route>
 
       {/* <Route path="/" exact component={Home} /> */}
