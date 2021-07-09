@@ -28,14 +28,14 @@ export const Container = styled.main`
     align-items: center;
     height: 70vh;
     position: relative;
-    
+
     .companiesTitle {
       border-radius: 11px;
       width: 80%;
       height: 80px;
       display: flex;
       background: var(--blue);
-      box-shadow: 1px 3px 1px rgba(0, 0, 0, 0.3);
+      box-shadow: -9px 12px 15px -6px #000000;
       position: absolute;
       top: -30px;
 
@@ -64,7 +64,6 @@ export const Container = styled.main`
         }
 
         .buttonBox {
-
           button {
             font-size: 1.2rem;
           }
@@ -111,17 +110,23 @@ export const Container = styled.main`
 
     .forDevsTitle {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-left: 50px;
       align-items: center;
-      background: var(--blue);
-      border-radius: 11px;
-      width: 60%;
+      width: 100%;
       height: 50px;
       position: absolute;
-      
-      top: -20px;
+      top: -25px;
+
       h2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        background: var(--blue);
         color: var(--white);
+        border-radius: 11px;
+        box-shadow: -9px 12px 15px -6px #000000;
       }
     }
 
@@ -132,8 +137,10 @@ export const Container = styled.main`
       justify-content: center;
       height: 100%;
 
-      img {
-        width: 80vw;
+      figure {
+        img {
+          width: 80vw;
+        }
       }
 
       p {
@@ -158,12 +165,13 @@ export const Container = styled.main`
       width: 100%;
       align-items: flex-end;
       justify-content: center;
+      font-size: 2rem;
     }
 
     p {
       height: 5%;
       text-align: center;
-      color: var(--white);
+      color: var(--light-grey)
     }
 
     .group {
@@ -192,6 +200,7 @@ export const Container = styled.main`
               border: 2px solid var(--white);
               border-radius: 50%;
               width: 80px;
+              box-shadow: -9px 12px 15px -6px #000000;
             }
           }
         }
@@ -200,6 +209,117 @@ export const Container = styled.main`
           height: 15%;
           color: var(--white);
           font-weight: bold;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 500px) {
+    .presentation {
+      width: 100%;
+      height: 70vh;
+      figure {
+        width: 30%;
+        img {
+          width: 400px;
+        }
+      }
+    }
+
+    .forCompanies {
+      height: 80vh;
+
+      .companiesTitle {
+        width: 400px;
+        height: 90px;
+
+        h2 {
+          font-size: 1.6rem;
+        }
+
+        .companiesTitleBox {
+          width: 85%;
+          p {
+            width: 55%;
+            font-size: 1.2rem;
+            padding: 0 10px;
+          }
+
+          .buttonBox {
+            width: 15%;
+          }
+        }
+      }
+
+      .companiesText {
+        flex-direction: row;
+
+        p {
+          align-items: center;
+          width: 40%;
+          padding: 0 0px 0 30px;
+          margin-right: 35px;
+        }
+
+        figure {
+          width: 40%;
+          img {
+          }
+        }
+      }
+    }
+
+    .forDevs {
+      .forDevsTitle {
+        h2 {
+          width: 200px;
+          height: 60px;
+        }
+      }
+
+      .forDevsText {
+        flex-direction: row;
+
+        figure {
+          width: 50%;
+          display: flex;
+          justify-content: center;
+          img {
+            width: 95%;
+          }
+        }
+
+        p {
+          width: 55%;
+
+          padding: 0 70px;
+        }
+      }
+    }
+
+    .aboutUs {
+      height: 95vh;
+      p {
+        font-size: 1.3rem;
+      }
+
+      .group {
+        padding-top: 20px;
+        .groupMember {
+          width: 30%;
+          height: 45%;
+
+          a {
+            figure {
+              img {
+                width: 120px;
+              }
+            }
+          }
+
+          p {
+            font-size: 1.4rem;
+          }
         }
       }
     }
