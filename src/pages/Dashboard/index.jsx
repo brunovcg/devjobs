@@ -1,5 +1,5 @@
-import {messages} from "../../assets/email.png"
-import {resume} from "../../assets/resume.png"
+import messages from "../../assets/email.png"
+import resume from "../../assets/resume.png"
 import {ContainerPage, ContainerOptions, ContainerTitleImg} from "./styles";
 
 const Dashboard = () => {
