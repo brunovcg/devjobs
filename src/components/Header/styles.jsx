@@ -20,7 +20,7 @@ export const HalfMoon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
- `;
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -29,10 +29,11 @@ export const Container = styled.div`
   justify-content: space-evenly;
   padding-right: 4px;
   padding-left: 4px;
-  background: ${(props) => (props.setColor ? props.setColor : "var(--grey-header)")};
+  background: ${(props) =>
+    props.setColor ? props.setColor : "var(--grey-header)"};
   border-bottom: 1px solid
     ${(props) => (props.setBorder ? props.setBorder : "var(--grey)")};
-
+  height: 17vh;
   Link {
     text-decoration: none;
   }
@@ -55,9 +56,11 @@ export const DevJobs = styled.div`
   position: absolute;
   z-index: 1;
   border: 6px double var(--white);
-  margin-top: 35px;
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   h1 {
-    margin-top: 35px;
     font-size: 1.2rem;
   }
   @media (max-width: 500px) {
