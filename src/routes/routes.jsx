@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { Home } from "../pages/Home";
 import Search from "../pages/Search";
 import Dashboard from "../pages/Dashboard";
+import PageNotFound from "../pages/PageNotFound";
 import Messages from "../pages/Messages";
 const Routes = () => {
   return (
@@ -16,9 +17,13 @@ const Routes = () => {
       <Route path="/dashboard">
         <Dashboard />
       </Route>
+      <Route>
+        <PageNotFound />
+      </Route>
       <Route path="/messages">
         <Messages />
       </Route>
+
       {/* <Route path="/" exact component={Home} /> */}
     </Switch>
   );
