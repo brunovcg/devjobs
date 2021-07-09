@@ -15,7 +15,7 @@ export const Home = () => {
       </section>
 
       <section className="forCompanies">
-        <div className="companiesTitle">
+        <article className="companiesTitle">
           <h2>For Companies</h2>
           <div className="companiesTitleBox">
             <p>Go to our Search Engine...</p>
@@ -25,9 +25,9 @@ export const Home = () => {
               </Button>
             </div>
           </div>
-        </div>
+        </article>
 
-        <div className="companiesText">
+        <article className="companiesText">
           <p>
             You can search easily form DEVs with the skills needed using our
             filters.
@@ -35,21 +35,23 @@ export const Home = () => {
           <figure>
             <img src={resumeHome} alt="resumeHome" />
           </figure>
-        </div>
+        </article>
       </section>
 
       <section className="forDevs">
-        <div className="forDevsTitle">
+        <article className="forDevsTitle">
           <h2>and for DEVs</h2>
-        </div>
-        <div className="forDevsText">
-          <img src={dev} alt="dev" />
+        </article>
+        <article className="forDevsText">
+          <figure>
+            <img src={dev} alt="dev" />
+          </figure>
           <p>
             You get templates to make easier to format your Resume. Companies
             will be able to check it for it in our search engine. You can also
             receive a message from them.
           </p>
-        </div>
+        </article>
       </section>
 
       <section className="aboutUs">
@@ -59,17 +61,14 @@ export const Home = () => {
         <div className="group">
           {members.map((item, index) => (
             <div className="groupMember" key={index}>
-
               <a href={item.linkedin} target="_blank" rel="noreferrer">
-              <figure>
-                <img src={item.image} alt={item.name} />
-              </figure>
+                <figure>
+                  <img src={item.image} alt={item.name} />
+                </figure>
               </a>
-             
-                <p>{item.role}</p>
-                <p>{item.name}</p>
-              </div>
-      
+              <p>{item.role}</p>
+              <p>{item.name}</p>
+            </div>
           ))}
         </div>
       </section>
