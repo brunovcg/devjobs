@@ -24,8 +24,11 @@ export const ContainerTitleImg = styled.div`
 export const StyledImg = styled.img`
     width: 40%;
     height: 100%;
+    transition: 0.4s;
 
     :hover {
         opacity: 70%;
+        transform: translateY(4%);
+        transition: 0.4s;
     }
 `
