@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../../services/api";
 import { Container, Message, Email, MessageContent, Title } from "./styles";
 import Button from "../../components/Button";
+import Header from "../../components/Header";
 
 const Messages = () => {
   const [personalMessages, setPersonalMessages] = useState([]);
@@ -13,6 +14,7 @@ const Messages = () => {
   };
   return (
     <>
+      <Header />
       <Title>
         <h2>Messages</h2>
       </Title>
