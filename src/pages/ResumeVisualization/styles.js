@@ -10,7 +10,8 @@ export const ContainerPage = styled.div`
     background-image: var(--gradient-white);
     width: 100vw;
     height: 100vh;
-    font-family: "Gugi", serif;
+    font-family: "Cormorant", serif;
+    color: var(--dark-grey);
 `
 
 export const ContainerSumary = styled.div`
@@ -18,6 +19,10 @@ export const ContainerSumary = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+
+    @media (min-width: 600px) {
+        padding: 1% 5%;
+    }
 `
 
 export const ContainerName = styled.div`
