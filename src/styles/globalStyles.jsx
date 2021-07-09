@@ -13,6 +13,8 @@ export default createGlobalStyle`
         --white: #fff;
         --gradient-sunny: linear-gradient(180deg, #75D8EE 0%, #E0B35C 51.04%, #FFE27C 100%);
         --yellow: #FDCC12;      
+        --blue-sky: #75D8EE;
+        --grey-header: #ececec;
     }
 
     * {
