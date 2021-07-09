@@ -258,7 +258,7 @@ export const Container = styled.main`
           width: 40%;
           padding: 0 0px 0 30px;
           margin-right: 35px;
-          font-size: 1rem;
+          font-size: 1.3rem;
         }
 
         figure {
