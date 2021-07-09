@@ -66,7 +66,7 @@ const Register = () => {
           toast.success('Conta criada com sucesso.'); 
                      
           const { accessToken } = response.data;
-          localStorage.setItem('@DevJobs:token', JSON.stringify(accessToken));
+          localStorage.setItem('@DevJobs:Token:User', JSON.stringify(accessToken));
 
           return history.push('/dashboard')
       })
