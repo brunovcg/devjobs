@@ -14,7 +14,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Login = () => {
+const userLogin = () => {
   const schema = yup.object().shape({
     email: yup
           .string()
@@ -53,11 +53,11 @@ const Login = () => {
   <Container>
       <h1>Login</h1>
 
-      <FormStyled onSubmit={handleSubmit(onSubmitFunction)}>
+      <FormStyled>
         <Input placeholder='Insira seu email' {...register('email')} />{errors.email?.message}
         <Input placeholder='Insira sua senha' type='password' {...register('password')} />{errors.password?.message}
 
-        <Button type='submit'>Enviar</Button>           
+        <Button onClick={handleSubmit(onSubmitFunction)}>Enviar</Button>           
       </FormStyled>
 
       <p>Caso não tenha uma conta, <Link to='/signup'>cadastre-se aqui.</Link></p>  
@@ -65,4 +65,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default userLogin;
