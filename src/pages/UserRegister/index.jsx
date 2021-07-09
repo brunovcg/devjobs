@@ -61,7 +61,7 @@ const Register = () => {
 
   const onSubmitFunction = ({ data }) => {
       api
-      .post('/users', data)
+      .post('/register', data)
       .then((response)=> {
           toast.success('Conta criada com sucesso.'); 
                      
