@@ -1,8 +1,8 @@
 import { HalfMoon, Container, DevJobs, Links } from "./styles";
 import Button from "../Button";
-const Header = () => {
+const Header = ({setColor, setBorder}) => {
   return (
-    <Container>
+    <Container setColor={setColor} setBorder={setBorder}>
       <Links>Resume</Links>
       <HalfMoon>
         <DevJobs>

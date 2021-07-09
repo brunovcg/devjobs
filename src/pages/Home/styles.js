@@ -85,7 +85,7 @@ export const Container = styled.main`
         height: 50%;
         width: 75%;
         color: var(--white);
-        font-size: 1.9rem;
+        font-size: 1.5rem;
         font-weight: bold;
       }
 
@@ -145,7 +145,7 @@ export const Container = styled.main`
       p {
         width: 75%;
         text-align: justify;
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         color: var(--dark-grey);
         font-weight: bold;
       }
@@ -258,6 +258,7 @@ export const Container = styled.main`
           width: 40%;
           padding: 0 0px 0 30px;
           margin-right: 35px;
+          font-size: 1rem;
         }
 
         figure {
