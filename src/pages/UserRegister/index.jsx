@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FormStyled, Container, Text } from './styles';
+import { FormStyled, Container, Text, Page } from './styles';
 import Button from '../../components/Button';
 import api from '../../services/api';
 import Input from '../../components/Input';
@@ -79,6 +79,7 @@ const Register = () => {
   return (
   <>
   <Header />
+  <Page>
   <Container>
     <h2>Register</h2>
 
@@ -171,7 +172,7 @@ const Register = () => {
     <Button 
         setClick={handleSubmit(onSubmitFunction)}
         setColor='blue'
-        setSize='medium'
+        setSize='large'
     >
         Enviar
     </Button>
@@ -182,6 +183,8 @@ const Register = () => {
   </Container>
 
   <Text>Caso já tenha uma conta, <Link to='/login'>entre aqui.</Link></Text>
+  <Text>*Campo Obrigatório.</Text>
+  </Page>
   </>
   );
 }

@@ -4,6 +4,7 @@ import { Home } from "../pages/Home";
 import Search from "../pages/Search";
 import Dashboard from "../pages/Dashboard";
 import PageNotFound from '../pages/PageNotFound'
+import Register from "../pages/UserRegister";
 
 const Routes = () => {
   return (
@@ -16,6 +17,9 @@ const Routes = () => {
       </Route>
       <Route path="/dashboard">
         <Dashboard />
+      </Route>
+      <Route path="/register">
+        <Register />
       </Route>
       <Route>
         <PageNotFound/>

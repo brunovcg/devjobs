@@ -1,12 +1,26 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
+
+export const Page = styled.div`
+    display: flex;
+    flex-direction: column;    
+    position: relative;
+    margin-top: 30px;
+    width: 100%;    
+    align-items: center;
+    justify-content: center;
+`
 
 export const Container = styled.div`
-    position: absolute;
+
     width: 100%;
     opacity: 0.8;
     display: flex;
     flex-direction: column;
     text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 15px;
 
     h2{
         color: white;
@@ -25,13 +39,14 @@ export const FormStyled = styled.form`
     width: 80%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     input{
-        margin-bottom: 15px;   
     }
 `
 
 export const Text = styled.p`
     text-align: center;
-    margin-top: 15px;
+    margin-bottom: 15px;
 `
