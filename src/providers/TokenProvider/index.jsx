@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 
-export const userContext = createContext();
+export const TokenContext = createContext();
 
-export const userProvider = ({ children }) => {
-  const [userToken, setUserToken] = useState( JSON.parse(localStorage.getItem("@DevJobs:token") || "") );
+export const TokenProvider = ({ children }) => {
+  const [userToken, setUserToken] = useState( JSON.parse(localStorage.getItem("@DevJobs:Token:User") || "") );
   const [userId, setUserId] = useState();
 
   useEffect(() => {
@@ -22,4 +22,4 @@ export const userProvider = ({ children }) => {
   );
 };
 
-export const useToken = () => useContext(userContext);
+export const useToken = () => useContext(TokenContext);
