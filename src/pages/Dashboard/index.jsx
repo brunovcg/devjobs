@@ -8,7 +8,7 @@ const Dashboard = () => {
             <ContainerOptions>
                 <ContainerTitleImg>
                     <h3>Messages</h3>
-                    <StyledImg src={messages} alt="Messages"/>
+                    <StyledImg src={messages} alt="Messages" />
                 </ContainerTitleImg>
                 <ContainerTitleImg>
                     <h3>Resume</h3>
