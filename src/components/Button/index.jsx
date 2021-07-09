@@ -1,14 +1,10 @@
-import MyButton from './styles'
+import MyButton from "./styles";
 
-
-const Button = ({children, setColor, setSize, setClick}) => {
-  return(
-    <button
-        setColor={setColor}
-        onClick={setClick}
-        setSize={setSize}
-      >{children}
-    </button>
-  )
-}
-export default Button
+const Button = ({ children, setColor, setSize, setClick }) => {
+  return (
+    <MyButton setColor={setColor} onClick={setClick} setSize={setSize}>
+      {children}
+    </MyButton>
+  );
+};
+export default Button;
