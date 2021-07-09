@@ -20,6 +20,12 @@ export const HalfMoon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: flex-start ;
+
+  @media (min-width: 500px) {
+    height: 110px;
+  }
+
 `;
 
 export const Container = styled.div`
@@ -41,7 +47,7 @@ export const Container = styled.div`
     font-size: 15px;
   }
 
-  @media (max-width: 500px) {
+  @media (min-width: 500px) {
     height: 15vh;
   }
 `;
@@ -63,7 +69,7 @@ export const DevJobs = styled.div`
   h1 {
     font-size: 1.2rem;
   }
-  @media (max-width: 500px) {
+  @media (min-width: 500px) {
     margin-top: 60px;
   }
 `;
