@@ -30,6 +30,7 @@ export const Container = styled.div`
   padding-right: 4px;
   padding-left: 4px;
   background: #ececec ;
+  border-bottom: 1px solid var(--grey);
   Link {
     text-decoration: none;
   }

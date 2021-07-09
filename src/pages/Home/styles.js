@@ -7,7 +7,6 @@ export const Container = styled.main`
     background: var(--gradient-white);
     display: flex;
     justify-content: center;
-    border-top: 1px solid var(--grey);
 
     figure {
       padding-top: 60px;

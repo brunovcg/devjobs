@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
+export const ContainerPage = styled.div`
+    background-image: var(--gradient-white);
+`
+
 export const ContainerSearch = styled.div`
-    padding: 50px 100px;
+    padding: 70px 100px;
 `
 
 export const SearchBar = styled.div`
@@ -9,6 +13,7 @@ export const SearchBar = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    align-items: center;
     background-color: var(--dark-grey);
     border-radius: 10px;
     padding: 20px 0;
