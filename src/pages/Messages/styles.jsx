@@ -13,7 +13,7 @@ export const Message = styled.div`
   background-color: var(--light-grey);
 
   height: 100%;
-  width: 80%;
+  width: 90%;
   margin-top: 5px;
   top: 0;
   left: 0;
