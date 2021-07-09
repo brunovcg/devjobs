@@ -1,11 +1,11 @@
 // import Header from '../../components/Header';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import {ContainerSearch, ContainerCards, SearchBar} from "./styles";
+import {ContainerPage, ContainerSearch, ContainerCards, SearchBar} from "./styles";
 
 const Search = () => {
     return (
-        <>
+        <ContainerPage>
             {/* <Header/> */}
             <ContainerSearch>
                 <SearchBar>
@@ -19,7 +19,7 @@ const Search = () => {
             <ContainerCards>
                 <p>Cards Users - another feature to be developed</p>
             </ContainerCards>
-        </>
+        </ContainerPage>
     )
 }
 
