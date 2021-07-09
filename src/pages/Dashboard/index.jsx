@@ -1,19 +1,19 @@
 import messages from "../../assets/email.png"
 import resume from "../../assets/resume.png"
-import {ContainerPage, ContainerOptions, ContainerTitleImg} from "./styles";
+import {ContainerPage, ContainerOptions, ContainerTitleImg, StyledImg} from "./styles";
 
 const Dashboard = () => {
     return (
         <ContainerPage>
             <ContainerOptions>
                 <ContainerTitleImg>
-                    <h2>Messages</h2>
-                    <img src={messages} alt="Messages"/>
+                    <h3>Messages</h3>
+                    <StyledImg src={messages} alt="Messages"/>
                 </ContainerTitleImg>
-                <div>
-                    <h2>Resume</h2>
-                    <img src={resume} alt="Resume"/>
-                </div>
+                <ContainerTitleImg>
+                    <h3>Resume</h3>
+                    <StyledImg src={resume} alt="Resume"/>
+                </ContainerTitleImg>
             </ContainerOptions>
         </ContainerPage>
     )
