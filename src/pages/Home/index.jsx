@@ -1,54 +1,77 @@
-import members from "../../utils/groupMembers";
 import Button from "../../components/Button";
+import dev from "../../assets/dev.png";
+import resumeHome from "../../assets/resumeHome.png";
+import notebook from "../../assets/notebook.png";
+import { members } from "../../utils/groupMembers";
+import { Container } from "./styles";
 
 export const Home = () => {
   return (
-    <div>
-      <div className="presentation"></div>
+    <Container>
+      <section className="presentation">
+        <figure>
+          <img src={notebook} alt="" />
+        </figure>
+      </section>
 
-      <div className="forCompanies"></div>
-      <div className="companiesBox">
-        <div className="companiesTitle">
+      <section className="forCompanies">
+        <article className="companiesTitle">
           <h2>For Companies</h2>
-        </div>
-        <div className="companiesTextBox">
-          <div className="companiesText">
+          <div className="companiesTitleBox">
             <p>Go to our Search Engine...</p>
-          </div>
-          <div className="buttonBox">
-          <Button 
-              setColor="var(--grey)"
-              setSize="large"
-              setClick={""}>
-            Search
-          </Button>
-          </div>
-        </div>
-      </div>
-
-      <div className="forDevs">
-        <div>
-          <h2>and for DEVs</h2>
-        </div>
-        <img src="" alt="dev" />
-        <p>
-          You get templates to make easier to format your Resume. Companies will
-          be able to check it for it in our search engine. You can also receive
-          a message from them.
-        </p>
-      </div>
-
-      <div className="aboutUs">
-        <h2>About Us</h2>
-        <div className="group">
-          <div groupMember>
-            <img src="" alt="" />
-            <div>
-              <p></p>
+            <div className="buttonBox">
+              <Button setColor="var(--grey)" setSize="large" setClick={""}>
+                Search
+              </Button>
             </div>
           </div>
+        </article>
+
+        <article className="companiesText">
+          <p>
+            You can search easily form DEVs with the skills needed using our
+            filters.
+          </p>
+          <figure>
+            <img src={resumeHome} alt="resumeHome" />
+          </figure>
+        </article>
+      </section>
+
+      <section className="forDevs">
+        <article className="forDevsTitle">
+          <h2>and for DEVs</h2>
+        </article>
+        <article className="forDevsText">
+          <figure>
+            <img src={dev} alt="dev" />
+          </figure>
+          <p>
+            You get templates to make easier to format your Resume. Companies
+            will be able to check it for it in our search engine. You can also
+            receive a message from them.
+          </p>
+        </article>
+      </section>
+
+      <section className="aboutUs">
+        <h2>About Us</h2>
+        <p>Click photos to check linked-in</p>
+
+        <div className="group">
+          {members.map((item, index) => (
+            <div className="groupMember" key={index}>
+              <a href={item.linkedin} target="_blank" rel="noreferrer">
+                <figure>
+                  <img src={item.image} alt={item.name} />
+                </figure>
+              </a>
+              <p>{item.role}</p>
+              <p>{item.name}</p>
+            </div>
+          ))}
         </div>
-      </div>
-    </div>
+      </section>
+    </Container>
   );
 };
