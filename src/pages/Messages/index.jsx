@@ -1,26 +1,30 @@
 import { useState, useEffect } from "react";
 import api from "../../services/api";
+import { Container, Message, Email, MessageContent } from "./styles";
+import Button from "../../components/Button";
 const Messages = () => {
   const [personalMessages, setPersonalMessages] = useState([]);
   useEffect(() => {
     api.get("/messages").then((response) => setPersonalMessages(response.data));
   }, []);
   return (
-    <div>
+    <Container>
       <h2>Messages</h2>
       {personalMessages &&
         personalMessages.map((item, index) => (
-          <div>
-            <div>
+          <Message>
+            <Email>
               <h2 key={index}>{item.companyEmail}</h2>
-            </div>
-            <div>
+            </Email>
+            <MessageContent>
               <h2>{item.message}</h2>
-            </div>
-            <button>Dismiss</button>
-          </div>
+            </MessageContent>
+            <Button setColor="red" setSize="large">
+              <h3>Dismiss</h3>
+            </Button>
+          </Message>
         ))}
-    </div>
+    </Container>
   );
 };
 
