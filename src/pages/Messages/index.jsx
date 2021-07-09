@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../../services/api";
 import { Container, Message, Email, MessageContent, Title } from "./styles";
 import Button from "../../components/Button";
+
 const Messages = () => {
   const [personalMessages, setPersonalMessages] = useState([]);
   useEffect(() => {

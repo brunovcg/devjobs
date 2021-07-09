@@ -22,8 +22,6 @@ export const Message = styled.div`
   width: 80%;
   top: 0;
   left: 0;
-
-  /* white-space: nowrap; */
   h3 {
     font-size: 1.2rem;
   }
