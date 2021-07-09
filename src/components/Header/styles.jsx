@@ -16,16 +16,14 @@ export const HalfMoon = styled.div`
   text-align: center;
   border-radius: 50% / 0 0 100% 100%;
   width: 55%;
-  height: 100px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: flex-start ;
+  align-self: flex-start;
 
   @media (min-width: 500px) {
-    height: 110px;
-  }
-
+   }
 `;
 
 export const Container = styled.div`
@@ -39,7 +37,7 @@ export const Container = styled.div`
     props.setColor ? props.setColor : "var(--grey-header)"};
   border-bottom: 1px solid
     ${(props) => (props.setBorder ? props.setBorder : "var(--grey)")};
-  height: 17vh;
+  height: 15vh;
   Link {
     text-decoration: none;
   }
