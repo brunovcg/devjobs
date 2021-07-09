@@ -4,7 +4,7 @@ import gustavo from "../assets/gustavo.jpeg";
 import julia from "../assets/julia.jpeg";
 import thiago from "../assets/thiago.jpeg";
 
-const members = [
+export const members = [
   {
     image: bruno,
     role: "Techleader",
@@ -41,4 +41,3 @@ const members = [
   },
 ];
 
-export default members;
