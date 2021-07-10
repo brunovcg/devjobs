@@ -8,6 +8,7 @@ import {
   SearchBar,
 } from "./styles";
 import Header from "../../components/Header";
+import CardDev from "../../components/CardDev";
 
 const Search = () => {
   return (
@@ -30,7 +31,10 @@ const Search = () => {
           </SearchBar>
         </ContainerSearch>
         <ContainerCards>
-          <p>Cards Users - another feature to be developed</p>
+          <CardDev/>
+          <CardDev/>
+          <CardDev/>
+          <CardDev/>
         </ContainerCards>
       </ContainerPage>
     </>
