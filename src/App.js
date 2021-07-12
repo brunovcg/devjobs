@@ -1,15 +1,13 @@
-import Header from "./components/Header"
-import Routes from './routes/routes'
-import Input from './components/Input'
+import { ToastContainer } from "react-toastify";
+import Routes from "./routes/routes";
 
 const App = () => {
   return (
     <div className="App">
-      <Header/>
-      <Routes/>
-      
+      <ToastContainer />
+      <Routes />
     </div>
   );
-}
+};
 
 export default App;
