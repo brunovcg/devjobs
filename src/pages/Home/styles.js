@@ -200,6 +200,10 @@ export const Container = styled.main`
               border-radius: 50%;
               width: 80px;
               box-shadow: -9px 12px 15px -6px #000000;
+              :hover{
+                width: 90px;
+
+              }
             }
           }
         }
@@ -305,6 +309,8 @@ export const Container = styled.main`
 
       .group {
         padding-top: 20px;
+        max-width: 900px;
+        margin: 0 auto;
         .groupMember {
           width: 30%;
           height: 45%;
@@ -312,7 +318,11 @@ export const Container = styled.main`
           a {
             figure {
               img {
-                width: 120px;
+                width: 110px;
+                :hover{
+                width: 121px;
+
+              }
               }
             }
           }

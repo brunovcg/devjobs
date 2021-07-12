@@ -51,12 +51,12 @@ const UserLogin = () => {
 
   return (
   <>
-  <Header />  
+  <Header/>  
   <Page>
   <FormStyled>    
     <h1>Login</h1>
     <Input 
-      placeholder='Insira seu email' 
+      placeholder='E-mail' 
       register={register}
       name='email' 
       error={errors.email?.message}
@@ -65,7 +65,7 @@ const UserLogin = () => {
     />
     
     <Input 
-      placeholder='Insira sua senha' 
+      placeholder='Password' 
       type='password' 
       register={register}
       name='password'
@@ -79,11 +79,11 @@ const UserLogin = () => {
       setSize='large'
       setColor='blue'
     >
-        Enviar
+      Sign In
     </Button>           
   </FormStyled>
 
-  <Text>Caso não tenha uma conta, <Link to='/register'>cadastre-se aqui.</Link></Text>
+  <Text>If you don't have an account already, <Link to='/register'>sign up here.</Link></Text>
   </Page>  
   </>  
   );
