@@ -60,9 +60,11 @@ const Register = () => {
       resolver: yupResolver(schema)
   });
 
-  const onSubmitFunction = ({ data }) => {
+  const onSubmitFunction = ({ firstName, lastName, email, password, birthDate, linkedinProfile, address, phone }) => {
+      const user = { firstName, lastName, email, password, birthDate, linkedinProfile, address, phone }
+
       api
-      .post('/register', data)
+      .post('/register', user)
       .then((response)=> {
           toast.success('Conta criada com sucesso.'); 
                      
