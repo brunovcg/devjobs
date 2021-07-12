@@ -7,7 +7,7 @@ const Input = ({ error, register, name, setHeight, setWidth, ...rest }) => {
         setWidth={setWidth}
     >
       <input
-        // {...register(name)}
+        {...register(name)}
         {...rest}
       />
       <div>{error}</div>
