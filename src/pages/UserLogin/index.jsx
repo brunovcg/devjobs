@@ -18,12 +18,12 @@ const UserLogin = () => {
   const schema = yup.object().shape({
     email: yup
           .string()
-          .email('Email inválido')
-          .required('Campo obrigatório'),
+          .email('Invalid e-mail')
+          .required('Required field'),
     password: yup
           .string()
           .min(6)
-          .required('Campo obrigatório')
+          .required('Required field')
   })
 
   const history = useHistory();
