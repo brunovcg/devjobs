@@ -9,12 +9,35 @@ import {
 } from "./styles";
 import Header from "../../components/Header";
 import CardDev from "../../components/CardDev";
+import API from "../../services/api";
+import { useState } from 'react';
 
 const Search = () => {
+
+  const [users, setUsers] = useState([])
+  const [sumary, setSumary] = useState([]);
+
+  const GetDev = () => {
+    API.get("/db").then((response) => setUsers([response.data.users]));
+  }
+
+  const GetSumaryDev = () => {
+    API.get("/db").then((response) => setSumary([response.data.sumary]));
+  }
+
+  const Get = () => {
+    GetDev();
+    GetSumaryDev();
+  }
+  
+  console.log(users);
+  console.log(sumary);
+
   return (
     <>
       <Header />
       <ContainerPage>
+        <button onClick={Get}>API</button>
         <ContainerSearch>
           <SearchBar>
             <Input setHeight="10%" setWidth="20%" placeholder="Techs" />
