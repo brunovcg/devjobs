@@ -28,9 +28,9 @@ export const HalfMoon = styled.div`
       h1 {
         font-size: 1.2rem;
       }
-      :hover{
+      :hover {
         height: 110px;
-      width: 110px;
+        width: 110px;
       }
       @media (min-width: 500px) {
         margin-top: 60px;
@@ -52,7 +52,8 @@ export const Container = styled.div`
     ${(props) => (props.setBorder ? props.setBorder : "var(--grey)")};
   height: 15vh;
 
-  .left, .right{
+  .left,
+  .right {
     width: 33%;
     display: flex;
     justify-content: center;
