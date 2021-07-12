@@ -12,37 +12,14 @@ import CompanyRegister from '../pages/CompanyRegister';
 const Routes = () => {
   return (
     <Switch>
-<<<<<<< HEAD
-      <Route exact path="/">
-        <Home />
-      </Route>
-      <Route path="/resume" exact component={Resume} />
-      <Route path="/search">
-        <Search />
-      </Route>
-      <Route path="/dashboard">
-        <Dashboard />
-      </Route>
-      <Route path="/messages">
-        <Messages />
-      </Route>
-      <Route path="/resumevisualization">
-        <ResumeVisualization />
-      </Route>
-      <Route>
-        <PageNotFound />
-      </Route>
-
-      {/* <Route path="/" exact component={Home} /> */}
-=======
       <Route path="/" exact component={Home} />      
       <Route path="/search" exact component={Search} />
+      <Route path="/resume" exact component={Resume} />
       <Route path="/login" exact component={UserLogin} />
       <Route path="/register" exact component={Register} />
       <Route path="/company" exact component={CompanyRegister} />      
       <Route isPrivate={true} path="/dashboard" exact component={Dashboard} />      
       <Route component={PageNotFound} />      
->>>>>>> d5c94a2536c51f7fc77bffabddb652101faf27ef
     </Switch>
   );
 };

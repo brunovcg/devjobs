@@ -145,113 +145,125 @@ const customStyles = {
                 
               >
                 
-                <h3>Formulário</h3>
+                
                     <form onSubmit={handleSubmit(handleSubmitFunctionName)} className="form">
-                  <ContainerModal>
-                    <h3>Form Name</h3>
                     <ContainerSumary>
                       <ContainerName>
+                      <h3>Form Name</h3>
                         <p>First Name</p>
-                        <input placeholder="First Name" {...register("FirstName")}/>
+                        <Input placeholder="First Name" register={register} name={"FirstName"}/>
                         {errors.FirstName?.message}
                         <p>Last Name</p>
-                        <input placeholder="Last Name" {...register("LastName")}/>
+                        <Input placeholder="Last Name" register={register} name={"LastName"} />
                         {errors.LastName?.message}
                         <p>Email</p>
-                        <input placeholder="Email" {...register("Email")}/>
+                        <Input placeholder="Email" register={register} name={"Email"} />
                         {errors.Email?.message}
+                        <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
                         </ContainerName>
                         <ContainerName>
                         <p>Phone</p>
-                        <input placeholder="Phone" {...register("Phone")}/>
+                        <Input placeholder="Phone" register={register} name={"Phone"} />
                         {errors.Phone?.message}
                         <p>Adress</p>
-                        <input placeholder="Adress" {...register("Adress")}/>
+                        <Input placeholder="Adress" register={register} name={"Adress"} />
                         {errors.Adress?.message}
                         <p>Linkedin</p>
-                        <input placeholder="Adress" {...register("Linkedin")}/>
+                        <Input placeholder="Adress" register={register} name={"Linkedin"} />
                         {errors.Linkedin?.message}
                         <p>Specialization</p>
-
-                        
                         <Select options={specialization} register={register("Specialization")}/>
                       </ContainerName>
                     </ContainerSumary>
-                    <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
-                    </ContainerModal>
-                    
                     </form>
 
-
+                  <ContainerSumary>
                     <form onSubmit={handleSubmit(handleSubmitFunctionObjective)} className="form">
                     <h3>Form Objective</h3>
                       <p>Objective</p>
-                      <Input setWidth={'40%'} placeholder="Objective" register={register} name={"Objective"}/>
+                      <Input setHeight={'50%'} placeholder="Objective" register={register} name={"Objective"}/>
                       {errors.Objective?.message}
-                      <Button type="submit">Enviar</Button>
+                      <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
                     </form>
-                    <form onSubmit={handleSubmit(handleSubmitFunctionEducation)} className="form">
-                    <h3>Form Education</h3>
-                      <p>School Title</p>
-                      <input placeholder="Title" {...register("Title")}/>
-                      {errors.Title?.message}
-                      <p>School</p>
-                      <input placeholder="School" {...register("School")}/>
-                      {errors.School?.message}
-                      <p>School From</p>
-                      <input type="date" placeholder="School From" {...register("From")}/>
-                      {errors.From?.message}
-                      <p>School To</p>
-                      <input type="date" placeholder="School To" {...register("To")}/>
-                      {errors.To?.message}
-                      <p>Projects</p>
-                      <input placeholder="School projects" {...register("projects")}/>
-                      {errors.projects?.message}
-                      <button type="submit">Enviar</button>
-                      </form>
-                    <form onSubmit={handleSubmit(handleSubmitFunctionExperience)} className="form">
-                      <h3>Form Projects</h3>
-                      <p>Company</p>
-                      <input placeholder="Company" {...register("Company")}/>
-                      {errors.Company?.message}
-                      <p>Job</p>
-                      <input placeholder="Job" {...register("Job")}/>
-                      {errors.Job?.message}
-                      <p>Job To</p>
-                      <input type="date" placeholder="Job" {...register("JobTo")}/>
-                      {errors.JobTo?.message}
-                      <p>Job From</p>
-                      <input type="date" placeholder="Objective" {...register("JobFrom")}/>
-                      {errors.JobFrom?.message}
-                      <p>Activities Job</p>
-                      <input placeholder="Activities Job" {...register("activitiesJob")}/>
-                      {errors.activitiesJob?.message}
-                      <button type="submit">Enviar</button>
-                    </form>
-                    
+                  </ContainerSumary>
+
+                    <ContainerSumary>
+                      <ContainerName>
+                        <form onSubmit={handleSubmit(handleSubmitFunctionEducation)} className="form">
+                        <h3>Form Education</h3>
+                          <p>School Title</p>
+                          <Input placeholder="Title" register={register} name={"Title"}/>
+                          {errors.Title?.message}
+                          <p>School</p>
+                          <Input placeholder="School" register={register} name={"School"}/>
+                          {errors.School?.message}
+                          <p>School From</p>
+                          <Input type="date" placeholder="School From" register={register} name={"From"}/>
+                          {errors.From?.message}
+                          <p>School To</p>
+                          <Input type="date" placeholder="School To" register={register} name={"To"}/>
+                          {errors.To?.message}
+                          <p>Projects</p>
+                          <Input placeholder="School projects" register={register} name={"projects"}/>
+                          {errors.projects?.message}
+                          <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
+                        </form>
+                        </ContainerName>
+                        <ContainerName>
+                        <form onSubmit={handleSubmit(handleSubmitFunctionExperience)} className="form">
+                          <h3>Form Projects</h3>
+                          <p>Company</p>
+                          <Input placeholder="Company" register={register} name={"Company"} placeholder=""/>
+                          {errors.Company?.message}
+                          <p>Job</p>
+                          <Input placeholder="Job" register={register} name={"Job"} placeholder=""/>
+                          {errors.Job?.message}
+                          <p>Job To</p>
+                          <Input placeholder="Job To" register={register} name={"JobTo"} type="date"/>
+                          {errors.JobTo?.message}
+                          <p>Job From</p>
+                          <Input placeholder="Job From" register={register} name={"JobFrom"} type="date"/>
+                          {errors.JobFrom?.message}
+                          <p>Activities Job</p>
+                          <Input placeholder="Activities Job" register={register} name={"activitiesJob"}/>
+                          {errors.activitiesJob?.message}
+                          <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
+                        </form>
+                      </ContainerName>
+                    </ContainerSumary>
+                    <ContainerSumary>
                     <form onSubmit={handleSubmit(handleSubmitFunctionSkill)} className="form">
+                    <ContainerName>
                       <h3>Skills</h3>
-                      <button onClick={addinputButtonSkill}>Add Skill</button>
+                      <Button setColor="var(--dark-grey)" setClick={addinputButtonSkill}>Add Skill</Button>
+                      
                       {skills.map((skill, index)=>
                       <>
-                        <input placeholder={ `Skill ${index+1}` } value={skill} onChange={(e)=>handleChangeSkill(e,index)}/>
-                        <button onClick={()=>handleRemoveSkill(index)}>Del</button>
+                        <ContainerSumary>
+                          <Input placeholder={ `Skill ${index+1}` } value={skill} register={register} name={"Skill"} onChange={(e)=>handleChangeSkill(e,index)}/>
+                          <Button setColor="var(--dark-grey)" setClick={()=>handleRemoveSkill(index)}>Del</Button>
+                        </ContainerSumary>
                         </>
                       )}
                       
-                      <button type="submit">Enviar</button>
+                      <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
+                      </ContainerName>
                     </form>
+                    </ContainerSumary>
 
-
+                    <ContainerSumary>
+                      <ContainerName>
+                      <form onSubmit={handleSubmit(handleSubmitFunctionActivities)} className="form">
+                        <h3>Form Activities</h3>
+                        <p>Activities</p>
+                        <Input  placeholder="Activities" register={register} name={"Activities"}/>
+                        {errors.Activities?.message}
+                        <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
+                      </form>
+                      <Button setColor="var(--red)" setClick={closeModal}>Close</Button>
+                      </ContainerName>
+                    </ContainerSumary>
                     
-                    <form onSubmit={handleSubmit(handleSubmitFunctionActivities)} className="form">
-                      <h3>Form Activities</h3>
-                      <p>Activities</p>
-                      <input placeholder="Activities" {...register("Activities")}/>
-                      {errors.Activities?.message}
-                      <button type="submit">Enviar</button>
-                    </form>
-                    <button onClick={closeModal}>Close</button>
               </Modal>
               {formName===true?
                 <>
