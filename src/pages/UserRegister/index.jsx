@@ -46,7 +46,7 @@ const Register = () => {
         .string(),
     phone: yup
         .string()
-        .required("Endereço obrigatório")
+        .required("Telefone obrigatório")
         .matches(PhoneValidation, '(xx)xxxxx-xxxx'),
     confirmPassword: yup
         .string()
@@ -173,7 +173,7 @@ const Register = () => {
 
     <Button 
         setClick={handleSubmit(onSubmitFunction)}
-        setColor='blue'
+        setColor='var(--blue)'
         setSize='large'
     >
         Enviar
