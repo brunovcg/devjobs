@@ -43,6 +43,49 @@ const customStyles = {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const [skills, setSkills] = useState([''])
+//---------------------------------------------------------------------------------------------------------------------------------------
+  const [dadosResume, setDadosResume] = useState({
+    nome: '',
+    contato: '',
+    email: '',
+    nacionalidade: 'brasileiro(a)',
+    estadoCivil: '',
+    idade: '',
+    endereco: '',
+    cidade: '',
+    estado: '',
+    objetivo: '',
+    formation: [{ Title: '', School: '', SchoolFrom: '', SchoolTo: '', projects: '' }],
+    experiencia: [{ empresa: '', cargo: '', anoEntrada: '', anoSaida: '', atividades: '', empregoAtual: false }],
+    qualificacao: [{ qualificacao: '' }]
+  });
+
+  const addFormacao = () => {
+    let actualFormacao = [...dadosResume.formation];
+    const newLine = { Title: '', School: '', SchoolFrom: '', SchoolTo: '', projects: '' };
+    actualFormacao.push(newLine);
+    setDadosResume(prevState => ({ ...prevState, formation: actualFormacao }));
+  };
+  const deleteFormacao = (position) => {
+    const actualFormacao = [...dadosResume.formation];
+    const newFormacao = actualFormacao.filter((_, index) => index !== position);
+    setDadosResume(prevState => ({ ...prevState, formation: newFormacao }));
+  }
+  const handleChangeFormacaoAcademica = (event) => {
+    const { name, value, type } = event.target;
+    console.log(dadosResume.formation)
+    const index = event.target.dataset.index;
+    let newFormacaoAcademica = [...dadosResume.formation];
+    const newValue = (type === 'number') ? value.slice(0,4) : value;
+    newFormacaoAcademica[index] = { ...newFormacaoAcademica[index], [name]: newValue };
+    setDadosResume(prevState => ({ ...prevState, formation: newFormacaoAcademica }));
+  }
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
   const forSchemaName = yup.object().shape({
@@ -103,6 +146,10 @@ const customStyles = {
   const handleSubmitFunctionSkill = (data) => {
     setFormActivities(data)
   }
+
+
+
+
   const addinputButtonSkill = (e) => {
     e.preventDefault();
     setSkills([...skills, ''])
@@ -144,8 +191,6 @@ const customStyles = {
                 onRequestClose={openModal}
                 
               >
-                
-                
                     <form onSubmit={handleSubmit(handleSubmitFunctionName)} className="form">
                     <ContainerSumary>
                       <ContainerName>
@@ -191,6 +236,19 @@ const customStyles = {
                       <ContainerName>
                         <form onSubmit={handleSubmit(handleSubmitFunctionEducation)} className="form">
                         <h3>Form Education</h3>
+                        <Button setColor="var(--dark-grey)" setClick={addFormacao}>Add Formation</Button>
+                        {dadosResume.formation.map((formation, index)=>
+                      <>
+                         <ContainerSumary>
+                          <input data-index={index} placeholder='Title' value={formation.Title} name='Title' type='text' onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                          <input data-index={index} placeholder='School' name='School' type='text' value={formation.School} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                          <input data-index={index} placeholder='School From' name='SchoolFrom' type='number' value={formation.SchoolFrom} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                          <input data-index={index} placeholder='School To' name='instituicao' type='number' value={formation.SchoolTo} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                          <input data-index={index} placeholder='School projects' name='projects' type='text' value={formation.projects} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                          <Button setColor="var(--dark-grey)" setClick={()=>deleteFormacao(index)}>Del</Button>
+                        </ContainerSumary>
+                        </>
+                      )}
                           <p>School Title</p>
                           <Input placeholder="Title" register={register} name={"Title"}/>
                           {errors.Title?.message}
@@ -209,6 +267,30 @@ const customStyles = {
                           <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
                         </form>
                         </ContainerName>
+{/* 
+                        <ContainerName>
+                      <h3>Skills</h3>
+                      <Button setColor="var(--dark-grey)" setClick={addinputButtonSkill}>Add Skill</Button>
+                      
+                      {skills.map((skill, index)=>
+                      <>
+                        <ContainerSumary>
+                          <Input placeholder={ `Skill ${index+1}` } value={skill} register={register} name={"Skill"} onChange={(e)=>handleChangeSkill(e,index)}/>
+                          <Button setColor="var(--dark-grey)" setClick={()=>handleRemoveSkill(index)}>Del</Button>
+                        </ContainerSumary>
+                        </>
+                      )}
+                      
+                      <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
+                      </ContainerName>
+                    </form>
+                    </ContainerSumary>
+ */}
+
+
+
+
+                        
                         <ContainerName>
                         <form onSubmit={handleSubmit(handleSubmitFunctionExperience)} className="form">
                           <h3>Form Projects</h3>

@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
+import { Container } from "./styles";
 
 const Select = ({options, register}) => {
   return (
-    <select name="lingua" {...register}>
-      {options.map((option)=>
-        <option value={option}>{option}</option>)}
-    </select>
+    <Container>
+      <select name="lingua" {...register}>
+        {options.map((option)=>
+          <option value={option}>{option}</option>)}
+      </select>
+    </Container>
   );
 };
 export default Select;
