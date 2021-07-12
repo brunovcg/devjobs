@@ -64,23 +64,23 @@ const Register = () => {
   });
 
   const onSubmitFunction = ({ firstName, lastName, email, password, birthDate, linkedinProfile, address, phone }) => {
-      const user = { firstName, lastName, email, password, birthDate, linkedinProfile, address, phone }
+    const user = { firstName, lastName, email, password, birthDate, linkedinProfile, address, phone }
 
-      api
+    api
       .post('/register', user)
       .then((response)=> {
-          toast.success('Conta criada com sucesso.'); 
-                     
-          const { accessToken } = response.data;
-          localStorage.setItem('@DevJobs:Token:User', JSON.stringify(accessToken));
-          setUserToken( accessToken );
+        toast.success('Account created successfully'); 
+                   
+        const { accessToken } = response.data;
+        localStorage.setItem('@DevJobs:Token:User', JSON.stringify(accessToken));
+        setUserToken( accessToken );
 
-          return history.push('/dashboard')
-      })
-      .catch((err) => {
-          toast.error('Ocorreu um erro, tente novamente com outro email.'); 
-          console.log(err)
-      });
+        return history.push('/dashboard')
+    })
+    .catch((err) => {
+        toast.error('An error has occurred, try again using a different e-mail.'); 
+        console.log(err)
+    });
   }
   return (
   <>
