@@ -4,12 +4,13 @@ export const Container = styled.main`
   height: 85vh;
   background: var(--gradient-sunny);
 
+
   .sun {
     display: flex;
     justify-content: center;
 
     img {
-      width: 150px;
+      width: 40%;
       position: absolute;
       top: 0;
       z-index: 2;
@@ -50,8 +51,12 @@ export const Container = styled.main`
       img {
         width: 180px;
         position: absolute;
-        top: -10px;
+        top: 0;
         z-index: 2;
+        :hover{
+          width: 200px;
+
+        }
       }
     }
     .mainBox {

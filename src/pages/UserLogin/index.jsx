@@ -51,7 +51,7 @@ const UserLogin = () => {
 
   return (
   <>
-  <Header />  
+  <Header/>  
   <Page>
   <FormStyled>    
     <h1>Login</h1>
