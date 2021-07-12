@@ -20,21 +20,20 @@ const CompanyRegister = () => {
   const schema = yup.object().shape({
     companyName: yup
         .string()
-        .email('Email inválido')
-        .required('Campo obrigatório'),
+        .required('Required field'),
     email: yup
         .string()
-        .email('Email inválido')
-        .required('Campo obrigatório'),
+        .email('Invalid e-mail')
+        .required('Required field'),
     password: yup
         .string()
-        .min(6, 'Mínimo de 6 digitos')
-        .required('Campo obrigatório')
-        .matches(PasswordStrength, 'Sua senha é fraca, use letras minúsculas, maiúsculas, números e símbolos.'),
+        .min(6, 'Minimum 6 digits')
+        .required('Required field')
+        .matches(PasswordStrength, 'Weak password, use lowercase, uppercase, numbers and symbols.'),
     confirmPassword: yup
         .string()
-        .required('Campo obrigatório')
-        .oneOf([yup.ref('password')], 'Senhas diferentes')
+        .required('Required field')
+        .oneOf([yup.ref('password')], "Passwords don't match")
   })
 
   const history = useHistory();
@@ -56,16 +55,16 @@ const CompanyRegister = () => {
           return history.push('/search')
       })
       .catch(err => {
-          toast.error('Email ou senha inválidos.'); 
+          toast.error('Invalid e-mail or password.'); 
           console.log(err);
       })
   }
 
 
   return (
-  <Page>
+  <>
   <Header />  
-  
+  <Page>
   <FormStyled>    
     <h1>Company Register</h1>
     <Input 
@@ -109,14 +108,15 @@ const CompanyRegister = () => {
     <Button 
       setClick={handleSubmit(onSubmitFunction)}
       setSize='large'
-      setColor='blue'
+      setColor='var(--blue)'
     >
       Sign Up
     </Button>           
   </FormStyled>
 
   <Text>If you already have an account, <Link to='/'>sign in here.</Link></Text>
-  </Page>    
+  </Page>
+  </>    
   );
 }
 
