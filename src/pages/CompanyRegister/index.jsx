@@ -1,10 +1,9 @@
 import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { FormStyled, Page, Text } from './styles';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import api from '../../services/api';
-
-import { useHistory, Link } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -15,26 +14,22 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from '../../components/Header';
 
 const CompanyRegister = () => {
-  const PasswordStrength = (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/);
-
   const schema = yup.object().shape({
     companyName: yup
         .string()
-        .email('Email inválido')
-        .required('Campo obrigatório'),
+        .required('Required field'),
     email: yup
         .string()
-        .email('Email inválido')
-        .required('Campo obrigatório'),
+        .email('Invalid e-mail')
+        .required('Required field'),
     password: yup
         .string()
-        .min(6, 'Mínimo de 6 digitos')
-        .required('Campo obrigatório')
-        .matches(PasswordStrength, 'Sua senha é fraca, use letras minúsculas, maiúsculas, números e símbolos.'),
+        .min(6, 'Minimum 6 digits')
+        .required('Required field'),
     confirmPassword: yup
         .string()
-        .required('Campo obrigatório')
-        .oneOf([yup.ref('password')], 'Senhas diferentes')
+        .required('Required field')
+        .oneOf([yup.ref('password')], "Passwords don't match")
   })
 
   const history = useHistory();
@@ -44,28 +39,29 @@ const CompanyRegister = () => {
   });
 
   const onSubmitFunction = ({ companyName, email, password }) => {
-    const company = { companyName, email, password };
+    const company = { companyName, email, password }
 
     api
       .post('/companies', company)
-      .then((response) => {
-          const { newCompany } = response.data;
+      .then((response)=> {
+        toast.success('Account created successfully'); 
 
-          localStorage.setItem('@DevJobs:Company', JSON.stringify(newCompany));
+        const newCompany = response.data;
+        localStorage.setItem('@DevJobs:Company', JSON.stringify(newCompany));
 
-          return history.push('/search')
-      })
-      .catch(err => {
-          toast.error('Email ou senha inválidos.'); 
-          console.log(err);
-      })
+        return history.push('/search')
+    })
+    .catch((err) => {
+        toast.error('An error has occurred, try again using a different e-mail.'); 
+        console.log(err)
+    });
   }
 
 
   return (
-  <Page>
+  <>
   <Header />  
-  
+  <Page>
   <FormStyled>    
     <h1>Company Register</h1>
     <Input 
@@ -100,8 +96,8 @@ const CompanyRegister = () => {
       placeholder='Confirm Password' 
       type='password' 
       register={register}
-      name='passwordConfirm'
-      error={errors.passwordConfirm?.message}
+      name='confirmPassword'
+      error={errors.confirmPassword?.message}
       setHeight='70px'
       setWidth='100%' 
     />
@@ -109,14 +105,15 @@ const CompanyRegister = () => {
     <Button 
       setClick={handleSubmit(onSubmitFunction)}
       setSize='large'
-      setColor='blue'
+      setColor='var(--blue)'
     >
       Sign Up
     </Button>           
   </FormStyled>
 
-  <Text>If you already have an account, <Link to='/'>sign in here.</Link></Text>
-  </Page>    
+  <Text>If you already have an account, <Link to='/company'>sign in here.</Link></Text>
+  </Page>
+  </>    
   );
 }
 
