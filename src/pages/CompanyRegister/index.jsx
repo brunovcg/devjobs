@@ -63,9 +63,9 @@ const CompanyRegister = () => {
 
 
   return (
-  <>
-  <Header />  
   <Page>
+  <Header />  
+  
   <FormStyled>    
     <h1>Company Register</h1>
     <Input 
@@ -116,8 +116,7 @@ const CompanyRegister = () => {
   </FormStyled>
 
   <Text>If you already have an account, <Link to='/'>sign in here.</Link></Text>
-  </Page>  
-  </>  
+  </Page>    
   );
 }
 
