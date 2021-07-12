@@ -4,7 +4,7 @@ import { Home } from "../pages/Home";
 import Search from "../pages/Search";
 import Dashboard from "../pages/Dashboard";
 import PageNotFound from '../pages/PageNotFound';
-import userLogin from '../pages/userLogin';
+import UserLogin from '../pages/UserLogin';
 import Register from '../pages/UserRegister';
 
 const Routes = () => {
@@ -12,7 +12,7 @@ const Routes = () => {
     <Switch>
       <Route path="/" exact component={Home} />      
       <Route path="/search" exact component={Search} />
-      <Route path="/login" exact component={userLogin} />
+      <Route path="/login" exact component={UserLogin} />
       <Route path="/register" exact component={Register} />      
       <Route isPrivate={true} path="/dashboard" exact component={Dashboard} />      
       <Route component={PageNotFound} />      
