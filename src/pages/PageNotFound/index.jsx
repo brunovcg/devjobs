@@ -6,7 +6,7 @@ import { Container } from "./styles";
 const PageNotFound = () => {
   return (
     <>
-      <Header setColor="var(--blue-sky)" setBorder="var(--blue-sky)" />
+      <Header setColor="var(--blue-sky)" setBorder="var(--blue-sky)" hideImage />
 
       <Container>
         <figure className="sun">
