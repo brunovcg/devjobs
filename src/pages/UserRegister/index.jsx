@@ -162,7 +162,7 @@ const Register = () => {
     />
 
     <Input 
-        placeholder='ConfirmPassword*' 
+        placeholder='Confirm Password*' 
         type='password' 
         register={register} 
         name='confirmPassword' 
