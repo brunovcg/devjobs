@@ -15,6 +15,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from '../../components/Header';
 
 const CompanyRegister = () => {
+  const PasswordStrength = (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/);
+
   const schema = yup.object().shape({
     companyName: yup
         .string()
@@ -26,12 +28,13 @@ const CompanyRegister = () => {
         .required('Campo obrigatório'),
     password: yup
         .string()
-        .email('Email inválido')
-        .required('Campo obrigatório'),
-    passwordConfirm: yup
-        .string()
-        .min(6)
+        .min(6, 'Mínimo de 6 digitos')
         .required('Campo obrigatório')
+        .matches(PasswordStrength, 'Sua senha é fraca, use letras minúsculas, maiúsculas, números e símbolos.'),
+    confirmPassword: yup
+        .string()
+        .required('Campo obrigatório')
+        .oneOf([yup.ref('password')], 'Senhas diferentes')
   })
 
   const history = useHistory();
@@ -108,11 +111,11 @@ const CompanyRegister = () => {
       setSize='large'
       setColor='blue'
     >
-        Enviar
+      Sign Up
     </Button>           
   </FormStyled>
 
-  {/* <Text>If you don't have an account already, <Link to='/register'>sign up here.</Link></Text> */}
+  <Text>If you already have an account, <Link to='/'>sign in here.</Link></Text>
   </Page>  
   </>  
   );
