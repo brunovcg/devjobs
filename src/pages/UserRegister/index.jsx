@@ -162,7 +162,7 @@ const Register = () => {
     />
 
     <Input 
-        placeholder='ConfirmPassword*' 
+        placeholder='Confirm Password*' 
         type='password' 
         register={register} 
         name='confirmPassword' 
@@ -184,8 +184,8 @@ const Register = () => {
       
   </Container>
 
-  <Text>Caso já tenha uma conta, <Link to='/login'>entre aqui.</Link></Text>
-  <Text>*Campo Obrigatório.</Text>
+  <Text>If you already have an account, <Link to='/login'>sign in here.</Link></Text>
+  <Text>*Required field.</Text>
   </Page>
   </>
   );
