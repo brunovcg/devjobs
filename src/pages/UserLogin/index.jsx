@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormStyled, Page, Text } from './styles';
+import { useToken } from "../../providers/TokenProvider";
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import api from '../../services/api';
@@ -15,6 +16,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from '../../components/Header';
 
 const UserLogin = () => {
+  const { setUserToken } = useToken();
+
   const schema = yup.object().shape({
     email: yup
           .string()
@@ -39,11 +42,12 @@ const UserLogin = () => {
           const { accessToken } = response.data;
 
           localStorage.setItem('@DevJobs:Token:User', JSON.stringify(accessToken));
+          setUserToken(accessToken)
 
           return history.push('/dashboard')
       })
       .catch(err => {
-          toast.error('Email ou senha inválidos.'); 
+          toast.error('Invalid e-mail or password'); 
           console.log(err);
       })
   }
