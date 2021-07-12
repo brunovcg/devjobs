@@ -8,7 +8,8 @@ import {
   ContainerCard,
   ContainerDescription,
   ContainerInfos,
-  ContainerSkills
+  ContainerSkills,
+  ContainerModal
 } from "./styles";
 import { useState } from 'react';
 import Modal from 'react-modal';
@@ -18,6 +19,7 @@ import * as yup from "yup"
 import {yupResolver} from '@hookform/resolvers/yup'
 import { specialization } from '../../utils';
 import Select from '../../components/Select';
+import Input from '../../components/Input';
 const customStyles = {
   content: {
     top: '50%',
@@ -36,9 +38,12 @@ const customStyles = {
   const [formObjective, setFormObjective] = useState(true)
   const [formEducation, setFormEducation] = useState(true)
   const [formExperience, setFormExperience] = useState(true)
-  const [formSkils, setFormSkils] = useState(true)
+
   const [formActivities, setFormActivities] = useState(true)
   const [modalIsOpen, setIsOpen] = useState(false);
+
+  const [skills, setSkills] = useState([''])
+
 
   const forSchemaName = yup.object().shape({
     FirstName: yup.string().required("FirstName"),
@@ -69,12 +74,16 @@ const customStyles = {
   const forSchemaActivities = yup.object().shape({
     Activities: yup.string(),
   })
+  const forSchemaSkills = yup.object().shape({
+    Skill: yup.string(),
+  })
   const{register, handleSubmit, formState:{errors}} = useForm({
       resolverName: yupResolver(forSchemaName),
       resolverObjective: yupResolver(forSchemaObjective),
       resolverEducation: yupResolver(forSchemaEducation),
       resolverExperience: yupResolver(forSchemaExperience),
       resolverActivities: yupResolver(forSchemaActivities),
+      resolverSkills: yupResolver(forSchemaSkills),
   });
   const handleSubmitFunctionName = (data) => {
     setFormName(data)
@@ -91,8 +100,20 @@ const customStyles = {
   const handleSubmitFunctionActivities = (data) => {
     setFormActivities(data)
   }
-
-
+  const handleSubmitFunctionSkill = (data) => {
+    setFormActivities(data)
+  }
+  const addinputButtonSkill = (e) => {
+    e.preventDefault();
+    setSkills([...skills, ''])
+  }
+  const handleChangeSkill = (e, index) => {
+    skills[index] = e.target.value;
+    setSkills([...skills])
+  }
+  const handleRemoveSkill = (position) => {
+    setSkills([...skills.filter((_,index)=> index !== position)])
+  }
 
 
 
@@ -111,7 +132,6 @@ const customStyles = {
     <Header/>
     <ContainerPage>
         <ContainerButtons>
-            <Button setSize={"huge"} setColor="var(--dark-grey)" setClick={""}>Contact the Dev</Button>
             <Button setSize={"huge"} setColor="var(--dark-grey)" setClick={""}>PDF</Button>
             <Button setSize={"huge"} setColor="var(--dark-grey)" setClick={openModal}>Edit Resume</Button>
         </ContainerButtons>
@@ -127,42 +147,48 @@ const customStyles = {
                 
                 <h3>Formulário</h3>
                     <form onSubmit={handleSubmit(handleSubmitFunctionName)} className="form">
-                      <h3>Form Name</h3>
-                      <p>First Name</p>
-                      <input placeholder="First Name" {...register("FirstName")}/>
-                      {errors.FirstName?.message}
-                      <p>Last Name</p>
-                      <input placeholder="Last Name" {...register("LastName")}/>
-                      {errors.LastName?.message}
-                      <p>Email</p>
-                      <input placeholder="Email" {...register("Email")}/>
-                      {errors.Email?.message}
-                      <p>Phone</p>
-                      <input placeholder="Phone" {...register("Phone")}/>
-                      {errors.Phone?.message}
-                      <p>Adress</p>
-                      <input placeholder="Adress" {...register("Adress")}/>
-                      {errors.Adress?.message}
-                      <p>Linkedin</p>
-                      <input placeholder="Adress" {...register("Linkedin")}/>
-                      {errors.Linkedin?.message}
-                      <p>Specialization</p>
+                  <ContainerModal>
+                    <h3>Form Name</h3>
+                    <ContainerSumary>
+                      <ContainerName>
+                        <p>First Name</p>
+                        <input placeholder="First Name" {...register("FirstName")}/>
+                        {errors.FirstName?.message}
+                        <p>Last Name</p>
+                        <input placeholder="Last Name" {...register("LastName")}/>
+                        {errors.LastName?.message}
+                        <p>Email</p>
+                        <input placeholder="Email" {...register("Email")}/>
+                        {errors.Email?.message}
+                        </ContainerName>
+                        <ContainerName>
+                        <p>Phone</p>
+                        <input placeholder="Phone" {...register("Phone")}/>
+                        {errors.Phone?.message}
+                        <p>Adress</p>
+                        <input placeholder="Adress" {...register("Adress")}/>
+                        {errors.Adress?.message}
+                        <p>Linkedin</p>
+                        <input placeholder="Adress" {...register("Linkedin")}/>
+                        {errors.Linkedin?.message}
+                        <p>Specialization</p>
 
-                      
-                      <Select options={specialization} register={register("Specialization")}>
-                      </Select>
-
-
-                      <button type="submit">Enviar</button>
+                        
+                        <Select options={specialization} register={register("Specialization")}/>
+                      </ContainerName>
+                    </ContainerSumary>
+                    <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
+                    </ContainerModal>
+                    
                     </form>
 
 
                     <form onSubmit={handleSubmit(handleSubmitFunctionObjective)} className="form">
                     <h3>Form Objective</h3>
                       <p>Objective</p>
-                      <input placeholder="Objective" {...register("Objective")}/>
+                      <Input setWidth={'40%'} placeholder="Objective" register={register} name={"Objective"}/>
                       {errors.Objective?.message}
-                      <button type="submit">Enviar</button>
+                      <Button type="submit">Enviar</Button>
                     </form>
                     <form onSubmit={handleSubmit(handleSubmitFunctionEducation)} className="form">
                     <h3>Form Education</h3>
@@ -201,7 +227,23 @@ const customStyles = {
                       <input placeholder="Activities Job" {...register("activitiesJob")}/>
                       {errors.activitiesJob?.message}
                       <button type="submit">Enviar</button>
-                      </form>
+                    </form>
+                    
+                    <form onSubmit={handleSubmit(handleSubmitFunctionSkill)} className="form">
+                      <h3>Skills</h3>
+                      <button onClick={addinputButtonSkill}>Add Skill</button>
+                      {skills.map((skill, index)=>
+                      <>
+                        <input placeholder={ `Skill ${index+1}` } value={skill} onChange={(e)=>handleChangeSkill(e,index)}/>
+                        <button onClick={()=>handleRemoveSkill(index)}>Del</button>
+                        </>
+                      )}
+                      
+                      <button type="submit">Enviar</button>
+                    </form>
+
+
+                    
                     <form onSubmit={handleSubmit(handleSubmitFunctionActivities)} className="form">
                       <h3>Form Activities</h3>
                       <p>Activities</p>
@@ -276,8 +318,8 @@ const customStyles = {
                   <p>Lorem ipsum dolor sit amet, onsectetur adipiscing ept. Nunc tortor tellus</p>
                 </>:
                 <>
-                  <p>{formEducation.Title} | {formName.School}</p>
-                  <p>{formEducation.From} | {formName.To}</p>
+                  <p>{formEducation.Title} | {formEducation.School}</p>
+                  <p>{formEducation.From} | {formEducation.To}</p>
                   <p>{formEducation.projects}</p>                  
                 </>}
                    
@@ -307,12 +349,7 @@ const customStyles = {
         <ContainerCard>
             <h2>Skills</h2>
             <ContainerSkills>
-              
-                <p>Skill</p><p>Skill</p>
-                <p>Skill</p><p>Skill</p>
-                <p>Skill</p><p>Skill</p>
-                <p>Skill</p><p>Skill</p>
-                <p>Skill</p><p>Skill</p>
+              {skills.map((skill)=> <p>{skill}</p>)}
             </ContainerSkills>
         </ContainerCard>
     </ContainerInfos>

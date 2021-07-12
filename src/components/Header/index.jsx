@@ -1,19 +1,23 @@
-import { HalfMoon, Container, DevJobs, Links } from "./styles";
-import Button from "../Button";
-const Header = ({setColor, setBorder}) => {
+import { HalfMoon, Container } from "./styles";
+import { Link } from "react-router-dom";
+const Header = ({ setColor, setBorder, setRight, setLeft, hideImage }) => {
   return (
     <Container setColor={setColor} setBorder={setBorder}>
-      <Links>Resume</Links>
+      
+      <div className="left">{setLeft}</div>
+
       <HalfMoon>
-        <DevJobs>
-          <h1>DevJobs</h1>
-        </DevJobs>
+        { !hideImage &&
+        <Link to="/">
+          <div>
+            <h1>DevJobs</h1>
+          </div>
+        </Link>
+      }
+
       </HalfMoon>
-      <div>
-        <Button setColor="red" size="large">
-          <h3>Logout</h3>
-        </Button>
-      </div>
+
+      <div className="right">{setRight}</div>
     </Container>
   );
 };

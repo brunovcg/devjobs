@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FormStyled, Container } from './styles';
+import { FormStyled, Container, Text, Page } from './styles';
 import Button from '../../components/Button';
 import api from '../../services/api';
 import Input from '../../components/Input';
@@ -11,6 +11,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Header from '../../components/Header';
 
 
 const Register = () => {
@@ -59,9 +60,11 @@ const Register = () => {
       resolver: yupResolver(schema)
   });
 
-  const onSubmitFunction = ({ data }) => {
+  const onSubmitFunction = ({ firstName, lastName, email, password, birthDate, linkedinProfile, address, phone }) => {
+      const user = { firstName, lastName, email, password, birthDate, linkedinProfile, address, phone }
+
       api
-      .post('/register', data)
+      .post('/register', user)
       .then((response)=> {
           toast.success('Conta criada com sucesso.'); 
                      
@@ -77,46 +80,113 @@ const Register = () => {
   }
   return (
   <>
+  <Header />
+  <Page>
   <Container>
     <h2>Register</h2>
 
     <FormStyled>
 
-      <Input placeholder='First Name*' {...register('firstName')} />
-      {errors.firstName?.message}
+    <Input 
+        placeholder='First Name*'
+        register={register} 
+        name='firstName'
+        error={errors.firstName?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />
 
-      <Input placeholder='Last Name*' {...register('lastName')} />
-      {errors.lastName?.message}
+    <Input 
+        placeholder='Last Name*' 
+        register={register} 
+        name='lastName'
+        error={errors.lastName?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />
 
-      <Input placeholder='E-mail*' {...register('email')} />
-      {errors.email?.message}
+    <Input 
+        placeholder='E-mail*' 
+        register={register}
+        name='email'
+        error={errors.email?.message}
+        setHeight='70px'
+        setWidth='100%' 
+    />
 
-      <Input placeholder='Address' {...register('address')} />
-      {errors.address?.message}
+    <Input 
+        placeholder='Address' 
+        register={register}
+        name='address'
+        error={errors.address?.message}
+        setHeight='70px'
+        setWidth='100%' 
+    />
 
-      <Input placeholder='Birth Date*' type='date' {...register('birthDate')} />
-      {errors.birthDate?.message}
+    <Input 
+        placeholder='Birth Date*' 
+        type='date' 
+        register={register}
+        name='birthDate' 
+        error={errors.birthDate?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />
 
-      <Input placeholder='Linkedin Profile' {...register('linkedinProfile')} />
-      {errors.linkedinProfile?.message}        
+    <Input 
+        placeholder='Linkedin Profile' 
+        register={register} 
+        name='linkedinProfile' 
+        error={errors.linkedinProfile?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />     
 
-      <Input placeholder='Phone' {...register('phone')} />
-      {errors.phone?.message}
+    <Input 
+        placeholder='Phone' 
+        register={register} 
+        name='phone' 
+        error={errors.phone?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />
 
-      <Input placeholder='Password*' type='password' {...register('password')} />
-      {errors.password?.message}
+    <Input 
+        placeholder='Password*' 
+        type='password' 
+        register={register} 
+        name='password' 
+        error={errors.password?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />
 
-      <Input placeholder='ConfirmPassword*' type='password' {...register('confirmPassword')} />
-      {errors.passwordConfirm?.message}
+    <Input 
+        placeholder='Confirm Password*' 
+        type='password' 
+        register={register} 
+        name='confirmPassword' 
+        error={errors.passwordConfirm?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />
 
-      <Button setClick={handleSubmit(onSubmitFunction)}>Enviar</Button>
+    <Button 
+        setClick={handleSubmit(onSubmitFunction)}
+        setColor='blue'
+        setSize='large'
+    >
+        Enviar
+    </Button>
 
     </FormStyled>
 
       
   </Container>
 
-  <p>Caso já tenha uma conta, <Link to='/login'>entre aqui.</Link></p>
+  <Text>If you already have an account, <Link to='/login'>sign in here.</Link></Text>
+  <Text>*Required field.</Text>
+  </Page>
   </>
   );
 }

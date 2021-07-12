@@ -1,4 +1,5 @@
 import Button from "../../components/Button";
+import HeaderLink from "../../components/HeaderLink";
 import dev from "../../assets/dev.png";
 import resumeHome from "../../assets/resumeHome.png";
 import notebook from "../../assets/notebook.png";
@@ -9,7 +10,11 @@ import Header from "../../components/Header";
 export const Home = () => {
   return (
     <>
-      <Header />
+      <Header
+        setLeft={<HeaderLink setName="For Companies" setPath="/" />}
+        setRight={<HeaderLink setName="For Devs" setPath="/login"/>}
+      />
+
       <Container>
         <section className="presentation">
           <figure>

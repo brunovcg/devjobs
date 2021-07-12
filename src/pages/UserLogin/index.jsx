@@ -1,9 +1,8 @@
 import React from 'react';
-import {Container, FormStyled} from './styles';
+import { FormStyled, Page, Text } from './styles';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import api from '../../services/api';
-
 
 import { useHistory, Link } from 'react-router-dom';
 
@@ -13,8 +12,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Header from '../../components/Header';
 
-const userLogin = () => {
+const UserLogin = () => {
   const schema = yup.object().shape({
     email: yup
           .string()
@@ -23,7 +23,7 @@ const userLogin = () => {
     password: yup
           .string()
           .min(6)
-          .required('Campo obrigatório'),
+          .required('Campo obrigatório')
   })
 
   const history = useHistory();
@@ -50,19 +50,43 @@ const userLogin = () => {
 
 
   return (
-  <Container>
-      <h1>Login</h1>
+  <>
+  <Header/>  
+  <Page>
+  <FormStyled>    
+    <h1>Login</h1>
+    <Input 
+      placeholder='E-mail' 
+      register={register}
+      name='email' 
+      error={errors.email?.message}
+      setHeight='70px'
+      setWidth='100%'
+    />
+    
+    <Input 
+      placeholder='Password' 
+      type='password' 
+      register={register}
+      name='password'
+      error={errors.password?.message}
+      setHeight='70px'
+      setWidth='100%' 
+    />
 
-      <FormStyled>
-        <Input placeholder='Insira seu email' {...register('email')} />{errors.email?.message}
-        <Input placeholder='Insira sua senha' type='password' {...register('password')} />{errors.password?.message}
+    <Button 
+      setClick={handleSubmit(onSubmitFunction)}
+      setSize='large'
+      setColor='blue'
+    >
+      Sign In
+    </Button>           
+  </FormStyled>
 
-        <Button onClick={handleSubmit(onSubmitFunction)}>Enviar</Button>           
-      </FormStyled>
-
-      <p>Caso não tenha uma conta, <Link to='/signup'>cadastre-se aqui.</Link></p>  
-  </Container>
+  <Text>If you don't have an account already, <Link to='/register'>sign up here.</Link></Text>
+  </Page>  
+  </>  
   );
 }
 
-export default userLogin;
+export default UserLogin;

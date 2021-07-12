@@ -1,9 +1,18 @@
 import styled from "styled-components";
 
+export const ContainerModal = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 99vw;
+`
+
+
 export const ContainerButtons = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    width: 99vw;
 `
 
 export const ContainerPage = styled.div`
