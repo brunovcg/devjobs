@@ -35,7 +35,8 @@ const Register = () => {
         .email('Invalid e-mail')
         .required('Required field'),
     birthDate: yup
-        .date('Must be a valid date')
+        .date()
+        .typeError('Must be a valid date')
         .required('Required field'),
     password: yup
         .string()
@@ -179,7 +180,7 @@ const Register = () => {
         setColor='var(--blue)'
         setSize='large'
     >
-        Enviar
+        Sign Up
     </Button>
 
     </FormStyled>
