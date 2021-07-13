@@ -11,6 +11,10 @@ export const HalfMoon = styled.div`
   align-items: center;
   justify-content: center;
 
+  @media (min-width: 500px) {
+    width: 30vw;
+  }
+
   a {
     div {
       background-color: var(--blue);
@@ -65,6 +69,6 @@ export const Container = styled.div`
   }
 
   @media (min-width: 500px) {
-    height: 15vh;
+    height: 10vh;
   }
 `;

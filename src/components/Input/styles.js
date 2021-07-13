@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: ${props => props.setWidth};
-  height: ${props => props.setHeight};
+  width: ${(props) => props.setWidth};
+  height: ${(props) => props.setHeight};
 
   input {
     background: var(--grey);
     padding-left: 10px;
     color: var(--dark-grey);
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     width: 100%;
     height: 60%;
     border: none;

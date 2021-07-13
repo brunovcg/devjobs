@@ -8,6 +8,10 @@ export const Page = styled.div`
     width: 100%;    
     align-items: center;
     justify-content: center;
+
+    p:first-of-type{
+        font-size: 1.3rem;
+    }
 `
 
 export const Container = styled.div`
@@ -21,8 +25,9 @@ export const Container = styled.div`
     align-items: center;
     padding: 20px;
     margin-bottom: 15px;
+    margin-top: 30px;
 
-    h2{
+    h1{
         color: white;
         margin-bottom: 15px;
     }

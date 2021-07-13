@@ -7,10 +7,6 @@ export const Page = styled.div`
     min-height: 80vh;    
     align-items: center;
     justify-content: center;
-
-    p:first-of-type {
-        font-size: 1.3rem;
-    }
 `
 
 export const FormStyled = styled.form`
@@ -34,4 +30,5 @@ export const FormStyled = styled.form`
 export const Text = styled.p`
     text-align: center;
     margin-bottom: 15px;
+    font-size: 1.3rem;
 `

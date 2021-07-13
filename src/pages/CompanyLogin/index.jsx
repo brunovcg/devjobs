@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../../components/Header';
 
-const CompanyRegister = () => {
+const CompanyLogin = () => {
   const schema = yup.object().shape({
     companyName: yup
         .string()
@@ -25,11 +25,7 @@ const CompanyRegister = () => {
     password: yup
         .string()
         .min(6, 'Minimum 6 digits')
-        .required('Required field'),
-    confirmPassword: yup
-        .string()
         .required('Required field')
-        .oneOf([yup.ref('password')], "Passwords don't match")
   })
 
   const history = useHistory();
@@ -38,11 +34,10 @@ const CompanyRegister = () => {
       resolver: yupResolver(schema)
   });
 
-  const onSubmitFunction = ({ companyName, email, password }) => {
-    const company = { companyName, email, password }
+  const onSubmitFunction = ({ data }) => {
 
     api
-      .post('/companies', company)
+      .post('/companies', data)
       .then((response)=> {
         toast.success('Account created successfully'); 
 
@@ -63,7 +58,7 @@ const CompanyRegister = () => {
   <Header />  
   <Page>
   <FormStyled>    
-    <h1>Company Register</h1>
+    <h1>Company Login</h1>
     <Input 
       placeholder='Company Name' 
       register={register}
@@ -91,30 +86,20 @@ const CompanyRegister = () => {
       setHeight='70px'
       setWidth='100%'
     />
-    
-    <Input 
-      placeholder='Confirm Password' 
-      type='password' 
-      register={register}
-      name='confirmPassword'
-      error={errors.confirmPassword?.message}
-      setHeight='70px'
-      setWidth='100%' 
-    />
 
     <Button 
       setClick={handleSubmit(onSubmitFunction)}
       setSize='large'
       setColor='var(--blue)'
     >
-      Sign Up
+      Sign In
     </Button>           
   </FormStyled>
 
-  <Text>If you already have an account, <Link to='/company-login'>sign in here.</Link></Text>
+  <Text>If you don't have an account already, <Link to='/company-register'>sign up here.</Link></Text>
   </Page>
   </>    
   );
 }
 
-export default CompanyRegister;
+export default CompanyLogin;
