@@ -26,18 +26,16 @@ const Search = () => {
 
   return (
     <>
-      <Header />
+      <Header 
+        setRight={<Button
+          setColor="var(--red)" setSize="large" setClick={""}
+          >Logout</Button>
+        }
+      />
       <ContainerPage>
         <ContainerSearch>
           <SearchBar>
-            {/* <Input setHeight="10%" setWidth="20%" placeholder="Techs" />
-            <Input
-              setHeight="20%"
-              setWidth="20%"
-              placeholder="Specialization"
-            />
-            <Input setHeight="20%" setWidth="100%" placeholder="Seniority" />
-            <Input setHeight="20%" setWidth="20%" placeholder="Disponibility" /> */}
+            <p>Aguardando o Select</p>
             <Button setColor="var(--blue)" setSize="large" setClick={""}>
               Search
             </Button>
