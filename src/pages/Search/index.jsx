@@ -36,7 +36,7 @@ const Search = () => {
         <ContainerSearch>
           <SearchBar>
             <p>Aguardando o Select</p>
-            <Button setColor="var(--blue)" setSize="large" setClick={""}>
+            <Button setColor="var(--dark-grey)" setSize="large" setClick={""}>
               Search
             </Button>
           </SearchBar>
