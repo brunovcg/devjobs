@@ -9,32 +9,51 @@ import {
 } from "./styles";
 import Header from "../../components/Header";
 import CardDev from "../../components/CardDev";
+import API from "../../services/api";
+import { useState, useEffect } from 'react';
 
 const Search = () => {
+
+  const [users, setUsers] = useState([])
+
+  const GetDev = () => {
+    API.get("/db").then((response) => setUsers(response.data.users));
+  }
+  
+  useEffect(() => {
+    GetDev()
+  }, [])
+
   return (
     <>
-      <Header />
+      <Header 
+        setRight={<Button
+          setColor="var(--red)" setSize="large" setClick={""}
+          >Logout</Button>
+        }
+      />
       <ContainerPage>
         <ContainerSearch>
           <SearchBar>
-            <Input setHeight="10%" setWidth="20%" placeholder="Techs" />
-            <Input
-              setHeight="20%"
-              setWidth="20%"
-              placeholder="Specialization"
-            />
-            <Input setHeight="20%" setWidth="100%" placeholder="Seniority" />
-            <Input setHeight="20%" setWidth="20%" placeholder="Disponibility" />
+            <p>Aguardando o Select</p>
             <Button setColor="var(--blue)" setSize="large" setClick={""}>
               Search
             </Button>
           </SearchBar>
         </ContainerSearch>
         <ContainerCards>
-          <CardDev/>
-          <CardDev/>
-          <CardDev/>
-          <CardDev/>
+          {
+            users.map((user) => (
+              <CardDev
+                key={user.id}
+                name={`${user.firstName} ${user.lastName}`}
+                city={user.summary.city}
+                speciality={user.summary.speciality}
+                disponibility={user.summary.disponibility}
+                experience={`${user.summary.experienceTime} months`}
+              />
+            ))
+          }
         </ContainerCards>
       </ContainerPage>
     </>
