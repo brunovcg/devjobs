@@ -17,7 +17,7 @@ import Header from "../../components/Header";
 import {useForm} from "react-hook-form"
 import * as yup from "yup"
 import {yupResolver} from '@hookform/resolvers/yup'
-import { specialization } from '../../utils';
+import { level, specialization } from '../../utils';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
 const customStyles = {
@@ -225,7 +225,12 @@ const [form, setForm] = useState(true)
                 {dadosResume.skills.map((skill, index)=>
                   <ContainerName>
                     <input data-index={index} placeholder='Skill' name='skill' type='text' value={skill.skill} onChange={(e)=>handleChangeSkill(e)}/>
-                    <input data-index={index} placeholder='Level' value={skill.level} name='level' type='number' onChange={(e)=>handleChangeSkill(e)}/>
+                    <select data-index={index} placeholder='Level' value={skill.level} name='level' type='number' onChange={(e)=>handleChangeSkill(e)}>
+                      {level.map((level)=>
+                        <option>{level}</option>
+                      )}
+                    </select>
+
                     <Button setColor="var(--dark-grey)" setClick={()=>handleRemoveSkill(index)}>Del</Button>
                   </ContainerName>
                 )}
@@ -334,9 +339,16 @@ const [form, setForm] = useState(true)
         <ContainerInfos>
         <ContainerCard>
             <h2>Skills</h2>
-            <ContainerSkills>
-              {dadosResume.skills.map((skill)=> <><p>{skill.skill} --- {skill.level}</p></>)}
-            </ContainerSkills>
+            {dadosResume.skills[0].skill===''?<ContainerSkills><p>Skill | Level</p><p>Skill | Level</p><p>Skill | Level</p>
+                                       <p>Skill | Level</p><p>Skill | Level</p><p>Skill | Level</p>
+                                       <p>Skill | Level</p><p>Skill | Level</p><p>Skill | Level</p>
+                                       <p>Skill | Level</p><p>Skill | Level</p><p>Skill | Level</p>
+                                      </ContainerSkills>:
+                                      <ContainerSkills>
+                                        {dadosResume.skills.map((skill)=> <p>{skill.skill} | {skill.level}</p>)}
+                                      </ContainerSkills>
+                                       }
+            
         </ContainerCard>
     </ContainerInfos>
     <ContainerInfos>
