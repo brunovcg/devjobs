@@ -10,54 +10,52 @@ import {
 import Header from "../../components/Header";
 import CardDev from "../../components/CardDev";
 import API from "../../services/api";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Search = () => {
 
   const [users, setUsers] = useState([])
-  const [sumary, setSumary] = useState([]);
 
   const GetDev = () => {
-    API.get("/db").then((response) => setUsers([response.data.users]));
-  }
-
-  const GetSumaryDev = () => {
-    API.get("/db").then((response) => setSumary([response.data.sumary]));
-  }
-
-  const Get = () => {
-    GetDev();
-    GetSumaryDev();
+    API.get("/db").then((response) => setUsers(response.data.users));
   }
   
-  console.log(users);
-  console.log(sumary);
+  useEffect(() => {
+    GetDev()
+  }, [])
 
   return (
     <>
       <Header />
       <ContainerPage>
-        <button onClick={Get}>API</button>
         <ContainerSearch>
           <SearchBar>
-            <Input setHeight="10%" setWidth="20%" placeholder="Techs" />
+            {/* <Input setHeight="10%" setWidth="20%" placeholder="Techs" />
             <Input
               setHeight="20%"
               setWidth="20%"
               placeholder="Specialization"
             />
             <Input setHeight="20%" setWidth="100%" placeholder="Seniority" />
-            <Input setHeight="20%" setWidth="20%" placeholder="Disponibility" />
+            <Input setHeight="20%" setWidth="20%" placeholder="Disponibility" /> */}
             <Button setColor="var(--blue)" setSize="large" setClick={""}>
               Search
             </Button>
           </SearchBar>
         </ContainerSearch>
         <ContainerCards>
-          <CardDev/>
-          <CardDev/>
-          <CardDev/>
-          <CardDev/>
+          {
+            users.map((user) => (
+              <CardDev
+                key={user.id}
+                name={`${user.firstName} ${user.lastName}`}
+                city={user.summary.city}
+                speciality={user.summary.speciality}
+                disponibility={user.summary.disponibility}
+                experience={`${user.summary.experienceTime} months`}
+              />
+            ))
+          }
         </ContainerCards>
       </ContainerPage>
     </>
