@@ -61,6 +61,16 @@ export const testUsers = {
         description: "Python",
         level: "Intermediate",
       },
+      {
+        id: 3,
+        userId: 1,
+        description: "Java",
+        level: "Intermediate",
+      },
+
+
+
+
     ],
     otherSkills: [
       {

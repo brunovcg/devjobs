@@ -8,7 +8,7 @@ export const Container = styled.div`
   width: 100vw;
   min-height: 90vh;
 
-  .summary,
+   .summary,
   .objective,
   .education,
   .experience,
@@ -29,7 +29,7 @@ export const Container = styled.div`
       margin: 5px 0 5px 0;
     }
 
-    article{
+    article {
       margin-top: 25px;
     }
 
@@ -45,7 +45,7 @@ export const Container = styled.div`
   }
 
   .header {
-    margin-bottom: 40px;
+    margin-bottom: 0px;
   }
 
   .summary {
@@ -92,7 +92,7 @@ export const Container = styled.div`
 
       .educationDate {
         display: flex;
-        color: var(--grey);
+        color: var(--dark-grey);
 
         div,
         p {
@@ -124,7 +124,7 @@ export const Container = styled.div`
 
       .jobDate {
         display: flex;
-        color: var(--grey);
+        color: var(--dark-grey);
 
         div,
         p {
@@ -140,16 +140,65 @@ export const Container = styled.div`
 
   .techSkills,
   .otherSkills {
-    .skillsInfo {
+    .skillBox {
+      width: 100%;
       display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
 
-      .skillName {
-        color: maroon;
-        font-size: 1.3rem;
+      .skillsInfo {
+        display: flex;
+        margin: 0 30px 0 0;
+
+        .skillName {
+          color: maroon;
+          font-size: 1.3rem;
+        }
+
+        .skillLevel {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 500px) {
+    .summary,
+    .objective,
+    .education,
+    .experience,
+    .techSkills,
+    .otherSkills {
+      padding: 30px 30px;
+      text-align: justify;
+    }
+
+    .objective,
+    .education,
+    .experience,
+    .techSkills,
+    .otherSkills {
+      h2 {
+        font-size: 1.8rem;
       }
 
-      .skillLevel {
+      p {
         font-size: 1.3rem;
+      }
+    }
+    .summary {
+      flex-direction: column;
+
+      .name {
+        h2 {
+          font-size: 2.5rem;
+          text-align: center;
+        }
+      }
+
+      .personalInfo {
+        padding-top: 30px;
+        width: 100%;
       }
     }
   }
@@ -158,6 +207,7 @@ export const Container = styled.div`
     .noPrint,
     .noPrint * {
       display: none !important;
+
     }
     @page {
       margin: 0;

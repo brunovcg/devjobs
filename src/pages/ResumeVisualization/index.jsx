@@ -120,21 +120,33 @@ const VisualizationResume = () => {
           </section>
           <section className="techSkills">
             <h2>Tech Skills</h2>
-            <article>
-              <div className="skillsInfo">
-                <div className="skillName">JS: &nbsp;</div>
-                <div className="skillLevel">Senior</div>
+            <div className="skillBox"> 
+            {testUsers.techSkills
+              .filter((x) => x.userId === 1)
+              .map((x, index) => (
+                <article key={index}>
+                  <div className="skillsInfo">
+                    <div className="skillName">{x.description}: &nbsp;</div>
+                    <div className="skillLevel">{x.level}</div>
+                  </div>
+                </article>
+              ))}
               </div>
-            </article>
           </section>
           <section className="otherSkills">
             <h2>Other Skills</h2>
-            <article>
-              <div className="skillsInfo">
-                <div className="skillName">English: &nbsp;</div>
-                <div className="skillLevel">Intermediate</div>
-              </div>
-            </article>
+            <div className="skillBox"> 
+              {testUsers.otherSkills
+                .filter((x) => x.userId === 1)
+                .map((x, index) => (
+                  <article key={index}>
+                    <div className="skillsInfo">
+                      <div className="skillName">{x.description}: &nbsp;</div>
+                      <div className="skillLevel">{x.level}</div>
+                    </div>
+                  </article>
+                ))}
+            </div>
           </section>
         </main>
       </Container>
