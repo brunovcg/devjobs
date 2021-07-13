@@ -34,18 +34,13 @@ const customStyles = {
 };
 
  const Resume = () => {
-  const [formName, setFormName] = useState(true)
-  const [formObjective, setFormObjective] = useState(true)
-  const [formEducation, setFormEducation] = useState(true)
-  const [formExperience, setFormExperience] = useState(true)
 
-  const [formActivities, setFormActivities] = useState(true)
+
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  const [skills, setSkills] = useState([''])
 //---------------------------------------------------------------------------------------------------------------------------------------
   const [dadosResume, setDadosResume] = useState({
-    firstName: true,
+    firstName: '',
     lastName: '',
     phone: '',
     email: '',
@@ -70,7 +65,7 @@ const customStyles = {
     const { name, value, type } = event.target;
     const index = event.target.dataset.index;
     let newSkill = [...dadosResume.skills];
-    const newValue = (type === 'number') ? value.slice(0,4) : value;
+    const newValue = (type === 'number') ? value.slice(0,2) : value;
     newSkill[index] = { ...newSkill[index], [name]: newValue };
     setDadosResume(prevState => ({ ...prevState, skills: newSkill }));
   }
@@ -78,7 +73,6 @@ const customStyles = {
     const currentSkill = [...dadosResume.skills];
     const delSkill = currentSkill.filter((_, index) => index !== position);
     setDadosResume(prevState => ({ ...prevState, skills: delSkill }));
-    setSkills([...skills.filter((_,index)=> index !== position)])
   }
 
   const addFormacao = () => {
@@ -93,6 +87,7 @@ const customStyles = {
     setDadosResume(prevState => ({ ...prevState, formation: newFormacao }));
   }
   const handleChangeFormacaoAcademica = (event) => {
+    
     const { name, value, type } = event.target;
     const index = event.target.dataset.index;
     let newFormacaoAcademica = [...dadosResume.formation];
@@ -132,6 +127,21 @@ const customStyles = {
   }
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
+const forSchema = yup.object().shape({
+  Title: yup.string().required("Title required"),
+  School: yup.string().required("School required"),
+  SchoolFrom: yup.string().required("School From required"),
+  SchoolTo: yup.string().required("School To required"),
+  projects: yup.string().required("projects required"),
+})
+
+const{register, handleSubmit, formState:{errors}} = useForm({
+  resolver: yupResolver(forSchema)
+});
+const handleSubmitFunction = (data) => setForm(data)
+
+const [form, setForm] = useState(true)
+//--------------------------------------------------------------------------------------------------------------------------------------------
   function openModal() {
     setIsOpen(true)
   }
@@ -159,11 +169,16 @@ const customStyles = {
                   <input placeholder='First Name' value={dadosResume.firstName} name='firstName' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
                   <input placeholder='Last Name' value={dadosResume.lastName} name='lastName' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
                   <input placeholder='Phone' value={dadosResume.phone} name='phone' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
-                </ContainerSumary>
-                <ContainerSumary>
                   <input placeholder='Email' value={dadosResume.email} name='email' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
                   <input placeholder='Adress' value={dadosResume.adress} name='adress' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
                   <input placeholder='Linkedin' value={dadosResume.linkedin} name='linkedin' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
+                  <select value={dadosResume.specialization} name='specialization' type='text' onChange={(e)=>handleChangePersonalData(e)}>
+                    {specialization.map((specialization)=>
+                      <option>{specialization}</option>
+                    )}
+                    
+                    
+                  </select>
                 </ContainerSumary>
 
                 <ContainerSumary>
@@ -177,12 +192,15 @@ const customStyles = {
                   <Button setColor="var(--dark-grey)" setClick={addFormacao}>Add Formation</Button>
                   {dadosResume.formation.map((formation, index)=>
                   <ContainerName>
-                    <input data-index={index} placeholder='Title' value={formation.Title} name='Title' type='text' onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
-                    <input data-index={index} placeholder='School' name='School' type='text' value={formation.School} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
-                    <input data-index={index} placeholder='School From' name='SchoolFrom' type='date' value={formation.SchoolFrom} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
-                    <input data-index={index} placeholder='School To' name='SchoolTo' type='date' value={formation.SchoolTo} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
-                    <input data-index={index} placeholder='School projects' name='projects' type='text' value={formation.projects} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                  <form onSubmit={handleSubmit(handleSubmitFunction)} className="form">
+                    <input data-index={index} {...register("Title")} placeholder='Title' value={formation.Title} name='Title' type='text' onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <input data-index={index} {...register("School")} placeholder='School' name='School' type='text' value={formation.School} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <input data-index={index} {...register("SchoolFrom")} placeholder='School From' name='SchoolFrom' type='date' value={formation.SchoolFrom} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <input data-index={index} {...register("SchoolTo")} placeholder='School To' name='SchoolTo' type='date' value={formation.SchoolTo} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <input data-index={index} {...register("projects")} placeholder='School projects' name='projects' type='text' value={formation.projects} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
                     <Button setColor="var(--dark-grey)" setClick={()=>deleteFormacao(index)}>Del</Button>
+                    <button type="submit">Enviar</button>
+                  </form>
                   </ContainerName>
                 )}
 
@@ -214,7 +232,7 @@ const customStyles = {
                 <Button setColor="var(--red)" setClick={closeModal}>Exit</Button>
         
               </Modal>
-              {dadosResume.firstName===true?
+              {dadosResume.firstName===''?
                 <>
                   <h2>First Name</h2>
                   <h2>Last Name</h2>
@@ -225,24 +243,24 @@ const customStyles = {
                 </>
               }
             </ContainerName>
-            <ContainerAddress>
-            {dadosResume.firstName===true?
-                <>
+            
+            {dadosResume.firstName===''?
+                <ContainerAddress>
                   <h4>Address</h4>
                   <h4>Phone</h4>
                   <h4>Email</h4>
                   <h4>Linkedin</h4>
                   <h4>Specialization</h4>
-                </>:
-                <>
+                </ContainerAddress>:
+                <ContainerAddress>
                   <h4>{dadosResume.adress}</h4>
                   <h4>{dadosResume.phone}</h4>
                   <h4>{dadosResume.email}</h4>
                   <h4>{dadosResume.linkedin}</h4>
-                  <h4>{dadosResume.Specialization}</h4>               
-                </>
+                  <h4>{dadosResume.specialization}</h4>               
+                </ContainerAddress>
             }
-            </ContainerAddress>
+            
         </ContainerSumary>
         <ContainerInfos>
             <ContainerCard>
@@ -272,14 +290,14 @@ const customStyles = {
             <ContainerCard>
                 <h2>Education</h2>
                 <ContainerDescription>
-                {formEducation===true?
+                {dadosResume.firstName===true?
                 <>
                   <p>Degree Title | School</p>
                   <p>Date From - Date To</p>
                   <p>Lorem ipsum dolor sit amet, onsectetur adipiscing ept. Nunc tortor tellus</p>
                 </>:
                 <>
-                  <p>{dadosResume.formation.Title} | {dadosResume.formation.formation.School}</p>
+                  <p>{dadosResume.formation.Title} | {dadosResume.formation.School}</p>
                   <p>{dadosResume.formation.SchoolFrom} | {dadosResume.formation.SchoolTo}</p>
                   <p>{dadosResume.formation.projects}</p>                  
                 </>}
@@ -290,26 +308,27 @@ const customStyles = {
         <ContainerInfos>
             <ContainerCard>
                 <h2>Experience</h2>
-                <ContainerDescription>
+                
                 {dadosResume.firstName===true?
-                <>
+                <ContainerDescription>
                   <p>Job Title | Company</p>
                   <p>Data From - Date To</p>
                   <p>Lorem ipsum dolor sit amet, onsectetur adipiscing ept. Nunc tortor tellus</p>
-                </>:
-                <>
-
+                </ContainerDescription>:
+                  
+                  <>  
                 {dadosResume.experience.map((experience)=>
-                  <>
+                  <ContainerDescription>
                     <p>{experience.Job} | {experience.Company}</p>
                     <p>{experience.JobFrom} | {experience.JobTo}</p>
                     <p>{experience.activitiesJob}</p>
-                  </>
-                )}
+                  </ContainerDescription>
                   
-                </>}
+                )}
+                  </>
+                }
                     
-                </ContainerDescription>
+                
             </ContainerCard>
         </ContainerInfos>
         <ContainerInfos>
