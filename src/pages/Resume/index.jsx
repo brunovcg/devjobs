@@ -38,7 +38,7 @@ const customStyles = {
 
  const Resume = () => {
 
-  const {userId} = useToken
+  const {userId} = useToken()
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
