@@ -1,71 +1,170 @@
 import styled from "styled-components";
 
-export const ContainerButtons = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-`
+export const Container = styled.div`
+  margin: 0vh auto 0vh auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100vw;
+  min-height: 90vh;
 
-export const ContainerPage = styled.div`
-    background-image: var(--gradient-white);
-    width: 100vw;
-    height: 100vh;
-    font-family: "Cormorant", serif;
-    color: var(--dark-grey);
-`
+ 
+  .summary,
+  .objective,
+  .education,
+  .experience,
+  .techSkills,
+  .otherSkills {
+    padding: 30px 50px;
+    text-align: justify;
+  }
 
-export const ContainerSumary = styled.div`
-    padding: 35px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    @media (min-width: 600px) {
-        padding: 1% 5%;
+  .objective,
+  .education,
+  .experience,
+  .techSkills,
+  .otherSkills {
+    h2 {
+      color: var(--blue);
+      font-size: 2rem;
+      margin: 10px 0 10px 0;
     }
-`
 
-export const ContainerName = styled.div`
+    div,
+    span {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 1.6rem;
+    }
+  }
+
+  .header {
+    margin-bottom: 40px;
+  }
+
+  .summary {
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-    align-items: flex-start;
-`
+    justify-content: space-between;
+    padding: 80px 60px;
+    background: var(--light-grey);
 
-export const ContainerAddress = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-    align-items: flex-end;
-`
+    .name {
+      color: var(--dark-grey);
+      h2 {
+        font-size: 3rem;
+      }
+    }
+    .personalInfo {
+      text-align: end;
+      color: var(--dark-grey);
+      width: 30%;
+      h3 {
+        font-size: 1.2rem;
+        word-wrap: wrap;
+        
+      }
+    }
+  }
 
-export const ContainerCard = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-`
+  .objective {
+  }
 
-export const ContainerDescription = styled.div`
-    width: 90vw;
-    max-height:25vh;
-    background-color: var(--grey);
-`
+  .education {
+    article {
+      .educationInfo {
+        display: flex;
+        width: fit-content;
+        justify-content: space-between;
 
-export const ContainerInfos = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 3%;
-`
+        .degreeTitle {
+          color: maroon;
+        }
 
-export const ContainerSkills = styled.div`
-    width: 90vw;
-    display: flex;
-    max-height:10vh;
-    flex-wrap: wrap;
-    flex-direction: column;
-    background-color: var(--grey);
-`
+        .school {
+          color: var(--dark-grey);
+        }
+      }
+
+      .educationDate {
+        display: flex;
+        color: var(--grey);
+
+        div,
+        p {
+          font-size: 1.1rem;
+        }
+      }
+
+      .educationText {
+        color: var(--dark-grey);
+      }
+    }
+  }
+
+  .experience {
+    article {
+      .jobInfo {
+        display: flex;
+        width: fit-content;
+        justify-content: space-between;
+
+        .jobTitle {
+          color: maroon;
+        }
+
+        .company {
+          color: var(--dark-grey);
+        }
+      }
+
+      .jobDate {
+        display: flex;
+        color: var(--grey);
+
+        div,
+        p {
+          font-size: 1.1rem;
+        }
+      }
+
+      .jobText {
+        color: var(--dark-grey);
+      }
+    }
+  }
+
+  .techSkills,
+  .otherSkills {
+    .skillsInfo {
+      display: flex;
+
+      .skillName {
+        color: maroon;
+        font-size: 1.3rem;
+      }
+
+      .skillLevel {
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  @media print {
+    .noPrint,
+    .noPrint * {
+      display: none !important;
+    }
+    @page {
+      margin: 0;
+    }
+
+    main {
+      display: table;
+      table-layout: fixed;
+      height: auto;
+    }
+  }
+`;
