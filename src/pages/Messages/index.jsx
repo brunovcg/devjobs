@@ -6,7 +6,7 @@ import {
   Email,
   MessageContent,
   Title,
-  HeaderContainer,
+  Name,
 } from "./styles";
 import Button from "../../components/Button";
 import Header from "../../components/Header";
@@ -48,6 +48,7 @@ const Messages = () => {
         {personalMessages &&
           personalMessages.map((item, index) => (
             <Message key={index}>
+              <Name>{item.name}</Name>
               <Email>
                 <h3>{item.companyEmail}</h3>
               </Email>
