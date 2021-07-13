@@ -39,8 +39,6 @@ const CompanyLogin = () => {
     api
       .post('/companies', data)
       .then((response)=> {
-        toast.success('Account created successfully'); 
-
         const newCompany = response.data;
         localStorage.setItem('@DevJobs:Company', JSON.stringify(newCompany));
 
