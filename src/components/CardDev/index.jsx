@@ -1,15 +1,15 @@
 import { Container, DevName, DevInfo } from "./styles";
-const CardDev = () => {
+const CardDev = ({ name, city, speciality, disponibility, experience }) => {
   return (
     <Container>
       <DevName>
-        <h2>Developer's name</h2>
+        <h2>{name}</h2>
       </DevName>
       <DevInfo>
-        <h3>Developer's city</h3>
-        <h3>Developer's Speciality</h3>
-        <h3>Developer's disponibility</h3>
-        <h3>Experience time</h3>
+        <h3>{city}</h3>
+        <h3>{speciality}</h3>
+        <h3>{disponibility}</h3>
+        <h3>{experience}</h3>
       </DevInfo>
     </Container>
   );
