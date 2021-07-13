@@ -45,20 +45,41 @@ const customStyles = {
   const [skills, setSkills] = useState([''])
 //---------------------------------------------------------------------------------------------------------------------------------------
   const [dadosResume, setDadosResume] = useState({
-    nome: '',
-    contato: '',
+    firstName: true,
+    lastName: '',
+    phone: '',
     email: '',
-    nacionalidade: 'brasileiro(a)',
-    estadoCivil: '',
-    idade: '',
-    endereco: '',
-    cidade: '',
-    estado: '',
-    objetivo: '',
+    adress: '',
+    linkedin: '',
+    specialization: '',
+    activities: '',
+    objective: '',
     formation: [{ Title: '', School: '', SchoolFrom: '', SchoolTo: '', projects: '' }],
-    experiencia: [{ empresa: '', cargo: '', anoEntrada: '', anoSaida: '', atividades: '', empregoAtual: false }],
-    qualificacao: [{ qualificacao: '' }]
+    experience: [{ Company: '', Job: '', JobFrom: '', JobTo: '', activitiesJob: ''}],
+    skills:[{skill:'',level:''}],
   });
+
+  
+  const addinputButtonSkill = (e) => {
+    let currentSkill = [...dadosResume.skills];
+    const newLine = {skill:'',level:''};
+    currentSkill.push(newLine);
+    setDadosResume(prevState => ({ ...prevState, skills: currentSkill }));
+  }
+  const handleChangeSkill = (event) => {
+    const { name, value, type } = event.target;
+    const index = event.target.dataset.index;
+    let newSkill = [...dadosResume.skills];
+    const newValue = (type === 'number') ? value.slice(0,4) : value;
+    newSkill[index] = { ...newSkill[index], [name]: newValue };
+    setDadosResume(prevState => ({ ...prevState, skills: newSkill }));
+  }
+  const handleRemoveSkill = (position) => {
+    const currentSkill = [...dadosResume.skills];
+    const delSkill = currentSkill.filter((_, index) => index !== position);
+    setDadosResume(prevState => ({ ...prevState, skills: delSkill }));
+    setSkills([...skills.filter((_,index)=> index !== position)])
+  }
 
   const addFormacao = () => {
     let actualFormacao = [...dadosResume.formation];
@@ -73,7 +94,6 @@ const customStyles = {
   }
   const handleChangeFormacaoAcademica = (event) => {
     const { name, value, type } = event.target;
-    console.log(dadosResume.formation)
     const index = event.target.dataset.index;
     let newFormacaoAcademica = [...dadosResume.formation];
     const newValue = (type === 'number') ? value.slice(0,4) : value;
@@ -81,92 +101,36 @@ const customStyles = {
     setDadosResume(prevState => ({ ...prevState, formation: newFormacaoAcademica }));
   }
 
+  const addJob = () => {
+    let actualJob = [...dadosResume.experience];
+    const newLine = { Company: '', Job: '', JobFrom: '', JobTo: '', activitiesJob: '' };
+    actualJob.push(newLine);
+    setDadosResume(prevState => ({ ...prevState, experience: actualJob }));
+  };
+  const deleteJob = (position) => {
+    const actualJob = [...dadosResume.experience];
+    const newJob = actualJob.filter((_, index) => index !== position);
+    setDadosResume(prevState => ({ ...prevState, experience: newJob }));
+  }
+  const handleChangeJob = (event) => {
+    const { name, value, type } = event.target;
+    const index = event.target.dataset.index;
+    let newJob = [...dadosResume.experience];
+    const newValue = (type === 'number') ? value.slice(0,4) : value;
+    newJob[index] = { ...newJob[index], [name]: newValue };
+    setDadosResume(prevState => ({ ...prevState, experience: newJob }));
+  }
 
 
+
+
+  const handleChangePersonalData = (event) => {
+    const { name, value, type } = event.target;
+    const newValue = (type === 'number') ? value.slice(0,4) : value;
+    setDadosResume(prevState => ({ ...prevState, [name]: newValue }));
+    console.log(dadosResume)
+  }
 //--------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-  const forSchemaName = yup.object().shape({
-    FirstName: yup.string().required("FirstName"),
-    LastName: yup.string().required("LastName"),
-    Email: yup.string().required("Email Obrigatótio").email("Email Inválido"),
-    Phone: yup.string().required("Telefone Obrigatótio"),
-    Adress: yup.string().required("Endereço Obrigatótio"),
-    Linkedin: yup.string().required("Linkedin"),
-    Specialization: yup.string().required("Specialization"),
-  })
-  const forSchemaObjective = yup.object().shape({
-    Objective: yup.string().required("Objective"),
-  })
-  const forSchemaEducation = yup.object().shape({
-    Title: yup.string().required("Title"),
-    School: yup.string().required("School"),
-    From: yup.string().required("From"),
-    To: yup.string().required("To"),
-    projects: yup.string().required("projects"),
-  })
-  const forSchemaExperience = yup.object().shape({
-    Company: yup.string().required("Company"),
-    Job: yup.string().required("Job"),
-    JobTo: yup.string().required("JobTo"),
-    JobFrom: yup.string().required("JobFrom"),
-    activitiesJob: yup.string().required("activitiesJob"),
-  })
-  const forSchemaActivities = yup.object().shape({
-    Activities: yup.string(),
-  })
-  const forSchemaSkills = yup.object().shape({
-    Skill: yup.string(),
-  })
-  const{register, handleSubmit, formState:{errors}} = useForm({
-      resolverName: yupResolver(forSchemaName),
-      resolverObjective: yupResolver(forSchemaObjective),
-      resolverEducation: yupResolver(forSchemaEducation),
-      resolverExperience: yupResolver(forSchemaExperience),
-      resolverActivities: yupResolver(forSchemaActivities),
-      resolverSkills: yupResolver(forSchemaSkills),
-  });
-  const handleSubmitFunctionName = (data) => {
-    setFormName(data)
-  }
-  const handleSubmitFunctionObjective = (data) => {
-    setFormObjective(data)
-  }
-  const handleSubmitFunctionEducation = (data) => {
-    setFormEducation(data)
-  }
-  const handleSubmitFunctionExperience = (data) => {
-    setFormExperience(data)
-  }
-  const handleSubmitFunctionActivities = (data) => {
-    setFormActivities(data)
-  }
-  const handleSubmitFunctionSkill = (data) => {
-    setFormActivities(data)
-  }
-
-
-
-
-  const addinputButtonSkill = (e) => {
-    e.preventDefault();
-    setSkills([...skills, ''])
-  }
-  const handleChangeSkill = (e, index) => {
-    skills[index] = e.target.value;
-    setSkills([...skills])
-  }
-  const handleRemoveSkill = (position) => {
-    setSkills([...skills.filter((_,index)=> index !== position)])
-  }
-
-
-
-
-
-  
 
   function openModal() {
     setIsOpen(true)
@@ -189,177 +153,80 @@ const customStyles = {
                 style={customStyles}
                 contentLabel="Example Modal"
                 onRequestClose={openModal}
-                
               >
-                    <form onSubmit={handleSubmit(handleSubmitFunctionName)} className="form">
-                    <ContainerSumary>
-                      <ContainerName>
-                      <h3>Form Name</h3>
-                        <p>First Name</p>
-                        <Input placeholder="First Name" register={register} name={"FirstName"}/>
-                        {errors.FirstName?.message}
-                        <p>Last Name</p>
-                        <Input placeholder="Last Name" register={register} name={"LastName"} />
-                        {errors.LastName?.message}
-                        <p>Email</p>
-                        <Input placeholder="Email" register={register} name={"Email"} />
-                        {errors.Email?.message}
-                        <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
-                        </ContainerName>
-                        <ContainerName>
-                        <p>Phone</p>
-                        <Input placeholder="Phone" register={register} name={"Phone"} />
-                        {errors.Phone?.message}
-                        <p>Adress</p>
-                        <Input placeholder="Adress" register={register} name={"Adress"} />
-                        {errors.Adress?.message}
-                        <p>Linkedin</p>
-                        <Input placeholder="Adress" register={register} name={"Linkedin"} />
-                        {errors.Linkedin?.message}
-                        <p>Specialization</p>
-                        <Select options={specialization} register={register("Specialization")}/>
-                      </ContainerName>
-                    </ContainerSumary>
-                    </form>
-
-                  <ContainerSumary>
-                    <form onSubmit={handleSubmit(handleSubmitFunctionObjective)} className="form">
-                    <h3>Form Objective</h3>
-                      <p>Objective</p>
-                      <Input setHeight={'50%'} placeholder="Objective" register={register} name={"Objective"}/>
-                      {errors.Objective?.message}
-                      <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
-                    </form>
-                  </ContainerSumary>
-
-                    <ContainerSumary>
-                      <ContainerName>
-                        <form onSubmit={handleSubmit(handleSubmitFunctionEducation)} className="form">
-                        <h3>Form Education</h3>
-                        <Button setColor="var(--dark-grey)" setClick={addFormacao}>Add Formation</Button>
-                        {dadosResume.formation.map((formation, index)=>
-                      <>
-                         <ContainerSumary>
-                          <input data-index={index} placeholder='Title' value={formation.Title} name='Title' type='text' onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
-                          <input data-index={index} placeholder='School' name='School' type='text' value={formation.School} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
-                          <input data-index={index} placeholder='School From' name='SchoolFrom' type='number' value={formation.SchoolFrom} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
-                          <input data-index={index} placeholder='School To' name='instituicao' type='number' value={formation.SchoolTo} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
-                          <input data-index={index} placeholder='School projects' name='projects' type='text' value={formation.projects} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
-                          <Button setColor="var(--dark-grey)" setClick={()=>deleteFormacao(index)}>Del</Button>
-                        </ContainerSumary>
-                        </>
-                      )}
-                          <p>School Title</p>
-                          <Input placeholder="Title" register={register} name={"Title"}/>
-                          {errors.Title?.message}
-                          <p>School</p>
-                          <Input placeholder="School" register={register} name={"School"}/>
-                          {errors.School?.message}
-                          <p>School From</p>
-                          <Input type="date" placeholder="School From" register={register} name={"From"}/>
-                          {errors.From?.message}
-                          <p>School To</p>
-                          <Input type="date" placeholder="School To" register={register} name={"To"}/>
-                          {errors.To?.message}
-                          <p>Projects</p>
-                          <Input placeholder="School projects" register={register} name={"projects"}/>
-                          {errors.projects?.message}
-                          <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
-                        </form>
-                        </ContainerName>
-{/* 
-                        <ContainerName>
-                      <h3>Skills</h3>
-                      <Button setColor="var(--dark-grey)" setClick={addinputButtonSkill}>Add Skill</Button>
-                      
-                      {skills.map((skill, index)=>
-                      <>
-                        <ContainerSumary>
-                          <Input placeholder={ `Skill ${index+1}` } value={skill} register={register} name={"Skill"} onChange={(e)=>handleChangeSkill(e,index)}/>
-                          <Button setColor="var(--dark-grey)" setClick={()=>handleRemoveSkill(index)}>Del</Button>
-                        </ContainerSumary>
-                        </>
-                      )}
-                      
-                      <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
-                      </ContainerName>
-                    </form>
-                    </ContainerSumary>
- */}
-
-
-
-
-                        
-                        <ContainerName>
-                        <form onSubmit={handleSubmit(handleSubmitFunctionExperience)} className="form">
-                          <h3>Form Projects</h3>
-                          <p>Company</p>
-                          <Input placeholder="Company" register={register} name={"Company"} placeholder=""/>
-                          {errors.Company?.message}
-                          <p>Job</p>
-                          <Input placeholder="Job" register={register} name={"Job"} placeholder=""/>
-                          {errors.Job?.message}
-                          <p>Job To</p>
-                          <Input placeholder="Job To" register={register} name={"JobTo"} type="date"/>
-                          {errors.JobTo?.message}
-                          <p>Job From</p>
-                          <Input placeholder="Job From" register={register} name={"JobFrom"} type="date"/>
-                          {errors.JobFrom?.message}
-                          <p>Activities Job</p>
-                          <Input placeholder="Activities Job" register={register} name={"activitiesJob"}/>
-                          {errors.activitiesJob?.message}
-                          <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
-                        </form>
-                      </ContainerName>
-                    </ContainerSumary>
-                    <ContainerSumary>
-                    <form onSubmit={handleSubmit(handleSubmitFunctionSkill)} className="form">
-                    <ContainerName>
-                      <h3>Skills</h3>
-                      <Button setColor="var(--dark-grey)" setClick={addinputButtonSkill}>Add Skill</Button>
-                      
-                      {skills.map((skill, index)=>
-                      <>
-                        <ContainerSumary>
-                          <Input placeholder={ `Skill ${index+1}` } value={skill} register={register} name={"Skill"} onChange={(e)=>handleChangeSkill(e,index)}/>
-                          <Button setColor="var(--dark-grey)" setClick={()=>handleRemoveSkill(index)}>Del</Button>
-                        </ContainerSumary>
-                        </>
-                      )}
-                      
-                      <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
-                      </ContainerName>
-                    </form>
-                    </ContainerSumary>
-
-                    <ContainerSumary>
-                      <ContainerName>
-                      <form onSubmit={handleSubmit(handleSubmitFunctionActivities)} className="form">
-                        <h3>Form Activities</h3>
-                        <p>Activities</p>
-                        <Input  placeholder="Activities" register={register} name={"Activities"}/>
-                        {errors.Activities?.message}
-                        <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
-                      </form>
-                      <Button setColor="var(--red)" setClick={closeModal}>Close</Button>
-                      </ContainerName>
-                    </ContainerSumary>
                     
+                <ContainerSumary>
+                  <input placeholder='First Name' value={dadosResume.firstName} name='firstName' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
+                  <input placeholder='Last Name' value={dadosResume.lastName} name='lastName' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
+                  <input placeholder='Phone' value={dadosResume.phone} name='phone' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
+                </ContainerSumary>
+                <ContainerSumary>
+                  <input placeholder='Email' value={dadosResume.email} name='email' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
+                  <input placeholder='Adress' value={dadosResume.adress} name='adress' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
+                  <input placeholder='Linkedin' value={dadosResume.linkedin} name='linkedin' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
+                </ContainerSumary>
+
+                <ContainerSumary>
+                  <input placeholder='Objective' value={dadosResume.objective} name='objective' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
+                </ContainerSumary>
+                <ContainerSumary>
+                  <input placeholder='Activities' value={dadosResume.activities} name='activities' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
+                </ContainerSumary>
+
+                <h3>Form Education</h3>
+                  <Button setColor="var(--dark-grey)" setClick={addFormacao}>Add Formation</Button>
+                  {dadosResume.formation.map((formation, index)=>
+                  <ContainerName>
+                    <input data-index={index} placeholder='Title' value={formation.Title} name='Title' type='text' onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <input data-index={index} placeholder='School' name='School' type='text' value={formation.School} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <input data-index={index} placeholder='School From' name='SchoolFrom' type='date' value={formation.SchoolFrom} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <input data-index={index} placeholder='School To' name='SchoolTo' type='date' value={formation.SchoolTo} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <input data-index={index} placeholder='School projects' name='projects' type='text' value={formation.projects} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <Button setColor="var(--dark-grey)" setClick={()=>deleteFormacao(index)}>Del</Button>
+                  </ContainerName>
+                )}
+
+                <h3>Form Jobs</h3>
+                  <Button setColor="var(--dark-grey)" setClick={addJob}>Add Formation</Button>
+                  {dadosResume.experience.map((experience, index)=>
+                  <ContainerName>
+                    <input data-index={index} placeholder='Company' value={experience.Company} name='Company' type='text' onChange={(e)=>handleChangeJob(e)}/>
+                    <input data-index={index} placeholder='Job' name='Job' type='text' value={experience.Job} onChange={(e)=>handleChangeJob(e)}/>
+                    <input data-index={index} placeholder='Job To' name='JobTo' type='date' value={experience.JobTo} onChange={(e)=>handleChangeJob(e)}/>
+                    <input data-index={index} placeholder='Job From' name='JobFrom' type='date' value={experience.JobFrom} onChange={(e)=>handleChangeJob(e)}/>
+                    <input data-index={index} placeholder='Activities Job' name='activitiesJob' type='text' value={experience.activitiesJob} onChange={(e)=>handleChangeJob(e)}/>
+                    <Button setColor="var(--dark-grey)" setClick={()=>deleteJob(index)}>Del</Button>
+                  </ContainerName>
+                  )}
+
+
+                
+                <h3>Form Skills</h3>
+
+                <Button setColor="var(--dark-grey)" setClick={addinputButtonSkill}>Add Skill</Button>
+                {dadosResume.skills.map((skill, index)=>
+                  <ContainerName>
+                    <input data-index={index} placeholder='Skill' name='skill' type='text' value={skill.skill} onChange={(e)=>handleChangeSkill(e)}/>
+                    <input data-index={index} placeholder='Level' value={skill.level} name='level' type='number' onChange={(e)=>handleChangeSkill(e)}/>
+                    <Button setColor="var(--dark-grey)" setClick={()=>handleRemoveSkill(index)}>Del</Button>
+                  </ContainerName>
+                )}
+                <Button setColor="var(--red)" setClick={closeModal}>Exit</Button>
+        
               </Modal>
-              {formName===true?
+              {dadosResume.firstName===true?
                 <>
                   <h2>First Name</h2>
                   <h2>Last Name</h2>
                 </>:
                 <>
-                  <h2>{formName.FirstName}</h2>
-                  <h2>{formName.LastName}</h2>                  
+                  <h2>{dadosResume.firstName}</h2>
+                  <h2>{dadosResume.lastName}</h2>                  
                 </>
               }
             </ContainerName>
             <ContainerAddress>
-            {formName===true?
+            {dadosResume.firstName===true?
                 <>
                   <h4>Address</h4>
                   <h4>Phone</h4>
@@ -368,11 +235,11 @@ const customStyles = {
                   <h4>Specialization</h4>
                 </>:
                 <>
-                  <h4>{formName.Adress}</h4>
-                  <h4>{formName.Phone}</h4>
-                  <h4>{formName.Email}</h4>
-                  <h4>{formName.Linkedin}</h4>
-                  <h4>{formName.Specialization}</h4>               
+                  <h4>{dadosResume.adress}</h4>
+                  <h4>{dadosResume.phone}</h4>
+                  <h4>{dadosResume.email}</h4>
+                  <h4>{dadosResume.linkedin}</h4>
+                  <h4>{dadosResume.Specialization}</h4>               
                 </>
             }
             </ContainerAddress>
@@ -382,7 +249,7 @@ const customStyles = {
                 <h2>Objective</h2>
                 <ContainerDescription>
 
-                {formObjective===true?
+                {dadosResume.objective===''?
                 <>
                  <p>
                         Lorem ipsum dolor sit amet, 
@@ -394,7 +261,7 @@ const customStyles = {
                   </p>
                 </>:
                 <>
-                  <p>{formObjective.Objective}</p>                 
+                  <p>{dadosResume.objective}</p>                 
                 </>
               }
                     
@@ -412,9 +279,9 @@ const customStyles = {
                   <p>Lorem ipsum dolor sit amet, onsectetur adipiscing ept. Nunc tortor tellus</p>
                 </>:
                 <>
-                  <p>{formEducation.Title} | {formEducation.School}</p>
-                  <p>{formEducation.From} | {formEducation.To}</p>
-                  <p>{formEducation.projects}</p>                  
+                  <p>{dadosResume.formation.Title} | {dadosResume.formation.formation.School}</p>
+                  <p>{dadosResume.formation.SchoolFrom} | {dadosResume.formation.SchoolTo}</p>
+                  <p>{dadosResume.formation.projects}</p>                  
                 </>}
                    
                 </ContainerDescription>
@@ -424,16 +291,22 @@ const customStyles = {
             <ContainerCard>
                 <h2>Experience</h2>
                 <ContainerDescription>
-                {formExperience===true?
+                {dadosResume.firstName===true?
                 <>
                   <p>Job Title | Company</p>
                   <p>Data From - Date To</p>
                   <p>Lorem ipsum dolor sit amet, onsectetur adipiscing ept. Nunc tortor tellus</p>
                 </>:
                 <>
-                  <p>{formExperience.Job} | {formExperience.Company}</p>
-                  <p>{formExperience.JobFrom} | {formExperience.JobTo}</p>
-                  <p>{formExperience.activitiesJob}</p>                  
+
+                {dadosResume.experience.map((experience)=>
+                  <>
+                    <p>{experience.Job} | {experience.Company}</p>
+                    <p>{experience.JobFrom} | {experience.JobTo}</p>
+                    <p>{experience.activitiesJob}</p>
+                  </>
+                )}
+                  
                 </>}
                     
                 </ContainerDescription>
@@ -443,7 +316,7 @@ const customStyles = {
         <ContainerCard>
             <h2>Skills</h2>
             <ContainerSkills>
-              {skills.map((skill)=> <p>{skill}</p>)}
+              {dadosResume.skills.map((skill)=> <><p>{skill.skill} --- {skill.level}</p></>)}
             </ContainerSkills>
         </ContainerCard>
     </ContainerInfos>
@@ -451,7 +324,7 @@ const customStyles = {
         <ContainerCard>
             <h2>Activities</h2>
             <ContainerDescription>
-              {formActivities===true?
+              {dadosResume.activities===''?
                 <>
                   <p>
                     Lorem ipsum dolor sit amet, 
@@ -460,7 +333,7 @@ const customStyles = {
                 </p>
                 </>:
                 <>
-                  <p>{formActivities.Activities}</p>   
+                  <p>{dadosResume.activities}</p>   
                 </>}
                
             </ContainerDescription>
