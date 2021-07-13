@@ -25,8 +25,9 @@ export const Container = styled.div`
     align-items: center;
     padding: 20px;
     margin-bottom: 15px;
+    margin-top: 30px;
 
-    h2{
+    h1{
         color: white;
         margin-bottom: 15px;
     }
