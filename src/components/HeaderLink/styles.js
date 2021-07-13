@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   a {
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
     font-family: "Carrois Gothic", sans-serif;
     text-decoration: none;
     color: var(--dark-grey);
