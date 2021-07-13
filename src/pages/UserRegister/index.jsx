@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FormStyled, Container, Text, Page } from './styles';
+import { useToken } from "../../providers/TokenProvider";
 import Button from '../../components/Button';
 import api from '../../services/api';
 import Input from '../../components/Input';
@@ -18,40 +19,42 @@ const Register = () => {
   const PasswordStrength = (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/);
   const NameValidation = (/^[a-z][a-z\s]*$/i);
   const PhoneValidation = (/^\([0-9]{2}\)[0-9]{5}-[0-9]{4}/)
+  const { setUserToken } = useToken();
 
   const schema = yup.object().shape({
     firstName: yup
         .string()
-        .required('Campo obrigatório')
+        .required('Required field')
         .matches(NameValidation),
     lastName: yup
         .string()
-        .required('Campo obrigatório')
+        .required('Required field')
         .matches(NameValidation),
     email: yup
         .string()
-        .email('Email inválido')
-        .required('Campo obrigatório'),
+        .email('Invalid e-mail')
+        .required('Required field'),
     birthDate: yup
         .date()
-        .required('Campo obrigatório'),
+        .typeError('Must be a valid date')
+        .required('Required field'),
     password: yup
         .string()
-        .min(6, 'Mínimo de 6 digitos')
-        .required('Campo obrigatório')
-        .matches(PasswordStrength, 'Sua senha é fraca, use letras minúsculas, maiúsculas, números e símbolos.'),
+        .min(6, 'Minimum 6 digits')
+        .required('Required field')
+        .matches(PasswordStrength, 'Weak password, use lowercase, uppercase, numbers and symbols.'),
     linkedinProfile: yup
         .string(),
     address: yup
         .string(),
     phone: yup
         .string()
-        .required("Endereço obrigatório")
+        .required('Required field')
         .matches(PhoneValidation, '(xx)xxxxx-xxxx'),
     confirmPassword: yup
         .string()
-        .required('Campo obrigatório')
-        .oneOf([yup.ref('password')], 'Senhas diferentes')
+        .required('Required field')
+        .oneOf([yup.ref('password')], "Passwords don't match")
   })
 
   const history = useHistory();
@@ -61,22 +64,23 @@ const Register = () => {
   });
 
   const onSubmitFunction = ({ firstName, lastName, email, password, birthDate, linkedinProfile, address, phone }) => {
-      const user = { firstName, lastName, email, password, birthDate, linkedinProfile, address, phone }
+    const user = { firstName, lastName, email, password, birthDate, linkedinProfile, address, phone }
 
-      api
+    api
       .post('/register', user)
       .then((response)=> {
-          toast.success('Conta criada com sucesso.'); 
-                     
-          const { accessToken } = response.data;
-          localStorage.setItem('@DevJobs:Token:User', JSON.stringify(accessToken));
+        toast.success('Account created successfully'); 
+                   
+        const { accessToken } = response.data;
+        localStorage.setItem('@DevJobs:Token:User', JSON.stringify(accessToken));
+        setUserToken( accessToken );
 
-          return history.push('/dashboard')
-      })
-      .catch((err) => {
-          toast.error('Ocorreu um erro, tente novamente com outro email.'); 
-          console.log(err)
-      });
+        return history.push('/dashboard')
+    })
+    .catch((err) => {
+        toast.error('An error has occurred, try again using a different e-mail.'); 
+        console.log(err)
+    });
   }
   return (
   <>
@@ -162,7 +166,7 @@ const Register = () => {
     />
 
     <Input 
-        placeholder='ConfirmPassword*' 
+        placeholder='Confirm Password*' 
         type='password' 
         register={register} 
         name='confirmPassword' 
@@ -173,10 +177,10 @@ const Register = () => {
 
     <Button 
         setClick={handleSubmit(onSubmitFunction)}
-        setColor='blue'
+        setColor='var(--blue)'
         setSize='large'
     >
-        Enviar
+        Sign Up
     </Button>
 
     </FormStyled>
@@ -184,8 +188,8 @@ const Register = () => {
       
   </Container>
 
-  <Text>Caso já tenha uma conta, <Link to='/login'>entre aqui.</Link></Text>
-  <Text>*Campo Obrigatório.</Text>
+  <Text>If you already have an account, <Link to='/login'>sign in here.</Link></Text>
+  <Text>*Required field.</Text>
   </Page>
   </>
   );

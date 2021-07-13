@@ -1,29 +1,42 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
-export const Links = styled(Link)`
-  font-size: 1.2rem;
-  font-family: "Carrois Gothic", sans-serif;
-  text-decoration: none;
-  color: var(--dark-grey);
-  :hover {
-    border-bottom: 1px solid var(--blue);
-  }
-`;
 export const HalfMoon = styled.div`
   background: var(--white);
   z-index: 1;
   text-align: center;
   border-radius: 50% / 0 0 100% 100%;
-  width: 55%;
+  width: 44%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: flex-start;
 
-  @media (min-width: 500px) {
-   }
+  a {
+    div {
+      background-color: var(--blue);
+      color: white;
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      text-align: center;
+      margin-top: 50px;
+      z-index: 1;
+      border: 6px double var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      h1 {
+        font-size: 1.2rem;
+      }
+      :hover {
+        height: 110px;
+        width: 110px;
+      }
+      @media (min-width: 500px) {
+        margin-top: 60px;
+      }
+    }
+  }
 `;
 
 export const Container = styled.div`
@@ -38,36 +51,20 @@ export const Container = styled.div`
   border-bottom: 1px solid
     ${(props) => (props.setBorder ? props.setBorder : "var(--grey)")};
   height: 15vh;
-  Link {
-    text-decoration: none;
+
+  .left,
+  .right {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
   }
+
   h3 {
     font-size: 15px;
   }
 
   @media (min-width: 500px) {
     height: 15vh;
-  }
-`;
-
-export const DevJobs = styled.div`
-  background-color: var(--blue);
-  color: white;
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  text-align: center;
-  position: absolute;
-  z-index: 1;
-  border: 6px double var(--white);
-  margin-top: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  h1 {
-    font-size: 1.2rem;
-  }
-  @media (min-width: 500px) {
-    margin-top: 60px;
   }
 `;

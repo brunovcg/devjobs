@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
 import api from "../../services/api";
-import { Container, Message, Email, MessageContent, Title } from "./styles";
+import {
+  Container,
+  Message,
+  Email,
+  MessageContent,
+  Title,
+  HeaderContainer,
+} from "./styles";
 import Button from "../../components/Button";
 import Header from "../../components/Header";
 import { useToken } from "../../providers/TokenProvider";
+import HeaderLink from "../../components/HeaderLink";
 const Messages = () => {
   const [personalMessages, setPersonalMessages] = useState([]);
   const { userId } = useToken();
@@ -24,7 +32,15 @@ const Messages = () => {
   };
   return (
     <>
-      <Header />
+      <Header
+        setLeft={<HeaderLink setName="Resume" setPath="/resume" />}
+        setRight={
+          <Button setColor="red" setSize="large">
+            Logout
+          </Button>
+        }
+      />
+
       <Title>
         <h2>Messages</h2>
       </Title>
@@ -41,7 +57,7 @@ const Messages = () => {
               <Button
                 setClick={() => deleteMessage(item.id)}
                 setColor="red"
-                setSize="large"
+                setSize="huge"
               >
                 <h3>Dismiss</h3>
               </Button>

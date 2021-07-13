@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormStyled, Page, Text } from './styles';
+import { useToken } from "../../providers/TokenProvider";
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import api from '../../services/api';
@@ -15,15 +16,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from '../../components/Header';
 
 const UserLogin = () => {
+  const { setUserToken } = useToken();
+
   const schema = yup.object().shape({
     email: yup
           .string()
-          .email('Email inválido')
-          .required('Campo obrigatório'),
+          .email('Invalid e-mail')
+          .required('Required field'),
     password: yup
           .string()
           .min(6)
-          .required('Campo obrigatório')
+          .required('Required field')
   })
 
   const history = useHistory();
@@ -39,11 +42,12 @@ const UserLogin = () => {
           const { accessToken } = response.data;
 
           localStorage.setItem('@DevJobs:Token:User', JSON.stringify(accessToken));
+          setUserToken(accessToken)
 
           return history.push('/dashboard')
       })
       .catch(err => {
-          toast.error('Email ou senha inválidos.'); 
+          toast.error('Invalid e-mail or password'); 
           console.log(err);
       })
   }
@@ -51,12 +55,12 @@ const UserLogin = () => {
 
   return (
   <>
-  <Header />  
+  <Header/>  
   <Page>
   <FormStyled>    
     <h1>Login</h1>
     <Input 
-      placeholder='Insira seu email' 
+      placeholder='E-mail' 
       register={register}
       name='email' 
       error={errors.email?.message}
@@ -65,7 +69,7 @@ const UserLogin = () => {
     />
     
     <Input 
-      placeholder='Insira sua senha' 
+      placeholder='Password' 
       type='password' 
       register={register}
       name='password'
@@ -79,11 +83,11 @@ const UserLogin = () => {
       setSize='large'
       setColor='blue'
     >
-        Enviar
+      Sign In
     </Button>           
   </FormStyled>
 
-  <Text>Caso não tenha uma conta, <Link to='/register'>cadastre-se aqui.</Link></Text>
+  <Text>If you don't have an account already, <Link to='/register'>sign up here.</Link></Text>
   </Page>  
   </>  
   );
