@@ -11,7 +11,7 @@ export const Home = () => {
   return (
     <>
       <Header
-        setLeft={<HeaderLink setName="For Companies" setPath="/company-register" />}
+        setLeft={<HeaderLink setName="For Companies" setPath="/companyRegister" />}
         setRight={<HeaderLink setName="For Devs" setPath="/login"/>}
       />
 
@@ -26,12 +26,8 @@ export const Home = () => {
           <article className="companiesTitle">
             <h2>For Companies</h2>
             <div className="companiesTitleBox">
-              <p>Go to our Search Engine...</p>
-              <div className="buttonBox">
-                <Button setColor="var(--grey)" setSize="large" setClick={""}>
-                  Search
-                </Button>
-              </div>
+              <p>Search for resumes on our Engine...</p>
+         
             </div>
           </article>
 

@@ -35,4 +35,9 @@ export const FormStyled = styled.form`
 export const Text = styled.p`
   text-align: center;
   margin-bottom: 15px;
+  
+  a{
+    color: var(--blue);
+    font-weight: bold;
+  }
 `;

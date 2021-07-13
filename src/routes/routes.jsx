@@ -10,6 +10,7 @@ import CompanyRegister from "../pages/CompanyRegister";
 import Messages from "../pages/Messages";
 import VisualizationResume from "../pages/ResumeVisualization";
 import CompanyLogin from "../pages/CompanyLogin";
+import Resume from "../pages/Resume";
 
 const Routes = () => {
   return (
@@ -18,9 +19,10 @@ const Routes = () => {
       <Route path="/search" exact component={Search} />
       <Route path="/login" exact component={UserLogin} />
       <Route path="/register" exact component={Register} />
-      <Route path="/company-register" exact component={CompanyRegister} />
-      <Route path="/company-login" exact component={CompanyLogin} />
+      <Route path="/companyRegister" exact component={CompanyRegister} />
+      <Route path="/companyLogin" exact component={CompanyLogin} />
       <Route path="/messages" exact component={Messages} />
+      <Route path="/resume" exact component={Resume} />
       <Route
         path="/visualizationResume"
         exact

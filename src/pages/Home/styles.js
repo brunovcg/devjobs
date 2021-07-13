@@ -54,19 +54,17 @@ export const Container = styled.main`
       .companiesTitleBox {
         display: flex;
         align-items: center;
+        width: 70%;
         p {
           color: var(--white);
           text-align: center;
-          width: 80%;
+          width: 100%;
           padding: 5px;
           font-weight: bold;
+          font-size: 1.4rem;
         }
 
-        .buttonBox {
-          button {
-            font-size: 1.2rem;
-          }
-        }
+    
       }
     }
 
@@ -240,16 +238,14 @@ export const Container = styled.main`
         }
 
         .companiesTitleBox {
-          width: 85%;
+          width: 80%;
           p {
-            width: 55%;
-            font-size: 1.2rem;
+            width: 100%;
+            font-size: 1.5rem;
             padding: 0 10px;
           }
 
-          .buttonBox {
-            width: 15%;
-          }
+     
         }
       }
 
