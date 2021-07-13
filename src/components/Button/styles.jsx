@@ -6,7 +6,7 @@ const MyButton = styled.button`
     } else if (props.setSize === "giant") {
       return "200px";
     } else if (props.setSize === "large") {
-      return "90px";
+      return "100px";
     } else if (props.setSize === "medium") {
       return "70px";
     } else {
@@ -19,7 +19,7 @@ const MyButton = styled.button`
     } else if (props.setSize === "giant") {
       return "60px";
     } else if (props.setSize === "large") {
-      return "30px";
+      return "40px";
     } else if (props.setSize === "medium") {
       return "30px";
     } else {
@@ -39,7 +39,7 @@ const MyButton = styled.button`
     } else if (props.setSize === "giant") {
       return "1.3rem";
     } else if (props.setSize === "large") {
-      return "0.8rem";
+      return "1.3rem";
     } else if (props.setSize === "medium") {
       return "0.7rem";
     } else {
