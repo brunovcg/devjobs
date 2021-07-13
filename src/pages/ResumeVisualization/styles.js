@@ -24,6 +24,8 @@ export const Container = styled.div`
   .techSkills,
   .otherSkills {
     h2 {
+      display: flex;
+      align-items: center;
       color: var(--blue);
       font-size: 2rem;
       margin: 5px 0 5px 0;
