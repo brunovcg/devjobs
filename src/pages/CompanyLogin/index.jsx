@@ -94,7 +94,7 @@ const CompanyLogin = () => {
     </Button>           
   </FormStyled>
 
-  <Text>If you don't have an account already, <Link to='/company-register'>sign up here.</Link></Text>
+  <Text>If you don't have an account already, <Link to='/companyRegister'>sign up here.</Link></Text>
   </Page>
   </>    
   );
