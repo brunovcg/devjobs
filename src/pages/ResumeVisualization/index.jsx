@@ -2,6 +2,13 @@ import Button from "../../components/Button";
 import { Container } from "./styles";
 import Header from "../../components/Header";
 import { testUsers } from "../../utils/userResumeInfo";
+import {
+  FaGraduationCap,
+  FaCreativeCommonsNd,
+  FaBriefcase,
+  FaLaptopCode,
+  FaTools,
+} from "react-icons/fa";
 
 const VisualizationResume = () => {
   const windowPrint = () => {
@@ -68,7 +75,9 @@ const VisualizationResume = () => {
             </article>
           </section>
           <section className="objective">
-            <h2>Objective</h2>
+            <h2>
+              <FaCreativeCommonsNd /> &nbsp; Objective
+            </h2>
             <p>
               {testUsers.users
                 .filter((x) => x.id === 1)
@@ -76,7 +85,9 @@ const VisualizationResume = () => {
             </p>
           </section>
           <section className="education">
-            <h2>Education</h2>
+            <h2>
+              <FaGraduationCap /> &nbsp;Education
+            </h2>
 
             {testUsers.education
               .filter((x) => x.userId === 1)
@@ -98,7 +109,9 @@ const VisualizationResume = () => {
           </section>
 
           <section className="experience">
-            <h2>Experience</h2>
+            <h2>
+              <FaBriefcase /> &nbsp; Experience
+            </h2>
 
             {testUsers.experience
               .filter((x) => x.userId === 1)
@@ -119,23 +132,25 @@ const VisualizationResume = () => {
               ))}
           </section>
           <section className="techSkills">
-            <h2>Tech Skills</h2>
-            <div className="skillBox"> 
-            {testUsers.techSkills
-              .filter((x) => x.userId === 1)
-              .map((x, index) => (
-                <article key={index}>
-                  <div className="skillsInfo">
-                    <div className="skillName">{x.description}: &nbsp;</div>
-                    <div className="skillLevel">{x.level}</div>
-                  </div>
-                </article>
-              ))}
-              </div>
+            <h2>
+              <FaLaptopCode /> &nbsp; Tech Skills
+            </h2>
+            <div className="skillBox">
+              {testUsers.techSkills
+                .filter((x) => x.userId === 1)
+                .map((x, index) => (
+                  <article key={index}>
+                    <div className="skillsInfo">
+                      <div className="skillName">{x.description}: &nbsp;</div>
+                      <div className="skillLevel">{x.level}</div>
+                    </div>
+                  </article>
+                ))}
+            </div>
           </section>
           <section className="otherSkills">
-            <h2>Other Skills</h2>
-            <div className="skillBox"> 
+            <h2><FaTools/> &nbsp; Other Skills</h2>
+            <div className="skillBox">
               {testUsers.otherSkills
                 .filter((x) => x.userId === 1)
                 .map((x, index) => (

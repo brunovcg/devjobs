@@ -9,6 +9,8 @@ import Register from "../pages/UserRegister";
 import CompanyRegister from "../pages/CompanyRegister";
 import Messages from "../pages/Messages";
 import VisualizationResume from "../pages/ResumeVisualization";
+import CompanyLogin from "../pages/CompanyLogin";
+
 const Routes = () => {
   return (
     <Switch>
@@ -16,7 +18,8 @@ const Routes = () => {
       <Route path="/search" exact component={Search} />
       <Route path="/login" exact component={UserLogin} />
       <Route path="/register" exact component={Register} />
-      <Route path="/company" exact component={CompanyRegister} />
+      <Route path="/companyRegister" exact component={CompanyRegister} />
+      <Route path="/companyLogin" exact component={CompanyLogin} />
       <Route path="/messages" exact component={Messages} />
       <Route
         path="/visualizationResume"

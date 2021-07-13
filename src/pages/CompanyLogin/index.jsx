@@ -39,8 +39,6 @@ const CompanyLogin = () => {
     api
       .post('/companies', data)
       .then((response)=> {
-        toast.success('Account created successfully'); 
-
         const newCompany = response.data;
         localStorage.setItem('@DevJobs:Company', JSON.stringify(newCompany));
 
@@ -96,7 +94,7 @@ const CompanyLogin = () => {
     </Button>           
   </FormStyled>
 
-  <Text>If you don't have an account already, <Link to='/company-register'>sign up here.</Link></Text>
+  <Text>If you don't have an account already, <Link to='/companyRegister'>sign up here.</Link></Text>
   </Page>
   </>    
   );

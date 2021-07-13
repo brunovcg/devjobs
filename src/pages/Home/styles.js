@@ -54,19 +54,17 @@ export const Container = styled.main`
       .companiesTitleBox {
         display: flex;
         align-items: center;
+        width: 70%;
         p {
           color: var(--white);
           text-align: center;
-          width: 80%;
+          width: 100%;
           padding: 5px;
           font-weight: bold;
+          font-size: 1.4rem;
         }
 
-        .buttonBox {
-          button {
-            font-size: 1.2rem;
-          }
-        }
+    
       }
     }
 
@@ -170,7 +168,7 @@ export const Container = styled.main`
     p {
       height: 5%;
       text-align: center;
-      color: var(--light-grey)
+      color: var(--light-grey);
     }
 
     .group {
@@ -200,9 +198,8 @@ export const Container = styled.main`
               border-radius: 50%;
               width: 80px;
               box-shadow: -9px 12px 15px -6px #000000;
-              :hover{
+              :hover {
                 width: 90px;
-
               }
             }
           }
@@ -241,16 +238,14 @@ export const Container = styled.main`
         }
 
         .companiesTitleBox {
-          width: 85%;
+          width: 80%;
           p {
-            width: 55%;
-            font-size: 1.2rem;
+            width: 100%;
+            font-size: 1.5rem;
             padding: 0 10px;
           }
 
-          .buttonBox {
-            width: 15%;
-          }
+     
         }
       }
 
@@ -262,7 +257,8 @@ export const Container = styled.main`
           width: 40%;
           padding: 0 0px 0 30px;
           margin-right: 35px;
-          font-size: 1.3rem;
+          font-size: 2rem;
+          line-height: 3rem;
         }
 
         figure {
@@ -295,8 +291,9 @@ export const Container = styled.main`
 
         p {
           width: 55%;
-
+          font-size: 2rem;
           padding: 0 70px;
+          line-height: 3rem;
         }
       }
     }
@@ -319,10 +316,9 @@ export const Container = styled.main`
             figure {
               img {
                 width: 110px;
-                :hover{
-                width: 121px;
-
-              }
+                :hover {
+                  width: 121px;
+                }
               }
             }
           }
