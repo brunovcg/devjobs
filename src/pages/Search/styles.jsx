@@ -20,7 +20,7 @@ export const SearchBar = styled.div`
     align-items: center;
     background-color: var(--blue);
     border-radius: 10px;
-    padding: 5% 0;
+    padding: 2% 0;
 
     @media (max-width: 580px) {
         flex-direction: column;
