@@ -11,7 +11,7 @@ export const Home = () => {
   return (
     <>
       <Header
-        setLeft={<HeaderLink setName="For Companies" setPath="/companies" />}
+        setLeft={<HeaderLink setName="For Companies" setPath="/company-register" />}
         setRight={<HeaderLink setName="For Devs" setPath="/login"/>}
       />
 
