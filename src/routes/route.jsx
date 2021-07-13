@@ -1,7 +1,7 @@
 import { Redirect, Route as ReactDOMRoute } from "react-router-dom";
 import { useToken } from "../providers/TokenProvider";
 
-const Route = ({ isPrivate = true, component : Component, ...rest }) => {
+const Route = ({ isPrivate = false, component : Component, ...rest }) => {
   const { userToken } = useToken();
 
   return (
