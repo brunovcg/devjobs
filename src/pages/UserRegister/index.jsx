@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FormStyled, Container } from './styles';
+import { FormStyled, Container, Text, Page } from './styles';
+import { useToken } from "../../providers/TokenProvider";
 import Button from '../../components/Button';
 import api from '../../services/api';
 import Input from '../../components/Input';
@@ -11,46 +12,49 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Header from '../../components/Header';
 
 
 const Register = () => {
   const PasswordStrength = (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/);
   const NameValidation = (/^[a-z][a-z\s]*$/i);
   const PhoneValidation = (/^\([0-9]{2}\)[0-9]{5}-[0-9]{4}/)
+  const { setUserToken } = useToken();
 
   const schema = yup.object().shape({
     firstName: yup
         .string()
-        .required('Campo obrigatório')
+        .required('Required field')
         .matches(NameValidation),
     lastName: yup
         .string()
-        .required('Campo obrigatório')
+        .required('Required field')
         .matches(NameValidation),
     email: yup
         .string()
-        .email('Email inválido')
-        .required('Campo obrigatório'),
+        .email('Invalid e-mail')
+        .required('Required field'),
     birthDate: yup
         .date()
-        .required('Campo obrigatório'),
+        .typeError('Must be a valid date')
+        .required('Required field'),
     password: yup
         .string()
-        .min(6, 'Mínimo de 6 digitos')
-        .required('Campo obrigatório')
-        .matches(PasswordStrength, 'Sua senha é fraca, use letras minúsculas, maiúsculas, números e símbolos.'),
+        .min(6, 'Minimum 6 digits')
+        .required('Required field')
+        .matches(PasswordStrength, 'Weak password, use lowercase, uppercase, numbers and symbols.'),
     linkedinProfile: yup
         .string(),
     address: yup
         .string(),
     phone: yup
         .string()
-        .required("Endereço obrigatório")
+        .required('Required field')
         .matches(PhoneValidation, '(xx)xxxxx-xxxx'),
     confirmPassword: yup
         .string()
-        .required('Campo obrigatório')
-        .oneOf([yup.ref('password')], 'Senhas diferentes')
+        .required('Required field')
+        .oneOf([yup.ref('password')], "Passwords don't match")
   })
 
   const history = useHistory();
@@ -59,64 +63,134 @@ const Register = () => {
       resolver: yupResolver(schema)
   });
 
-  const onSubmitFunction = ({ data }) => {
-      api
-      .post('/register', data)
-      .then((response)=> {
-          toast.success('Conta criada com sucesso.'); 
-                     
-          const { accessToken } = response.data;
-          localStorage.setItem('@DevJobs:Token:User', JSON.stringify(accessToken));
+  const onSubmitFunction = ({ firstName, lastName, email, password, birthDate, linkedinProfile, address, phone }) => {
+    const user = { firstName, lastName, email, password, birthDate, linkedinProfile, address, phone }
 
-          return history.push('/dashboard')
-      })
-      .catch((err) => {
-          toast.error('Ocorreu um erro, tente novamente com outro email.'); 
-          console.log(err)
-      });
+    api
+      .post('/register', user)
+      .then((response)=> {
+        toast.success('Account created successfully'); 
+                   
+        const { accessToken } = response.data;
+        localStorage.setItem('@DevJobs:Token:User', JSON.stringify(accessToken));
+        setUserToken( accessToken );
+
+        return history.push('/dashboard')
+    })
+    .catch((err) => {
+        toast.error('An error has occurred, try again using a different e-mail.'); 
+        console.log(err)
+    });
   }
   return (
   <>
+  <Header />
+  <Page>
   <Container>
     <h2>Register</h2>
 
     <FormStyled>
 
-      <Input placeholder='First Name*' {...register('firstName')} />
-      {errors.firstName?.message}
+    <Input 
+        placeholder='First Name*'
+        register={register} 
+        name='firstName'
+        error={errors.firstName?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />
 
-      <Input placeholder='Last Name*' {...register('lastName')} />
-      {errors.lastName?.message}
+    <Input 
+        placeholder='Last Name*' 
+        register={register} 
+        name='lastName'
+        error={errors.lastName?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />
 
-      <Input placeholder='E-mail*' {...register('email')} />
-      {errors.email?.message}
+    <Input 
+        placeholder='E-mail*' 
+        register={register}
+        name='email'
+        error={errors.email?.message}
+        setHeight='70px'
+        setWidth='100%' 
+    />
 
-      <Input placeholder='Address' {...register('address')} />
-      {errors.address?.message}
+    <Input 
+        placeholder='Address' 
+        register={register}
+        name='address'
+        error={errors.address?.message}
+        setHeight='70px'
+        setWidth='100%' 
+    />
 
-      <Input placeholder='Birth Date*' type='date' {...register('birthDate')} />
-      {errors.birthDate?.message}
+    <Input 
+        placeholder='Birth Date*' 
+        type='date' 
+        register={register}
+        name='birthDate' 
+        error={errors.birthDate?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />
 
-      <Input placeholder='Linkedin Profile' {...register('linkedinProfile')} />
-      {errors.linkedinProfile?.message}        
+    <Input 
+        placeholder='Linkedin Profile' 
+        register={register} 
+        name='linkedinProfile' 
+        error={errors.linkedinProfile?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />     
 
-      <Input placeholder='Phone' {...register('phone')} />
-      {errors.phone?.message}
+    <Input 
+        placeholder='Phone' 
+        register={register} 
+        name='phone' 
+        error={errors.phone?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />
 
-      <Input placeholder='Password*' type='password' {...register('password')} />
-      {errors.password?.message}
+    <Input 
+        placeholder='Password*' 
+        type='password' 
+        register={register} 
+        name='password' 
+        error={errors.password?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />
 
-      <Input placeholder='ConfirmPassword*' type='password' {...register('confirmPassword')} />
-      {errors.passwordConfirm?.message}
+    <Input 
+        placeholder='Confirm Password*' 
+        type='password' 
+        register={register} 
+        name='confirmPassword' 
+        error={errors.passwordConfirm?.message}
+        setHeight='70px'
+        setWidth='100%'
+    />
 
-      <Button setClick={handleSubmit(onSubmitFunction)}>Enviar</Button>
+    <Button 
+        setClick={handleSubmit(onSubmitFunction)}
+        setColor='var(--blue)'
+        setSize='large'
+    >
+        Sign Up
+    </Button>
 
     </FormStyled>
 
       
   </Container>
 
-  <p>Caso já tenha uma conta, <Link to='/login'>entre aqui.</Link></p>
+  <Text>If you already have an account, <Link to='/login'>sign in here.</Link></Text>
+  <Text>*Required field.</Text>
+  </Page>
   </>
   );
 }

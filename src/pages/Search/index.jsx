@@ -46,7 +46,7 @@ const Search = () => {
               setWidth="20%"
               placeholder="Specialization"
             />
-            <Input setHeight="20%" setWidth="20%" placeholder="Seniority" />
+            <Input setHeight="20%" setWidth="100%" placeholder="Seniority" />
             <Input setHeight="20%" setWidth="20%" placeholder="Disponibility" />
             <Button setColor="var(--blue)" setSize="large" setClick={""}>
               Search

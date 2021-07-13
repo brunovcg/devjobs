@@ -1,29 +1,29 @@
-// import { Redirect, Route as ReactDOMRoute } from "react-router-dom";
-// import { useUser } from "../providers/User";
+import { Redirect, Route as ReactDOMRoute } from "react-router-dom";
+import { useToken } from "../providers/TokenProvider";
 
-// const Route = ({ isPrivate = false, component : Component, ...rest }) => {
-//   const { token } = useUser();
+const Route = ({ isPrivate = false, component : Component, ...rest }) => {
+  const { userToken } = useToken();
 
-//   return (
-//     <ReactDOMRoute
-//       {...rest}
-//       render={() => {
-//         return isPrivate === !!token 
-//         ? (
-//           <Component />
-//         ) 
-//         : (
-//           <Redirect
-//             to={{
-//               pathname: isPrivate 
-//               ? "/" 
-//               : "/dashboard",
-//             }}
-//           />
-//         );
-//       }}
-//     />
-//   );
-// };
+  return (
+    <ReactDOMRoute
+      {...rest}
+      render={() => {
+        return isPrivate === !!userToken 
+        ? (
+          <Component />
+        ) 
+        : (
+          <Redirect
+            to={{
+              pathname: isPrivate 
+              ? "/" 
+              : "/dashboard",
+            }}
+          />
+        );
+      }}
+    />
+  );
+};
 
-// export default Route;
+export default Route;
