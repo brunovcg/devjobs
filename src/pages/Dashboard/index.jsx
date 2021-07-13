@@ -1,5 +1,6 @@
 import messages from "../../assets/email.png";
 import resume from "../../assets/resume.png";
+import {Link} from 'react-router-dom'
 import {
   ContainerPage,
   ContainerOptions,
@@ -16,11 +17,11 @@ const Dashboard = () => {
         <ContainerOptions>
           <ContainerTitleImg>
             <h3>Messages</h3>
-            <StyledImg src={messages} alt="Messages" />
+            <Link to="/messages"><StyledImg src={messages} alt="Messages" /></Link>
           </ContainerTitleImg>
           <ContainerTitleImg>
             <h3>Resume</h3>
-            <StyledImg src={resume} alt="Resume" />
+            <Link to="/resume"><StyledImg src={resume} alt="Resume" /></Link>
           </ContainerTitleImg>
         </ContainerOptions>
       </ContainerPage>
