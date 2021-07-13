@@ -45,7 +45,7 @@ export const Container = styled.main`
   }
 
   @media (min-width: 500px) {
-    height: 85vh;
+    height: 90vh;
 
     .sun {
       img {
