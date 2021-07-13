@@ -8,7 +8,6 @@ export const Container = styled.div`
   width: 100vw;
   min-height: 90vh;
 
- 
   .summary,
   .objective,
   .education,
@@ -27,7 +26,11 @@ export const Container = styled.div`
     h2 {
       color: var(--blue);
       font-size: 2rem;
-      margin: 10px 0 10px 0;
+      margin: 5px 0 5px 0;
+    }
+
+    article{
+      margin-top: 25px;
     }
 
     div,
@@ -48,13 +51,13 @@ export const Container = styled.div`
   .summary {
     display: flex;
     justify-content: space-between;
-    padding: 80px 60px;
+    padding: 60px 60px;
     background: var(--light-grey);
 
     .name {
       color: var(--dark-grey);
       h2 {
-        font-size: 3rem;
+        font-size: 4rem;
       }
     }
     .personalInfo {
@@ -63,8 +66,7 @@ export const Container = styled.div`
       width: 30%;
       h3 {
         font-size: 1.2rem;
-        word-wrap: wrap;
-        
+        word-wrap: break-word;
       }
     }
   }
@@ -159,12 +161,13 @@ export const Container = styled.div`
     }
     @page {
       margin: 0;
-    }
-
-    main {
-      display: table;
-      table-layout: fixed;
-      height: auto;
+      size: auto;
+      page-break-before: always;
+      body {
+        @media print {
+          margin: 2cm 0;
+        }
+      }
     }
   }
 `;
