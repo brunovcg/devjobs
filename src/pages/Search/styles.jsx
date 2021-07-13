@@ -18,9 +18,9 @@ export const SearchBar = styled.div`
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    background-color: var(--dark-grey);
+    background-color: var(--blue);
     border-radius: 10px;
-    padding: 5% 0;
+    padding: 2% 0;
 
     @media (max-width: 580px) {
         flex-direction: column;
@@ -37,5 +37,5 @@ export const ContainerCards = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding: 10px;
+    padding: 1% 2%;
 `

@@ -1,17 +1,12 @@
 import styled from "styled-components";
 
 export const Page = styled.div`
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 90vh;
+  min-height: 80vh;
   align-items: center;
   justify-content: center;
-
-  p:first-of-type {
-    font-size: 1.3rem;
-  }
 `;
 
 export const FormStyled = styled.form`
@@ -24,6 +19,7 @@ export const FormStyled = styled.form`
   padding: 20px;
   opacity: 0.8;
   margin-bottom: 15px;
+  margin-top: 60px;
 
   @media (min-width: 768px) {
     max-width: 450px;
@@ -35,8 +31,9 @@ export const FormStyled = styled.form`
 export const Text = styled.p`
   text-align: center;
   margin-bottom: 15px;
-  
-  a{
+  font-size: 1.3rem;
+
+  a {
     color: var(--blue);
     font-weight: bold;
   }

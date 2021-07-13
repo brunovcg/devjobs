@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: ${(props) => props.setWidth};
-  height: ${(props) => props.setHeight};
+  width: ${props => props.setWidth};
+  height: ${props => props.setHeight};
 
-  input {
+  select {
     background: var(--grey);
     padding-left: 10px;
     color: var(--dark-grey);
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     width: 100%;
     height: 60%;
     border: none;
@@ -18,8 +18,8 @@ export const Container = styled.div`
       color: var(--white);
     }
   }
-  div {
-    color: var(--red);
+  option {
+    color: var(--white);
     font-size: 1.1rem;
     font-weight: bold;
     width: 100%;

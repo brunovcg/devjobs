@@ -1,13 +1,16 @@
 import { Switch } from "react-router-dom";
 import Route from "./route";
 import { Home } from "../pages/Home";
-import  Resume  from "../pages/Resume";
 import Search from "../pages/Search";
 import Dashboard from "../pages/Dashboard";
-import PageNotFound from '../pages/PageNotFound';
-import UserLogin from '../pages/UserLogin';
-import Register from '../pages/UserRegister';
-import CompanyRegister from '../pages/CompanyRegister';
+import PageNotFound from "../pages/PageNotFound";
+import UserLogin from "../pages/UserLogin";
+import Register from "../pages/UserRegister";
+import CompanyRegister from "../pages/CompanyRegister";
+import Messages from "../pages/Messages";
+import VisualizationResume from "../pages/ResumeVisualization";
+import CompanyLogin from "../pages/CompanyLogin";
+import Resume from "../pages/Resume";
 
 const Routes = () => {
   return (

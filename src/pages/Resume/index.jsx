@@ -17,9 +17,12 @@ import Header from "../../components/Header";
 import {useForm} from "react-hook-form"
 import * as yup from "yup"
 import {yupResolver} from '@hookform/resolvers/yup'
-import { specialization } from '../../utils';
+import { levelSkills, specialization } from '../../utils';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
+import { useToken } from '../../providers/TokenProvider';
+import api from '../../services/api';
+import { toast } from 'react-toastify';
 const customStyles = {
   content: {
     top: '50%',
@@ -34,93 +37,142 @@ const customStyles = {
 };
 
  const Resume = () => {
-  const [formName, setFormName] = useState(true)
-  const [formObjective, setFormObjective] = useState(true)
-  const [formEducation, setFormEducation] = useState(true)
-  const [formExperience, setFormExperience] = useState(true)
 
-  const [formActivities, setFormActivities] = useState(true)
+  const {userId} = useToken()
+
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  const [skills, setSkills] = useState([''])
+  const onSubmitFunctionFormation = (Education) => {
+    api.post(`/education/3`, Education)
+    .then((response) => {
+        console.log(response)
+      })
+      .catch(err => {
+          console.log(userId);
+      })
+  }
+  const onSubmitFunctionExperience = (experience) => {
+    api.post(`/experience/3`, experience, '2')
+    .then((response) => {
+        console.log(response)
+      })
+      .catch(err => {
+          console.log(userId);
+      })
+  }
 
-
-  const forSchemaName = yup.object().shape({
-    FirstName: yup.string().required("FirstName"),
-    LastName: yup.string().required("LastName"),
-    Email: yup.string().required("Email Obrigatótio").email("Email Inválido"),
-    Phone: yup.string().required("Telefone Obrigatótio"),
-    Adress: yup.string().required("Endereço Obrigatótio"),
-    Linkedin: yup.string().required("Linkedin"),
-    Specialization: yup.string().required("Specialization"),
-  })
-  const forSchemaObjective = yup.object().shape({
-    Objective: yup.string().required("Objective"),
-  })
-  const forSchemaEducation = yup.object().shape({
-    Title: yup.string().required("Title"),
-    School: yup.string().required("School"),
-    From: yup.string().required("From"),
-    To: yup.string().required("To"),
-    projects: yup.string().required("projects"),
-  })
-  const forSchemaExperience = yup.object().shape({
-    Company: yup.string().required("Company"),
-    Job: yup.string().required("Job"),
-    JobTo: yup.string().required("JobTo"),
-    JobFrom: yup.string().required("JobFrom"),
-    activitiesJob: yup.string().required("activitiesJob"),
-  })
-  const forSchemaActivities = yup.object().shape({
-    Activities: yup.string(),
-  })
-  const forSchemaSkills = yup.object().shape({
-    Skill: yup.string(),
-  })
-  const{register, handleSubmit, formState:{errors}} = useForm({
-      resolverName: yupResolver(forSchemaName),
-      resolverObjective: yupResolver(forSchemaObjective),
-      resolverEducation: yupResolver(forSchemaEducation),
-      resolverExperience: yupResolver(forSchemaExperience),
-      resolverActivities: yupResolver(forSchemaActivities),
-      resolverSkills: yupResolver(forSchemaSkills),
+//---------------------------------------------------------------------------------------------------------------------------------------
+  const [dadosResume, setDadosResume] = useState({
+    firstName: true,
+    lastName: '',
+    phone: '',
+    email: '',
+    adress: '',
+    linkedin: '',
+    specialization: '',
+    activities: '',
+    objective: '',
+    formation: [{ Title: '', School: '', SchoolFrom: '', SchoolTo: '', projects: '' }],
+    experience: [{ Company: '', Job: '', JobFrom: '', JobTo: '', activitiesJob: ''}],
+    skills:[{skill:'',level:''}],
   });
-  const handleSubmitFunctionName = (data) => {
-    setFormName(data)
-  }
-  const handleSubmitFunctionObjective = (data) => {
-    setFormObjective(data)
-  }
-  const handleSubmitFunctionEducation = (data) => {
-    setFormEducation(data)
-  }
-  const handleSubmitFunctionExperience = (data) => {
-    setFormExperience(data)
-  }
-  const handleSubmitFunctionActivities = (data) => {
-    setFormActivities(data)
-  }
-  const handleSubmitFunctionSkill = (data) => {
-    setFormActivities(data)
-  }
-  const addinputButtonSkill = (e) => {
-    e.preventDefault();
-    setSkills([...skills, ''])
-  }
-  const handleChangeSkill = (e, index) => {
-    skills[index] = e.target.value;
-    setSkills([...skills])
-  }
-  const handleRemoveSkill = (position) => {
-    setSkills([...skills.filter((_,index)=> index !== position)])
-  }
-
-
-
-
 
   
+  const addinputButtonSkill = (e) => {
+    let currentSkill = [...dadosResume.skills];
+    const newLine = {skill:'',level:''};
+    currentSkill.push(newLine);
+    setDadosResume(prevState => ({ ...prevState, skills: currentSkill }));
+  }
+  const handleChangeSkill = (event) => {
+    const { name, value, type } = event.target;
+    const index = event.target.dataset.index;
+    let newSkill = [...dadosResume.skills];
+    const newValue = (type === 'number') ? value.slice(0,2) : value;
+    newSkill[index] = { ...newSkill[index], [name]: newValue };
+    setDadosResume(prevState => ({ ...prevState, skills: newSkill }));
+  }
+  const handleRemoveSkill = (position) => {
+    const currentSkill = [...dadosResume.skills];
+    const delSkill = currentSkill.filter((_, index) => index !== position);
+    setDadosResume(prevState => ({ ...prevState, skills: delSkill }));
+  }
 
+  const addFormacao = () => {
+    let actualFormacao = [...dadosResume.formation];
+    const newLine = { Title: '', School: '', SchoolFrom: '', SchoolTo: '', projects: '' };
+    actualFormacao.push(newLine);
+    setDadosResume(prevState => ({ ...prevState, formation: actualFormacao }));
+  };
+  const deleteFormacao = (position) => {
+    const actualFormacao = [...dadosResume.formation];
+    const newFormacao = actualFormacao.filter((_, index) => index !== position);
+    setDadosResume(prevState => ({ ...prevState, formation: newFormacao }));
+  }
+  const handleChangeFormacaoAcademica = (event) => {
+    
+    const { name, value, type } = event.target;
+    const index = event.target.dataset.index;
+    let newFormacaoAcademica = [...dadosResume.formation];
+    const newValue = (type === 'number') ? value.slice(0,4) : value;
+    newFormacaoAcademica[index] = { ...newFormacaoAcademica[index], [name]: newValue };
+    setDadosResume(prevState => ({ ...prevState, formation: newFormacaoAcademica }));
+  }
+
+  const addJob = () => {
+    let actualJob = [...dadosResume.experience];
+    const newLine = { Company: '', Job: '', JobFrom: '', JobTo: '', activitiesJob: '' };
+    actualJob.push(newLine);
+    setDadosResume(prevState => ({ ...prevState, experience: actualJob }));
+  };
+  const deleteJob = (position) => {
+    const actualJob = [...dadosResume.experience];
+    const newJob = actualJob.filter((_, index) => index !== position);
+    setDadosResume(prevState => ({ ...prevState, experience: newJob }));
+  }
+  const handleChangeJob = (event) => {
+    const { name, value, type } = event.target;
+    const index = event.target.dataset.index;
+    let newJob = [...dadosResume.experience];
+    const newValue = (type === 'number') ? value.slice(0,4) : value;
+    newJob[index] = { ...newJob[index], [name]: newValue };
+    setDadosResume(prevState => ({ ...prevState, experience: newJob }));
+  }
+
+
+
+
+  const handleChangePersonalData = (event) => {
+    const { name, value, type } = event.target;
+    const newValue = (type === 'number') ? value.slice(0,4) : value;
+    setDadosResume(prevState => ({ ...prevState, [name]: newValue }));
+    console.log(dadosResume)
+  }
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+const forSchemaEducation = yup.object().shape({
+  Title: yup.string().required("Title required"),
+  School: yup.string().required("School required"),
+  SchoolFrom: yup.string().required("School From required"),
+  SchoolTo: yup.string().required("School To required"),
+  projects: yup.string().required("projects required"),
+})
+
+const forSchema = yup.object().shape({
+  firstName: yup.string().required("Title required"),
+  lastName: yup.string().required("School required"),
+  phone: yup.string().required("School From required"),
+  email: yup.string().required("School To required"),
+  adress: yup.string().required("projects required"),
+  linkedin: yup.string().required("projects required"),
+  specialization: yup.string().required("projects required")
+})
+
+const{register, handleSubmit, formState:{errors}} = useForm({
+  resolver: yupResolver(forSchema)
+});
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
   function openModal() {
     setIsOpen(true)
   }
@@ -142,153 +194,123 @@ const customStyles = {
                 style={customStyles}
                 contentLabel="Example Modal"
                 onRequestClose={openModal}
-                
               >
+                    
+                <ContainerSumary>
+                  <input placeholder='First Name' value={dadosResume.firstName} name='firstName' type='text' onChange={(e)=>handleSubmit(handleChangePersonalData(e))}/>
+                  {errors.firstName?.message}
+                  <input placeholder='Last Name' value={dadosResume.lastName} name='lastName' type='text' onChange={(e)=>handleSubmit(handleChangePersonalData(e))}/>
+                  {errors.lastName?.message}
+                  <input placeholder='Phone' value={dadosResume.phone} name='phone' type='text' onChange={(e)=>handleSubmit(handleChangePersonalData(e))}/>
+                  {errors.phone?.message}
+                  <input placeholder='Email' value={dadosResume.email} name='email' type='text' onChange={(e)=>handleSubmit(handleChangePersonalData(e))}/>
+                  {errors.email?.message}
+                  <input placeholder='Adress' value={dadosResume.adress} name='adress' type='text' onChange={(e)=>handleSubmit(handleChangePersonalData(e))}/>
+                  {errors.adress?.message}
+                  <input placeholder='Linkedin' value={dadosResume.linkedin} name='linkedin' type='text' onChange={(e)=>handleSubmit(handleChangePersonalData(e))}/>
+                  {errors.linkedin?.message}
+                  <select value={dadosResume.specialization} name='specialization' type='text' onChange={(e)=>handleSubmit(handleChangePersonalData(e))}>
+                  {errors.specialization?.message}
+                    {specialization.map((specialization)=>
+                      <option>{specialization}</option>
+                    )}
+                    
+                    
+                  </select>
+                </ContainerSumary>
+
+                <ContainerSumary>
+                  <input placeholder='Objective' value={dadosResume.objective} name='objective' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
+                </ContainerSumary>
+                <ContainerSumary>
+                  <input placeholder='Activities' value={dadosResume.activities} name='activities' type='text' onChange={(e)=>handleChangePersonalData(e)}/>
+                </ContainerSumary>
+
+                <h3>Form Education</h3>
+                  <Button setColor="var(--dark-grey)" setClick={addFormacao}>Add Formation</Button>
+                  {dadosResume.formation.map((formation, index)=>
+                  <ContainerName>
+                  <form onSubmit={handleSubmit(handleChangeFormacaoAcademica)} className="form">
+                    <input data-index={index} placeholder='Title' value={formation.Title} name='Title' type='text' onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <input data-index={index} placeholder='School' name='School' type='text' value={formation.School} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <input data-index={index} placeholder='School From' name='SchoolFrom' type='date' value={formation.SchoolFrom} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <input data-index={index} placeholder='School To' name='SchoolTo' type='date' value={formation.SchoolTo} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <input data-index={index} placeholder='School projects' name='projects' type='text' value={formation.projects} onChange={(e)=>handleChangeFormacaoAcademica(e)}/>
+                    <Button setColor="var(--dark-grey)" setClick={()=>deleteFormacao(index)}>Del</Button>
+                    <button type="submit">Enviar</button>
+                  </form>
+                  </ContainerName>
+                )}
+
+                <h3>Form Jobs</h3>
+                  <Button setColor="var(--dark-grey)" setClick={addJob}>Add Formation</Button>
+                  {dadosResume.experience.map((experience, index)=>
+                  <ContainerName>
+                    <input data-index={index} placeholder='Company' value={experience.Company} name='Company' type='text' onChange={(e)=>handleChangeJob(e)}/>
+                    <input data-index={index} placeholder='Job' name='Job' type='text' value={experience.Job} onChange={(e)=>handleChangeJob(e)}/>
+                    <input data-index={index} placeholder='Job To' name='JobTo' type='date' value={experience.JobTo} onChange={(e)=>handleChangeJob(e)}/>
+                    <input data-index={index} placeholder='Job From' name='JobFrom' type='date' value={experience.JobFrom} onChange={(e)=>handleChangeJob(e)}/>
+                    <input data-index={index} placeholder='Activities Job' name='activitiesJob' type='text' value={experience.activitiesJob} onChange={(e)=>handleChangeJob(e)}/>
+                    <Button setColor="var(--dark-grey)" setClick={()=>deleteJob(index)}>Del</Button>
+                  </ContainerName>
+                  )}
+
+
                 
-                <h3>Formulário</h3>
-                    <form onSubmit={handleSubmit(handleSubmitFunctionName)} className="form">
-                  <ContainerModal>
-                    <h3>Form Name</h3>
-                    <ContainerSumary>
-                      <ContainerName>
-                        <p>First Name</p>
-                        <input placeholder="First Name" {...register("FirstName")}/>
-                        {errors.FirstName?.message}
-                        <p>Last Name</p>
-                        <input placeholder="Last Name" {...register("LastName")}/>
-                        {errors.LastName?.message}
-                        <p>Email</p>
-                        <input placeholder="Email" {...register("Email")}/>
-                        {errors.Email?.message}
-                        </ContainerName>
-                        <ContainerName>
-                        <p>Phone</p>
-                        <input placeholder="Phone" {...register("Phone")}/>
-                        {errors.Phone?.message}
-                        <p>Adress</p>
-                        <input placeholder="Adress" {...register("Adress")}/>
-                        {errors.Adress?.message}
-                        <p>Linkedin</p>
-                        <input placeholder="Adress" {...register("Linkedin")}/>
-                        {errors.Linkedin?.message}
-                        <p>Specialization</p>
+                <h3>Form Skills</h3>
 
-                        
-                        <Select options={specialization} register={register("Specialization")}/>
-                      </ContainerName>
-                    </ContainerSumary>
-                    <Button setColor="var(--dark-grey)" type="submit">Enviar</Button>
-                    </ContainerModal>
-                    
-                    </form>
-
-
-                    <form onSubmit={handleSubmit(handleSubmitFunctionObjective)} className="form">
-                    <h3>Form Objective</h3>
-                      <p>Objective</p>
-                      <Input setWidth={'40%'} placeholder="Objective" register={register} name={"Objective"}/>
-                      {errors.Objective?.message}
-                      <Button type="submit">Enviar</Button>
-                    </form>
-                    <form onSubmit={handleSubmit(handleSubmitFunctionEducation)} className="form">
-                    <h3>Form Education</h3>
-                      <p>School Title</p>
-                      <input placeholder="Title" {...register("Title")}/>
-                      {errors.Title?.message}
-                      <p>School</p>
-                      <input placeholder="School" {...register("School")}/>
-                      {errors.School?.message}
-                      <p>School From</p>
-                      <input type="date" placeholder="School From" {...register("From")}/>
-                      {errors.From?.message}
-                      <p>School To</p>
-                      <input type="date" placeholder="School To" {...register("To")}/>
-                      {errors.To?.message}
-                      <p>Projects</p>
-                      <input placeholder="School projects" {...register("projects")}/>
-                      {errors.projects?.message}
-                      <button type="submit">Enviar</button>
-                      </form>
-                    <form onSubmit={handleSubmit(handleSubmitFunctionExperience)} className="form">
-                      <h3>Form Projects</h3>
-                      <p>Company</p>
-                      <input placeholder="Company" {...register("Company")}/>
-                      {errors.Company?.message}
-                      <p>Job</p>
-                      <input placeholder="Job" {...register("Job")}/>
-                      {errors.Job?.message}
-                      <p>Job To</p>
-                      <input type="date" placeholder="Job" {...register("JobTo")}/>
-                      {errors.JobTo?.message}
-                      <p>Job From</p>
-                      <input type="date" placeholder="Objective" {...register("JobFrom")}/>
-                      {errors.JobFrom?.message}
-                      <p>Activities Job</p>
-                      <input placeholder="Activities Job" {...register("activitiesJob")}/>
-                      {errors.activitiesJob?.message}
-                      <button type="submit">Enviar</button>
-                    </form>
-                    
-                    <form onSubmit={handleSubmit(handleSubmitFunctionSkill)} className="form">
-                      <h3>Skills</h3>
-                      <button onClick={addinputButtonSkill}>Add Skill</button>
-                      {skills.map((skill, index)=>
-                      <>
-                        <input placeholder={ `Skill ${index+1}` } value={skill} onChange={(e)=>handleChangeSkill(e,index)}/>
-                        <button onClick={()=>handleRemoveSkill(index)}>Del</button>
-                        </>
+                <Button setColor="var(--dark-grey)" setClick={addinputButtonSkill}>Add Skill</Button>
+                {dadosResume.skills.map((skill, index)=>
+                  <ContainerName>
+                    <input data-index={index} placeholder='Skill' name='skill' type='text' value={skill.skill} onChange={(e)=>handleChangeSkill(e)}/>
+                    <select data-index={index} placeholder='Level' value={skill.level} name='level' type='number' onChange={(e)=>handleChangeSkill(e)}>
+                      {levelSkills.map((level)=>
+                        <option>{level}</option>
                       )}
-                      
-                      <button type="submit">Enviar</button>
-                    </form>
+                    </select>
 
-
-                    
-                    <form onSubmit={handleSubmit(handleSubmitFunctionActivities)} className="form">
-                      <h3>Form Activities</h3>
-                      <p>Activities</p>
-                      <input placeholder="Activities" {...register("Activities")}/>
-                      {errors.Activities?.message}
-                      <button type="submit">Enviar</button>
-                    </form>
-                    <button onClick={closeModal}>Close</button>
+                    <Button setColor="var(--dark-grey)" setClick={()=>handleRemoveSkill(index)}>Del</Button>
+                  </ContainerName>
+                )}
+                <Button setColor="var(--red)" setClick={closeModal}>Exit</Button>
+        
               </Modal>
-              {formName===true?
+              {dadosResume.firstName===''?
                 <>
                   <h2>First Name</h2>
                   <h2>Last Name</h2>
                 </>:
                 <>
-                  <h2>{formName.FirstName}</h2>
-                  <h2>{formName.LastName}</h2>                  
+                  <h2>{dadosResume.firstName}</h2>
+                  <h2>{dadosResume.lastName}</h2>                  
                 </>
               }
             </ContainerName>
-            <ContainerAddress>
-            {formName===true?
-                <>
+            
+            {dadosResume.firstName===''?
+                <ContainerAddress>
                   <h4>Address</h4>
                   <h4>Phone</h4>
                   <h4>Email</h4>
                   <h4>Linkedin</h4>
                   <h4>Specialization</h4>
-                </>:
-                <>
-                  <h4>{formName.Adress}</h4>
-                  <h4>{formName.Phone}</h4>
-                  <h4>{formName.Email}</h4>
-                  <h4>{formName.Linkedin}</h4>
-                  <h4>{formName.Specialization}</h4>               
-                </>
+                </ContainerAddress>:
+                <ContainerAddress>
+                  <h4>{dadosResume.adress}</h4>
+                  <h4>{dadosResume.phone}</h4>
+                  <h4>{dadosResume.email}</h4>
+                  <h4>{dadosResume.linkedin}</h4>
+                  <h4>{dadosResume.specialization}</h4>               
+                </ContainerAddress>
             }
-            </ContainerAddress>
+            
         </ContainerSumary>
         <ContainerInfos>
             <ContainerCard>
                 <h2>Objective</h2>
                 <ContainerDescription>
 
-                {formObjective===true?
+                {dadosResume.objective===''?
                 <>
                  <p>
                         Lorem ipsum dolor sit amet, 
@@ -300,7 +322,7 @@ const customStyles = {
                   </p>
                 </>:
                 <>
-                  <p>{formObjective.Objective}</p>                 
+                  <p>{dadosResume.objective}</p>                 
                 </>
               }
                     
@@ -311,16 +333,21 @@ const customStyles = {
             <ContainerCard>
                 <h2>Education</h2>
                 <ContainerDescription>
-                {formEducation===true?
+                {dadosResume.firstName===true?
                 <>
                   <p>Degree Title | School</p>
                   <p>Date From - Date To</p>
                   <p>Lorem ipsum dolor sit amet, onsectetur adipiscing ept. Nunc tortor tellus</p>
                 </>:
                 <>
-                  <p>{formEducation.Title} | {formEducation.School}</p>
-                  <p>{formEducation.From} | {formEducation.To}</p>
-                  <p>{formEducation.projects}</p>                  
+                {dadosResume.formation.map((Education)=>
+                  <ContainerDescription>
+                    {onSubmitFunctionFormation(Education)}
+                    <p>{Education.Title} | {Education.School}</p>
+                    <p>{Education.SchoolFrom} | {Education.SchoolTo}</p>
+                    <p>{Education.projects}</p> 
+                  </ContainerDescription>
+                  )}                 
                 </>}
                    
                 </ContainerDescription>
@@ -329,35 +356,51 @@ const customStyles = {
         <ContainerInfos>
             <ContainerCard>
                 <h2>Experience</h2>
+                
+                {dadosResume.firstName===true?
                 <ContainerDescription>
-                {formExperience===true?
-                <>
                   <p>Job Title | Company</p>
                   <p>Data From - Date To</p>
                   <p>Lorem ipsum dolor sit amet, onsectetur adipiscing ept. Nunc tortor tellus</p>
-                </>:
-                <>
-                  <p>{formExperience.Job} | {formExperience.Company}</p>
-                  <p>{formExperience.JobFrom} | {formExperience.JobTo}</p>
-                  <p>{formExperience.activitiesJob}</p>                  
-                </>}
+                </ContainerDescription>:
+                  
+                  <>  
+                {dadosResume.experience.map((experience)=>
+                
+                  <ContainerDescription>
+                    {onSubmitFunctionExperience(experience)}
+                    <p>{experience.Job} | {experience.Company}</p>
+                    <p>{experience.JobFrom} | {experience.JobTo}</p>
+                    <p>{experience.activitiesJob}</p>
+                  </ContainerDescription>
+                  
+                )}
+                  </>
+                }
                     
-                </ContainerDescription>
+                
             </ContainerCard>
         </ContainerInfos>
         <ContainerInfos>
         <ContainerCard>
             <h2>Skills</h2>
-            <ContainerSkills>
-              {skills.map((skill)=> <p>{skill}</p>)}
-            </ContainerSkills>
+            {dadosResume.skills[0].skill===''?<ContainerSkills><p>Skill | Level</p><p>Skill | Level</p><p>Skill | Level</p>
+                                       <p>Skill | Level</p><p>Skill | Level</p><p>Skill | Level</p>
+                                       <p>Skill | Level</p><p>Skill | Level</p><p>Skill | Level</p>
+                                       <p>Skill | Level</p><p>Skill | Level</p><p>Skill | Level</p>
+                                      </ContainerSkills>:
+                                      <ContainerSkills>
+                                        {dadosResume.skills.map((skill)=> <p>{skill.skill} | {skill.level}</p>)}
+                                      </ContainerSkills>
+                                       }
+            
         </ContainerCard>
     </ContainerInfos>
     <ContainerInfos>
         <ContainerCard>
             <h2>Activities</h2>
             <ContainerDescription>
-              {formActivities===true?
+              {dadosResume.activities===''?
                 <>
                   <p>
                     Lorem ipsum dolor sit amet, 
@@ -366,7 +409,7 @@ const customStyles = {
                 </p>
                 </>:
                 <>
-                  <p>{formActivities.Activities}</p>   
+                  <p>{dadosResume.activities}</p>   
                 </>}
                
             </ContainerDescription>

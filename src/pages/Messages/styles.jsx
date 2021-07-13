@@ -62,6 +62,6 @@ export const MessageContent = styled.div`
 export const Title = styled.div`
   text-align: center;
   margin-top: 2.5rem;
-  font-family: "Gugi", cursive;
+  font-family: "Cormorant Garamond", serif;
   font-size: 1.5rem;
 `;

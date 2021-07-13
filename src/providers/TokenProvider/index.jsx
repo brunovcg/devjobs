@@ -12,8 +12,8 @@ export const TokenProvider = ({ children }) => {
   useEffect(() => {
     if (userToken !== "") {
       const decoded = jwt_decode(userToken);
-      const { user_id } = decoded;
-      setUserId(user_id);
+      const { sub } = decoded;
+      setUserId(sub);
     }
   }, [userToken]);
 

@@ -11,6 +11,10 @@ export const HalfMoon = styled.div`
   align-items: center;
   justify-content: center;
 
+  @media (min-width: 500px) {
+    width: 30vw;
+  }
+
   a {
     div {
       background-color: var(--blue);
@@ -28,9 +32,9 @@ export const HalfMoon = styled.div`
       h1 {
         font-size: 1.2rem;
       }
-      :hover{
+      :hover {
         height: 110px;
-      width: 110px;
+        width: 110px;
       }
       @media (min-width: 500px) {
         margin-top: 60px;
@@ -52,7 +56,8 @@ export const Container = styled.div`
     ${(props) => (props.setBorder ? props.setBorder : "var(--grey)")};
   height: 15vh;
 
-  .left, .right{
+  .left,
+  .right {
     width: 33%;
     display: flex;
     justify-content: center;
@@ -64,6 +69,6 @@ export const Container = styled.div`
   }
 
   @media (min-width: 500px) {
-    height: 15vh;
+    height: 10vh;
   }
 `;
