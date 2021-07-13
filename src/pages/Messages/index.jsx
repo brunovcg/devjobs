@@ -14,11 +14,15 @@ import { useToken } from "../../providers/TokenProvider";
 import HeaderLink from "../../components/HeaderLink";
 const Messages = () => {
   const [personalMessages, setPersonalMessages] = useState([]);
-  const { userId } = useToken();
+  const { userId, userToken } = useToken();
   useEffect(() => {
-    api
-      .get(`/messages/${userId}`)
-      .then((response) => setPersonalMessages(response.data));
+    console.log(userId);
+    console.log(userToken);
+    api.get("/messages").then((response) => setPersonalMessages(response.data));
+
+    setPersonalMessages(
+      personalMessages.filter((item) => item.userId === userId)
+    );
   }, []);
   const deleteMessage = (idToBeRemoved) => {
     console.log(idToBeRemoved);
