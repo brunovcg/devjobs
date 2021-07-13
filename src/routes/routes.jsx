@@ -15,16 +15,24 @@ import Resume from "../pages/Resume";
 const Routes = () => {
   return (
     <Switch>
-      <Route path="/" exact component={Home} />      
+      <Route path="/" exact component={Home} />
       <Route path="/search" exact component={Search} />
-      <Route path="/resume" exact component={Resume} />
       <Route path="/login" exact component={UserLogin} />
       <Route path="/register" exact component={Register} />
-      <Route path="/company" exact component={CompanyRegister} />      
-      <Route isPrivate={true} path="/dashboard" exact component={Dashboard} />      
-      <Route component={PageNotFound} />      
+      <Route path="/companyRegister" exact component={CompanyRegister} />
+      <Route path="/companyLogin" exact component={CompanyLogin} />
+      <Route path="/messages" exact component={Messages} />
+      <Route path="/resume" exact component={Resume} />
+      <Route
+        path="/visualizationResume"
+        exact
+        component={VisualizationResume}
+      />
+      <Route isPrivate={true} path="/dashboard" exact component={Dashboard} />
+      <Route component={PageNotFound} />
     </Switch>
   );
 };
 
 export default Routes;
+
