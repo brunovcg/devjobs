@@ -8,6 +8,10 @@ export const Page = styled.div`
     width: 100%;    
     align-items: center;
     justify-content: center;
+
+    p:first-of-type{
+        font-size: 1.3rem;
+    }
 `
 
 export const Container = styled.div`
