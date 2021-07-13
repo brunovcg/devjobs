@@ -18,7 +18,7 @@ export const SearchBar = styled.div`
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    background-color: var(--dark-grey);
+    background-color: var(--blue);
     border-radius: 10px;
     padding: 5% 0;
 
@@ -37,5 +37,5 @@ export const ContainerCards = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding: 10px;
+    padding: 1% 2%;
 `
