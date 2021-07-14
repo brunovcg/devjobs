@@ -1,10 +1,14 @@
 import { Container, DevName, DevInfo } from "./styles";
+import { Link } from "react-router-dom";
+
 const CardDev = ({ name, city, speciality, disponibility, experience }) => {
   return (
     <Container>
-      <DevName>
-        <h2>{name}</h2>
-      </DevName>
+      <Link to="/visualizationResume">
+        <DevName>
+          <h2>{name}</h2>
+        </DevName>
+      </Link>
       <DevInfo>
         <h3>{city}</h3>
         <h3>{speciality}</h3>
