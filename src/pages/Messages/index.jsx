@@ -33,6 +33,7 @@ const Messages = () => {
       });
     // eslint-disable-next-line
   }, []);
+
   const deleteMessage = (idToBeRemoved) => {
     console.log(idToBeRemoved);
     api
