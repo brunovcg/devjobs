@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const CardDev = ({ name, city, speciality, disponibility, experience }) => {
   return (
     <Container>
-      <Link to="/visualizationResume">
+      <Link>
         <DevName>
           <h2>{name}</h2>
         </DevName>
