@@ -5,7 +5,7 @@ import { useToken } from "../../providers/TokenProvider";
 import Button from '../../components/Button';
 import api from '../../services/api';
 import Input from '../../components/Input';
-
+import jwt_decode from "jwt-decode";
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -74,6 +74,9 @@ const Register = () => {
         const { accessToken } = response.data;
         localStorage.setItem('@DevJobs:Token:User', JSON.stringify(accessToken));
         setUserToken( accessToken );
+        const decoded = jwt_decode(accessToken);
+        const { sub } = decoded;
+        localStorage.setItem("@DevJobs:User:Id", sub);
 
         return history.push('/dashboard')
     })
