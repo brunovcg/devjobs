@@ -23,12 +23,8 @@ const Messages = () => {
     console.log(userId);
     console.log(userToken);
     api
-      .get("/messages")
-      .then((response) =>
-        setPersonalMessages(
-          response.data.filter((item) => item.userId === userId)
-        )
-      );
+      .get(`/users/${userId}/messages`)
+      .then((response) => setPersonalMessages(response.data));
   }, []);
   const deleteMessage = (idToBeRemoved) => {
     console.log(idToBeRemoved);
