@@ -24,8 +24,6 @@ const Search = () => {
     GetDev()
   }, [])
 
-  console.log(users)
-
   return (
     <>
       <Header 
