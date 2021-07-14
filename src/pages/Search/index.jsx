@@ -14,17 +14,27 @@ import { useState, useEffect } from 'react';
 
 const Search = () => {
 
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
+  const [searchSpecialization, setSearchSpecialization] = useState('');
+  const [searchSeniority, setSearchSeniority] = useState('');
+  const [searchDisponibility, setSearchDisponibility] = useState('');
+  const [searchDevList, setSearchDevList] = useState([]);
 
   const GetDev = () => {
     API.get("/db").then((response) => setUsers(response.data.users));
+  }
+
+  const handleSearch = () => {
+    const searchFilter = users.filter(user => user.summary.speciality === searchSpecialization)
   }
   
   useEffect(() => {
     GetDev()
   }, [])
 
-  console.log(users)
+  console.log(searchSpecialization)
+  console.log(searchSeniority)
+  console.log(searchDisponibility)
 
   return (
     <>
@@ -37,9 +47,9 @@ const Search = () => {
       <ContainerPage>
         <ContainerSearch>
           <SearchBar>
-            <Select options={specialization}/>
-            <Select options={seniority}/>
-            <Select options={disponibility}/>
+            <Select options={specialization} value={searchSpecialization} onChange={(event) => setSearchSpecialization(event.target.value)}/>
+            <Select options={seniority} value={searchSeniority} onChange={(event) => setSearchSeniority(event.target.value)}/>
+            <Select options={disponibility} value={searchDisponibility} onChange={(event) => setSearchDisponibility(event.target.value)}/>
             <Button setColor="var(--dark-grey)" setSize="large" setClick={""}>
               Search
             </Button>
@@ -47,7 +57,7 @@ const Search = () => {
         </ContainerSearch>
         <ContainerCards>
           {
-            users.map((user) => (
+            users.map(user => (
               user.summary &&
               <CardDev
                 key={user.id}
