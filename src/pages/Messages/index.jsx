@@ -18,10 +18,15 @@ import { useHistory } from "react-router-dom";
 
 const Messages = () => {
   const [personalMessages, setPersonalMessages] = useState([]);
-  const { userId, handleLogout, userToken } = useToken();
+  const { handleLogout, userToken } = useToken();
+  const [userId, setUserId] = useState(
+    localStorage.getItem("@DevJobs:User:Id")
+  );
   const history = useHistory();
 
   useEffect(() => {
+    console.log(userId);
+
     api
       .get(`/users/${userId}/messages`)
       .then((response) => setPersonalMessages(response.data))
