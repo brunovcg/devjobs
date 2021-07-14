@@ -22,11 +22,13 @@ const Messages = () => {
   useEffect(() => {
     console.log(userId);
     console.log(userToken);
-    api.get("/messages").then((response) => setPersonalMessages(response.data));
-
-    setPersonalMessages(
-      personalMessages.filter((item) => item.userId === userId)
-    );
+    api
+      .get("/messages")
+      .then((response) =>
+        setPersonalMessages(
+          response.data.filter((item) => item.userId === userId)
+        )
+      );
   }, []);
   const deleteMessage = (idToBeRemoved) => {
     console.log(idToBeRemoved);
