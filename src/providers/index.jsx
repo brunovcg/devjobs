@@ -1,16 +1,15 @@
-import {WindowSizeProvider} from './windowSize';
-import {TokenProvider} from './TokenProvider';
+import { WindowSizeProvider } from "./windowSize";
+import { TokenProvider } from "./TokenProvider";
+import { ResumeProvider } from "./ResumeDownload";
 
-const providers = ({children}) => {
-
-return(
+const providers = ({ children }) => {
+  return (
     <TokenProvider>
-    <WindowSizeProvider>
-        {children}
-    </WindowSizeProvider>
+      <ResumeProvider>
+        <WindowSizeProvider>{children}</WindowSizeProvider>
+      </ResumeProvider>
     </TokenProvider>
-)
+  );
+};
 
-}
-
-export default providers
+export default providers;
