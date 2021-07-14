@@ -65,3 +65,18 @@ export const Title = styled.div`
   font-family: "Cormorant Garamond", serif;
   font-size: 1.5rem;
 `;
+export const Name = styled.div`
+  text-align: left;
+  background-color: var(--grey);
+  height: 40px;
+  width: 94%;
+  padding: 8px;
+  margin: 10px;
+  text-overflow: clip;
+  font-family: "Cormorant", serif;
+  overflow: visible;
+  overflow-wrap: break-word;
+  h3 {
+    font-size: 1.2rem;
+  }
+`;
