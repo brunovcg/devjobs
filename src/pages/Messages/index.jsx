@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../../services/api";
+import { toast } from "react-toastify";
+
 import {
   Container,
   Message,
@@ -25,8 +27,15 @@ const Messages = () => {
 
     api
       .get(`/users/${userId}/messages`)
-      .then((response) => setPersonalMessages(response.data));
+      .then((response) => setPersonalMessages(response.data))
+      .catch((err) => {
+        toast.error("Request didn't work, try again");
+        console.log(err);
+      });
+
+    // eslint-disable-next-line
   }, []);
+
   const deleteMessage = (idToBeRemoved) => {
     console.log(idToBeRemoved);
     api
@@ -59,7 +68,9 @@ const Messages = () => {
         {personalMessages &&
           personalMessages.map((item, index) => (
             <Message key={index}>
-              <Name>{item.name}</Name>
+              <Name>
+                <h3>{item.name}</h3>
+              </Name>
               <Email>
                 <h3>{item.companyEmail}</h3>
               </Email>
