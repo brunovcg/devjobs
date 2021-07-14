@@ -1,80 +1,242 @@
 import styled from "styled-components";
 
-export const ContainerModal = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 70vw;
-`
+export const Container = styled.div`
+  margin: 0vh auto 0vh auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100vw;
+  min-height: 90vh;
 
+  .objective,
+  .education,
+  .experience,
+  .techSkills,
+  .otherSkills {
+    padding: 30px 50px;
+    text-align: justify;
+  }
 
-export const ContainerButtons = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 98vw;
-`
+  .objective,
+  .education,
+  .experience,
+  .techSkills,
+  .otherSkills {
+    h2 {
+      display: flex;
+      align-items: center;
+      color: var(--blue);
+      font-size: 2rem;
+      margin: 5px 0 5px 0;
 
-export const ContainerPage = styled.div`
-    background-image: var(--gradient-white);
-    width: 100vw;
-    height: 100vh;
-    font-family: "Cormorant", serif;
-    color: var(--dark-grey);
-`
-
-export const ContainerSumary = styled.div`
-    padding: 35px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    @media (min-width: 600px) {
-        padding: 1% 5%;
+      button {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
-`
 
-export const ContainerName = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-    align-items: flex-start;
-`
+    article {
+      margin-top: 20px;
+      border: 1px solid var(--grey);
+      padding: 5px;
+    }
 
-export const ContainerAddress = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-    align-items: flex-end;
-`
+    div,
+    span {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
 
-export const ContainerCard = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-`
+    p {
+      font-size: 1.6rem;
+    }
+  }
 
-export const ContainerDescription = styled.div`
-    width: 90vw;
-    max-height:25vh;
-    background-color: var(--grey);
-`
+  .header {
+    margin-bottom: 0px;
+  }
 
-export const ContainerInfos = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 3%;
-`
+  .objective {
+    p {
+      border: 1px var(--grey) solid;
+      padding: 5px;
+      button {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
 
-export const ContainerSkills = styled.div`
-    width: 90vw;
-    display: flex;
-    max-height:10vh;
-    flex-wrap: wrap;
-    flex-direction: column;
-    background-color: var(--grey);
-`
+  .education {
+    article {
+      .educationInfo {
+        display: flex;
+        width: fit-content;
+        align-items: center;
+        justify-content: space-between;
+
+        .degreeTitle {
+          color: maroon;
+        }
+
+        .school {
+          color: var(--dark-grey);
+        }
+
+        button {
+          width: 30px;
+          height: 30px;
+          font-size: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      .educationDate {
+        display: flex;
+        color: var(--dark-grey);
+
+        div,
+        p {
+          font-size: 1.1rem;
+        }
+      }
+
+      .educationText {
+        color: var(--dark-grey);
+      }
+    }
+  }
+
+  .experience {
+    article {
+      .jobInfo {
+        display: flex;
+        width: fit-content;
+        justify-content: space-between;
+        align-items: center;
+
+        .jobTitle {
+          color: maroon;
+        }
+
+        .company {
+          color: var(--dark-grey);
+        }
+
+        button {
+          width: 30px;
+          height: 30px;
+          font-size: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      .jobDate {
+        display: flex;
+        color: var(--dark-grey);
+
+        div,
+        p {
+          font-size: 1.1rem;
+        }
+      }
+
+      .jobText {
+        color: var(--dark-grey);
+      }
+    }
+  }
+
+  .techSkills,
+  .otherSkills {
+    .skillBox {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      
+      article{
+        display: flex;
+        justify-content: space-around;
+        
+        margin: 5px;
+      .skillsInfo {
+        display: flex;
+        align-items: center;
+        
+        
+
+        .skillName {
+          color: maroon;
+          font-size: 1.3rem;
+        }
+
+        .skillLevel {
+          font-size: 1.3rem;
+        }
+
+        button {
+          width: 30px;
+          height: 30px;
+          font-size: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }}
+
+  @media (max-width: 500px) {
+    .summary,
+    .objective,
+    .education,
+    .experience,
+    .techSkills,
+    .otherSkills {
+      padding: 30px 30px;
+      text-align: justify;
+    }
+
+    .objective,
+    .education,
+    .experience,
+    .techSkills,
+    .otherSkills {
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1.3rem;
+      }
+    }
+    .summary {
+      flex-direction: column;
+
+      .name {
+        h2 {
+          font-size: 2.5rem;
+          text-align: center;
+        }
+      }
+
+      .personalInfo {
+        padding-top: 30px;
+        width: 100%;
+      }
+    }
+  }
+`;
