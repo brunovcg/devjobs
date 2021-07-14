@@ -21,9 +21,10 @@ const Routes = () => {
       <Route path="/register" exact component={Register} />
       <Route path="/companyRegister" exact component={CompanyRegister} />
       <Route path="/companyLogin" exact component={CompanyLogin} />
-      <Route path="/messages" exact component={Messages} />
-      <Route path="/resume" exact component={Resume} />
+      <Route isPrivate={true} path="/messages" exact component={Messages} />
+      <Route isPrivate={true} path="/resume" exact component={Resume} />
       <Route
+        isPrivate={true}
         path="/visualizationResume"
         exact
         component={VisualizationResume}

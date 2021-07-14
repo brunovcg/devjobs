@@ -23,6 +23,7 @@ import Input from '../../components/Input';
 import { useToken } from '../../providers/TokenProvider';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 const customStyles = {
   content: {
     top: '50%',
@@ -37,6 +38,12 @@ const customStyles = {
 };
 
  const Resume = () => {
+
+  const history = useHistory()
+
+  const visualization = () => {
+    history.push('/visualizationResume')
+  }
 
   const {userId} = useToken()
 
@@ -184,7 +191,7 @@ const{register, handleSubmit, formState:{errors}} = useForm({
     <Header/>
     <ContainerPage>
         <ContainerButtons>
-            <Button setSize={"huge"} setColor="var(--dark-grey)" setClick={""}>PDF</Button>
+            <Button setSize={"huge"} setColor="var(--dark-grey)" setClick={visualization}>PDF</Button>
             <Button setSize={"huge"} setColor="var(--dark-grey)" setClick={openModal}>Edit Resume</Button>
         </ContainerButtons>
         <ContainerSumary>

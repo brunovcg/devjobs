@@ -19,6 +19,7 @@ export const ContainerTitleImg = styled.div`
     height: 30vh;
     font-size: 1.7rem;
     color: var(--dark-grey);
+   
 `
 
 export const StyledImg = styled.img`
