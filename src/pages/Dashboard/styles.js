@@ -19,17 +19,21 @@ export const ContainerTitleImg = styled.div`
     height: 30vh;
     font-size: 1.7rem;
     color: var(--dark-grey);
-   
+
+    a {
+        text-align: center;
+        padding: 10% 0;
+    }
 `
 
 export const StyledImg = styled.img`
-    width: 40%;
+    width: 50%;
     height: 100%;
-    transition: 0.4s;
+    transition: 0.5s;
 
     :hover {
         opacity: 70%;
-        transform: translateY(4%);
-        transition: 0.4s;
+        transform: translateY(5%);
+        transition: 0.5s;
     }
 `
