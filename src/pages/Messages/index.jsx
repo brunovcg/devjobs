@@ -6,7 +6,7 @@ import {
   Email,
   MessageContent,
   Title,
-  HeaderContainer,
+  Name,
 } from "./styles";
 import Button from "../../components/Button";
 import Header from "../../components/Header";
@@ -16,12 +16,14 @@ import { useHistory } from "react-router-dom";
 
 const Messages = () => {
   const [personalMessages, setPersonalMessages] = useState([]);
-  const { userId, handleLogout } = useToken();
+  const { userId, handleLogout, userToken } = useToken();
   const history = useHistory();
 
   useEffect(() => {
+    console.log(userId);
+    console.log(userToken);
     api
-      .get(`/messages/${userId}`)
+      .get(`/users/${userId}/messages`)
       .then((response) => setPersonalMessages(response.data));
   }, []);
   const deleteMessage = (idToBeRemoved) => {
@@ -56,6 +58,7 @@ const Messages = () => {
         {personalMessages &&
           personalMessages.map((item, index) => (
             <Message key={index}>
+              <Name>{item.name}</Name>
               <Email>
                 <h3>{item.companyEmail}</h3>
               </Email>
