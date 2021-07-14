@@ -42,7 +42,7 @@ export const Experience = () => {
         <h2>Add Experience</h2>
         <Input
           name="role"
-          placeHolder="Role"
+          placeholder="Role"
           type="text"
           register={register}
           error={errors.role?.message}
@@ -51,7 +51,7 @@ export const Experience = () => {
         />
         <Input
           name="company"
-          placeHolder="Company"
+          placeholder="Company"
           type="text"
           register={register}
           error={errors.company?.message}
@@ -60,7 +60,7 @@ export const Experience = () => {
         />
         <Input
           name="dateFrom"
-          placeHolder="Date From"
+          placeholder="Date From"
           type="text"
           register={register}
           error={errors.dateFrom?.message}
@@ -69,7 +69,7 @@ export const Experience = () => {
         />
         <Input
           name="dateTo"
-          placeHolder="Date To"
+          placeholder="Date To"
           type="text"
           register={register}
           error={errors.dateTo?.message}
@@ -78,7 +78,7 @@ export const Experience = () => {
         />
         <Input
           name="description"
-          placeHolder="Description"
+          placeholder="Description"
           type="text"
           register={register}
           error={errors.description?.message}
