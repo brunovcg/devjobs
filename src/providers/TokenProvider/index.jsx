@@ -17,8 +17,16 @@ export const TokenProvider = ({ children }) => {
     }
   }, [userToken]);
 
+  const handleLogout = () => {
+    localStorage.clear();
+    setUserToken("");
+    setUserId("");
+  };
+
   return (
-    <TokenContext.Provider value={{ userToken, setUserToken, userId }}>
+    <TokenContext.Provider
+      value={{ userToken, setUserToken, userId, handleLogout }}
+    >
       {children}
     </TokenContext.Provider>
   );
