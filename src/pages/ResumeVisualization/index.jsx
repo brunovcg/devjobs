@@ -149,7 +149,9 @@ const VisualizationResume = () => {
             </div>
           </section>
           <section className="otherSkills">
-            <h2><FaTools/> &nbsp; Other Skills</h2>
+            <h2>
+              <FaTools /> &nbsp; Other Skills
+            </h2>
             <div className="skillBox">
               {testUsers.otherSkills
                 .filter((x) => x.userId === 1)
