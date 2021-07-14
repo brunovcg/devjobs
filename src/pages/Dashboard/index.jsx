@@ -8,11 +8,16 @@ import {
   StyledImg,
 } from "./styles";
 import Header from "../../components/Header";
+import Button from "../../components/Button";
 
 const Dashboard = () => {
   return (
     <>
-      <Header />
+      <Header 
+        setRight={<Button
+          setColor="var(--red)" setSize="large" setClick={""}
+        >Logout</Button>}
+      />
       <ContainerPage>
         <ContainerOptions>
           <ContainerTitleImg>
