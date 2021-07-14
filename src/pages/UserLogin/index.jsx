@@ -4,7 +4,7 @@ import { useToken } from "../../providers/TokenProvider";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import api from "../../services/api";
-
+import jwt_decode from "jwt-decode";
 import { useHistory, Link } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
@@ -14,8 +14,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../../components/Header";
-
-import jwt_decode from "jwt-decode";
 
 const UserLogin = () => {
   const { setUserToken } = useToken();
@@ -46,7 +44,6 @@ const UserLogin = () => {
           JSON.stringify(accessToken)
         );
         setUserToken(accessToken);
-
         const decoded = jwt_decode(accessToken);
         const { sub } = decoded;
         localStorage.setItem("@DevJobs:User:Id", sub);
