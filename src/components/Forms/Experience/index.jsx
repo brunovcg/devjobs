@@ -28,7 +28,13 @@ export const Experience = () => {
     resolver: yupResolver(schema),
   });
 
-  const submitFunction = () => {};
+  const onSubmitFunctionExperience = (data) => {
+    const Experience = { Experience: data, userId: userId };
+    api
+    .post(`/experience`,Experience)
+    .then((response) => {})
+    .catch((err) => {});
+  };
 
   return (
     <Container>
@@ -84,7 +90,7 @@ export const Experience = () => {
             type="submit"
             setSize="large"
             setColor="var(--blue)"
-            setClick={handleSubmit(submitFunction)}
+            setClick={handleSubmit(onSubmitFunctionExperience)}
           >
             Submit
           </Button>

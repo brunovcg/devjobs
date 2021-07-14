@@ -10,7 +10,6 @@ import { Container } from "../styles";
 
 export const Education = () => {
   const { userId } = useToken();
-
   const schema = yup.object().shape({
     degree: yup.string().required("Degree required"),
     school: yup.string().required("School required"),
@@ -28,7 +27,13 @@ export const Education = () => {
     resolver: yupResolver(schema),
   });
 
-  const submitFunction = () => {};
+  const onSubmitFunctionEducation = (data) => {
+    const Education = { Education: data, userId: userId };
+    api
+    .post(`/education`,Education)
+    .then((response) => {})
+    .catch((err) => {console.log(Education, err)});
+  };
 
   return (
     <Container>
@@ -84,11 +89,11 @@ export const Education = () => {
             type="submit"
             setSize="large"
             setColor="var(--blue)"
-            setClick={handleSubmit(submitFunction)}
+            setClick={handleSubmit(onSubmitFunctionEducation)}
           >
             Submit
           </Button>
-          <Button setSize="large" setColor="var(--red)" setClick={""}>
+          <Button setSize="large" setColor="var(--red)" setClick={''}>
             Cancel
           </Button>
         </div>

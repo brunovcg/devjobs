@@ -25,7 +25,13 @@ export const Objective = () => {
     resolver: yupResolver(schema),
   });
 
-  const submitFunction = () => {};
+  const onSubmitFunctionObjective = (data) => {
+    const Objective = { Objective: data, userId: userId };
+    api
+    .post(`/objective`, Objective)
+    .then((response) => {})
+    .catch((err) => {console.log(err)});
+  };
 
   return (
     <Container>
@@ -46,7 +52,7 @@ export const Objective = () => {
             type="submit"
             setSize="large"
             setColor="var(--blue)"
-            setClick={handleSubmit(submitFunction)}
+            setClick={handleSubmit(onSubmitFunctionObjective)}
           >
             Submit
           </Button>

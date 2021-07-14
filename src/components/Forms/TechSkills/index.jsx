@@ -26,7 +26,13 @@ export const TechSkills = () => {
     resolver: yupResolver(schema),
   });
 
-  const submitFunction = () => {};
+  const onSubmitFunctionTechSkills = (data) => {
+    const Skills = { TechSkills: data, userId: userId };
+    api
+    .post(`/techSkills`, Skills)
+    .then((response) => {})
+    .catch((err) => {console.log(err)});
+  };
 
   return (
     <Container>
@@ -42,7 +48,7 @@ export const TechSkills = () => {
           setWidth="70%"
         />
         <Input
-          name="what level?"
+          name="level"
           placeHolder="level"
           type="text"
           register={register}
@@ -56,7 +62,7 @@ export const TechSkills = () => {
             type="submit"
             setSize="large"
             setColor="var(--blue)"
-            setClick={handleSubmit(submitFunction)}
+            setClick={handleSubmit(onSubmitFunctionTechSkills)}
           >
             Submit
           </Button>
