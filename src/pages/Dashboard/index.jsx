@@ -9,13 +9,24 @@ import {
 } from "./styles";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
+import { useToken } from "../../providers/TokenProvider";
+import { useHistory } from "react-router-dom";
+
 
 const Dashboard = () => {
+
+  const { userId, handleLogout } = useToken();
+  const history = useHistory();
+  const sendToHome = () => {
+    handleLogout();
+    history.push("/");
+  };
+
   return (
     <>
       <Header 
         setRight={<Button
-          setColor="var(--red)" setSize="large" setClick={""}
+          setColor="var(--red)" setSize="large" setClick={sendToHome}
         >Logout</Button>}
       />
       <ContainerPage>

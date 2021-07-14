@@ -17,6 +17,7 @@ import { Objective } from "../../components/Forms/Objective";
 import { useEffect } from "react";
 import { TechSkills } from "../../components/Forms/TechSkills";
 import { OtherSkills } from "../../components/Forms/OtherSkills";
+import {useResume} from '../../providers/ResumeDownload'
 
 const Resume = () => {
   const history = useHistory();
@@ -25,7 +26,13 @@ const Resume = () => {
     history.push("/visualizationResume");
   };
 
-  const { userId } = useToken();
+  const { userId, handleLogout } = useToken();
+  const {getResumeInfo} = useResume();
+
+  const sendToHome = () => {
+    handleLogout();
+    history.push("/");
+  };
 
   const [formChoice, setFormChoice] = useState("");
 
@@ -37,16 +44,17 @@ const Resume = () => {
   };
 
 
-//  const deleteAny = (endpoint, id) => {
-//   api.delete(
-//     `http.api.com/${endpoint}/${id}`
-//   )}
+ const deleteAny = (endpoint, id) => {
+  api.delete(
+    `http.api.com/${endpoint}/${id}`
+  )}
 
 
   useEffect(() => {}, []);
 
   return (
     <>
+    <button onClick={()=> getResumeInfo()}>teste</button>
       <Container color={"var(--dark-grey)"}>
         <div className="noPrint header">
           <Header
@@ -60,7 +68,7 @@ const Resume = () => {
               </Button>
             }
             setRight={
-              <Button setSize={"large"} setColor="var(--red)" setClick={""}>
+              <Button setSize={"large"} setColor="var(--red)" setClick={sendToHome}>
                 Logout
               </Button>
             }
@@ -98,7 +106,7 @@ const Resume = () => {
               {testUsers.users
                 .filter((x) => x.id === 1)
                 .map((x) => x.summary.objective)}
-              <Button setClick={"excluir"} setColor="var(--red)">
+              <Button setClick={()=> console.log("excluir")} setColor="var(--red)">
                 <FaTrashAlt />
               </Button>
             </p>
@@ -119,7 +127,7 @@ const Resume = () => {
                     <span className="degreeTitle">{x.degree}&nbsp;</span>
 
                     <span className="school">| {x.school}</span>
-                    <Button setClick={"excluir"} setColor="var(--red)">
+                    <Button setClick={()=> console.log("excluir")} setColor="var(--red)">
                       <FaTrashAlt />
                     </Button>
                   </div>
@@ -149,7 +157,7 @@ const Resume = () => {
                     <span className="jobTitle">{x.role}&nbsp;</span>
 
                     <span className="company">| {x.company}</span>
-                    <Button setClick={"excluir"} setColor="var(--red)">
+                    <Button setClick={()=> console.log("excluir")} setColor="var(--red)">
                       <FaTrashAlt />
                     </Button>
                   </div>
@@ -177,7 +185,7 @@ const Resume = () => {
                     <div className="skillsInfo">
                       <div className="skillName">{x.description}: &nbsp;</div>
                       <div className="skillLevel">{x.level}</div>
-                      <Button setClick={"excluir"} setColor="var(--red)">
+                      <Button setClick={()=> console.log("excluir")} setColor="var(--red)">
                         <FaTrashAlt />
                       </Button>
                     </div>
@@ -201,7 +209,7 @@ const Resume = () => {
                     <div className="skillsInfo">
                       <div className="skillName">{x.description}: &nbsp;</div>
                       <div className="skillLevel">{x.level}</div>
-                      <Button setClick={"excluir"} setColor="var(--red)">
+                      <Button setClick={()=> console.log("excluir")} setColor="var(--red)">
                         <FaTrashAlt />
                       </Button>
                     </div>
