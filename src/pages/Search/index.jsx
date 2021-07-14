@@ -1,7 +1,7 @@
 import Header from '../../components/Header';
 import Button from "../../components/Button";
 import Select from "../../components/Select";
-import { disponibility, seniority, specialization } from "../../utils/index";
+import { languages, levelSkills } from "../../utils/index";
 import {
   ContainerPage,
   ContainerSearch,
@@ -15,26 +15,22 @@ import { useState, useEffect } from 'react';
 const Search = () => {
 
   const [users, setUsers] = useState([]);
-  const [searchSpecialization, setSearchSpecialization] = useState('');
-  const [searchSeniority, setSearchSeniority] = useState('');
-  const [searchDisponibility, setSearchDisponibility] = useState('');
-  const [searchDevList, setSearchDevList] = useState([]);
+  const [searchLanguages, setSearchLanguages] = useState('');
+  const [searchLevelSkills, setSearchLevelSkills] = useState('');
+  const [searchList, setSearchList] = useState([]);
 
   const GetDev = () => {
     API.get("/db").then((response) => setUsers(response.data.users));
   }
 
   const handleSearch = () => {
-    const searchFilter = users.filter(user => user.summary.speciality === searchSpecialization)
+    console.log(`language ${searchLanguages}`);
+    console.log(`level skill ${searchLevelSkills}`);
   }
   
   useEffect(() => {
     GetDev()
   }, [])
-
-  console.log(searchSpecialization)
-  console.log(searchSeniority)
-  console.log(searchDisponibility)
 
   return (
     <>
@@ -47,10 +43,9 @@ const Search = () => {
       <ContainerPage>
         <ContainerSearch>
           <SearchBar>
-            <Select options={specialization} value={searchSpecialization} onChange={(event) => setSearchSpecialization(event.target.value)}/>
-            <Select options={seniority} value={searchSeniority} onChange={(event) => setSearchSeniority(event.target.value)}/>
-            <Select options={disponibility} value={searchDisponibility} onChange={(event) => setSearchDisponibility(event.target.value)}/>
-            <Button setColor="var(--dark-grey)" setSize="large" setClick={""}>
+            <Select options={languages} setSearchLanguages={languages}/>
+            <Select options={levelSkills} inputValue={searchLevelSkills} onChange={(event) => setSearchLevelSkills(event.target.value)}/>
+            <Button setColor="var(--dark-grey)" setSize="large" setClick={handleSearch}>
               Search
             </Button>
           </SearchBar>
