@@ -1,5 +1,7 @@
 import Header from '../../components/Header';
 import Button from "../../components/Button";
+import Select from "../../components/Select";
+import { disponibility, seniority, specialization } from "../../utils/index";
 import {
   ContainerPage,
   ContainerSearch,
@@ -35,7 +37,9 @@ const Search = () => {
       <ContainerPage>
         <ContainerSearch>
           <SearchBar>
-            <p>Aguardando o Select</p>
+            <Select options={specialization}/>
+            <Select options={seniority}/>
+            <Select options={disponibility}/>
             <Button setColor="var(--dark-grey)" setSize="large" setClick={""}>
               Search
             </Button>
@@ -44,9 +48,11 @@ const Search = () => {
         <ContainerCards>
           {
             users.map((user) => (
+              user.summary &&
               <CardDev
                 key={user.id}
                 name={`${user.firstName} ${user.lastName}`}
+                city={user.summary.city}
                 speciality={user.summary.speciality}
                 disponibility={user.summary.disponibility}
                 experience={`${user.summary.experienceTime} months`}
