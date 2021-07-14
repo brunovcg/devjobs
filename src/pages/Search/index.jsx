@@ -1,13 +1,13 @@
-// import Header from '../../components/Header';
+import Header from '../../components/Header';
 import Button from "../../components/Button";
-import Input from "../../components/Input";
+import Select from "../../components/Select";
+import { disponibility, seniority, specialization } from "../../utils/index";
 import {
   ContainerPage,
   ContainerSearch,
   ContainerCards,
   SearchBar,
 } from "./styles";
-import Header from "../../components/Header";
 import CardDev from "../../components/CardDev";
 import API from "../../services/api";
 import { useState, useEffect } from 'react';
@@ -24,6 +24,8 @@ const Search = () => {
     GetDev()
   }, [])
 
+  console.log(users)
+
   return (
     <>
       <Header 
@@ -35,7 +37,9 @@ const Search = () => {
       <ContainerPage>
         <ContainerSearch>
           <SearchBar>
-            <p>Aguardando o Select</p>
+            <Select options={specialization}/>
+            <Select options={seniority}/>
+            <Select options={disponibility}/>
             <Button setColor="var(--dark-grey)" setSize="large" setClick={""}>
               Search
             </Button>
@@ -44,6 +48,7 @@ const Search = () => {
         <ContainerCards>
           {
             users.map((user) => (
+              user.summary &&
               <CardDev
                 key={user.id}
                 name={`${user.firstName} ${user.lastName}`}
