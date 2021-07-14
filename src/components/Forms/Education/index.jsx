@@ -41,7 +41,7 @@ export const Education = () => {
         <h2>Add Education</h2>
         <Input
           name="degree"
-          placeHolder="Degree"
+          placeholder="Degree"
           type="text"
           register={register}
           error={errors.degree?.message}
@@ -50,7 +50,7 @@ export const Education = () => {
         />
         <Input
           name="school"
-          placeHolder="School"
+          placeholder="School"
           type="text"
           register={register}
           error={errors.school?.message}
@@ -59,7 +59,7 @@ export const Education = () => {
         />
         <Input
           name="dateFrom"
-          placeHolder="Date From"
+          placeholder="Date From"
           type="text"
           register={register}
           error={errors.dateFrom?.message}
@@ -68,7 +68,7 @@ export const Education = () => {
         />
         <Input
           name="dateTo"
-          placeHolder="Date To"
+          placeholder="Date To"
           type="text"
           register={register}
           error={errors.dateTo?.message}
@@ -77,7 +77,7 @@ export const Education = () => {
         />
         <Input
           name="description"
-          placeHolder="Description"
+          placeholder="Description"
           type="text"
           register={register}
           error={errors.description?.message}

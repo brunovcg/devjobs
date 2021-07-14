@@ -40,7 +40,7 @@ export const TechSkills = () => {
         <h2>Add Tech Skills</h2>
         <Input
           name="description"
-          placeHolder="Degree"
+          placeholder="Degree"
           type="text"
           register={register}
           error={errors.description?.message}
@@ -49,7 +49,7 @@ export const TechSkills = () => {
         />
         <Input
           name="level"
-          placeHolder="level"
+          placeholder="level"
           type="text"
           register={register}
           error={errors.level?.message}

@@ -9,6 +9,12 @@ export const TokenProvider = ({ children }) => {
   );
   const [userId, setUserId] = useState(localStorage.getItem("@DevJobs:User:Id") || "");
 
+
+  const getUserId = () => {
+    console.log(localStorage.getItem("@DevJobs:User:Id"))
+   return localStorage.getItem("@DevJobs:User:Id")
+  }
+
   useEffect(() => {
     if (userToken !== "") {
       const decoded = jwt_decode(userToken);
@@ -25,7 +31,7 @@ export const TokenProvider = ({ children }) => {
 
   return (
     <TokenContext.Provider
-      value={{ userToken, setUserToken, userId, handleLogout }}
+      value={{ userToken, setUserToken, userId, handleLogout, getUserId }}
     >
       {children}
     </TokenContext.Provider>

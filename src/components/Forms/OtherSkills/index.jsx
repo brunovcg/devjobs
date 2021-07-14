@@ -26,7 +26,7 @@ export const OtherSkills = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmitFunctionOtherSkills = (data) => {
+  const submitFunction = (data) => {
     const Skills = { OtherSkills: data, userId: userId };
     api
     .post(`/otherSkills`, Skills)
@@ -36,11 +36,11 @@ export const OtherSkills = () => {
 
   return (
     <Container>
-      <form>
+      <form onSubmit={handleSubmit(submitFunction)}>
         <h2>Add Other Skills</h2>
         <Input
           name="description"
-          placeHolder="Degree"
+          placeholder="Degree"
           type="text"
           register={register}
           error={errors.description?.message}
@@ -49,7 +49,7 @@ export const OtherSkills = () => {
         />
         <Input
           name="level"
-          placeHolder="level"
+          placeholder="level"
           type="text"
           register={register}
           error={errors.level?.message}
@@ -62,11 +62,11 @@ export const OtherSkills = () => {
             type="submit"
             setSize="large"
             setColor="var(--blue)"
-            setClick={handleSubmit(onSubmitFunctionOtherSkills)}
+           
           >
             Submit
           </Button>
-          <Button setSize="large" setColor="var(--red)" setClick={""}>
+          <Button setSize="large" setColor="var(--red)">
             Cancel
           </Button>
         </div>

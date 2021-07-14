@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import api from "../../services/api";
+import { useToken } from "../TokenProvider";
 
 export const ResumeContext = createContext();
 
@@ -7,12 +8,10 @@ export const ResumeProvider = ({ children }) => {
   const [userToken, setUserToken] = useState(
     localStorage.getItem("@DevJobs:Token:User") || ""
   );
-  const [userId, setUserId] = useState(
-    localStorage.getItem("@DevJobs:User:Id") || ""
-  );
+
+  const userId = localStorage.getItem("@DevJobs:User:Id");
 
   const endpoints = [
-    "users",
     "education",
     "experience",
     "messages",
@@ -27,22 +26,31 @@ export const ResumeProvider = ({ children }) => {
     },
   };
 
-  const getResumeInfo = (optionalId) => {
-    let resumeInfo = {};
+   const [resume, setResume] = useState({});
+
+  const getResumeInfo = (userId) => {
+    api
+      .get(`/users?id=${userId}`, apiConfig)
+      .then((response) => setResume({ ...resume, users: response.data[0] }))
+      .catch((_) => console.log("something went wrong"));
 
     for (let i = 0; i < endpoints.length; i++) {
       api
-        .get(`/${endpoints[i]}/${optionalId ? optionalId : userId}`, apiConfig)
-        .then((response) => (resumeInfo[endpoints[i]] = response.data))
+        .get(`/${endpoints[i]}?userId=${userId}`, apiConfig)
+        .then((response) =>
+          setResume((prevState) => {
+            return { ...prevState, [endpoints[i]]: response.data };
+          })
+        )
         .catch((_) => console.log("something went wrong"));
     }
-
-    console.log(resumeInfo)
   };
 
-  // const [resume]
-
-  return <ResumeContext.Provider value={{getResumeInfo}}>{children}</ResumeContext.Provider>;
+  return (
+    <ResumeContext.Provider value={{ getResumeInfo, resume }}>
+      {children}
+    </ResumeContext.Provider>
+  );
 };
 
 export const useResume = () => useContext(ResumeContext);
