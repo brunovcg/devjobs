@@ -22,6 +22,7 @@ const Messages = () => {
   useEffect(() => {
     console.log(userId);
     console.log(userToken);
+
     api
       .get(`/users/${userId}/messages`)
       .then((response) => setPersonalMessages(response.data));
