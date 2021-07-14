@@ -7,15 +7,15 @@ export const TokenProvider = ({ children }) => {
   const [userToken, setUserToken] = useState(
     localStorage.getItem("@DevJobs:Token:User") || ""
   );
-  const [userId, setUserId] = useState();
+  const [userId, setUserId] = useState(localStorage.getItem("@DevJobs:User:Id") || "");
 
   useEffect(() => {
     if (userToken !== "") {
       const decoded = jwt_decode(userToken);
       const { sub } = decoded;
-      setUserId(sub);
+      localStorage.setItem("@DevJobs:User:Id", sub);
     }
-  }, [userToken]);
+  }, []);
 
   const handleLogout = () => {
     localStorage.clear();
