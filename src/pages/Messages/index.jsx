@@ -12,9 +12,13 @@ import Button from "../../components/Button";
 import Header from "../../components/Header";
 import { useToken } from "../../providers/TokenProvider";
 import HeaderLink from "../../components/HeaderLink";
+import { useHistory } from "react-router-dom";
+
 const Messages = () => {
   const [personalMessages, setPersonalMessages] = useState([]);
-  const { userId, userToken } = useToken();
+  const { userId, handleLogout, userToken } = useToken();
+  const history = useHistory();
+
   useEffect(() => {
     console.log(userId);
     console.log(userToken);
@@ -34,12 +38,16 @@ const Messages = () => {
       personalMessages.filter((item) => item.id !== idToBeRemoved)
     );
   };
+  const sendToHome = () => {
+    handleLogout();
+    history.push("/");
+  };
   return (
     <>
       <Header
         setLeft={<HeaderLink setName="Resume" setPath="/resume" />}
         setRight={
-          <Button setColor="red" setSize="large">
+          <Button setColor="red" setSize="large" setClick={sendToHome}>
             Logout
           </Button>
         }
