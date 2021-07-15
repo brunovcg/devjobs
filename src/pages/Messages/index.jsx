@@ -15,15 +15,16 @@ import Header from "../../components/Header";
 import { useToken } from "../../providers/TokenProvider";
 import HeaderLink from "../../components/HeaderLink";
 import { useHistory } from "react-router-dom";
+import { useResume } from "../../providers/ResumeDownload";
 const Messages = () => {
   const [personalMessages, setPersonalMessages] = useState([]);
+  const {getResumeInfo} = useResume()
   const { handleLogout, userToken } = useToken();
   const [userId, setUserId] = useState(
     localStorage.getItem("@DevJobs:User:Id")
   );
   const history = useHistory();
   useEffect(() => {
-    console.log(userId);
     api
       .get(`/messages?userId=${userId}`)
       .then((response) => setPersonalMessages(response.data))
@@ -37,7 +38,9 @@ const Messages = () => {
   const deleteMessage = (idToBeRemoved) => {
     console.log(idToBeRemoved);
     api
-      .delete(`/messages/${idToBeRemoved}`)
+      .delete(`/messages/${idToBeRemoved}`).then(
+        (res)=> {getResumeInfo(userId)}
+      )
       .catch((error) => console.log(error));
     setPersonalMessages(
       personalMessages.filter((item) => item.id !== idToBeRemoved)

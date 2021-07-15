@@ -15,7 +15,6 @@ import { Objective } from "../../components/Forms/Objective";
 import { TechSkills } from "../../components/Forms/TechSkills";
 import { OtherSkills } from "../../components/Forms/OtherSkills";
 import { useResume } from "../../providers/ResumeDownload";
-import { useEffect } from "react";
 
 const Resume = () => {
   const history = useHistory();
