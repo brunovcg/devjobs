@@ -6,6 +6,8 @@ import Input from "../../Input";
 import Button from "../../Button";
 import { Container } from "../styles";
 import { useResume } from "../../../providers/ResumeDownload";
+import Select from "../../Select";
+import { languages,levelSkills } from "../../../utils";
 
 export const TechSkills = ({ setModal }) => {
   const userId = localStorage.getItem("@DevJobs:User:Id");
@@ -44,19 +46,17 @@ export const TechSkills = ({ setModal }) => {
     <Container>
       <form onSubmit={handleSubmit(onSubmitFunctionTechSkills)}>
         <h2>Add Tech Skills</h2>
-        <Input
+        <Select
           name="description"
-          placeholder="Degree"
-          type="text"
+          options={languages}
           register={register}
           error={errors.description?.message}
           setHeight="60px"
           setWidth="70%"
         />
-        <Input
+        <Select
           name="level"
-          placeholder="level"
-          type="text"
+          options={levelSkills}
           register={register}
           error={errors.level?.message}
           setHeight="60px"

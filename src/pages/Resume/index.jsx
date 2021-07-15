@@ -61,9 +61,6 @@ const Resume = () => {
 
   return (
     <>
-      <button onClick={() => console.log(resumeEducation, resumeObjective)}>
-        teste 2
-      </button>
       <Container color={"var(--dark-grey)"}>
         <div className="noPrint header">
           <Header

@@ -6,6 +6,8 @@ import Input from "../../Input";
 import Button from "../../Button";
 import { Container } from "../styles";
 import { useResume } from "../../../providers/ResumeDownload";
+import Select from "../../Select";
+import { levelSkills } from "../../../utils";
 
 export const OtherSkills = ({ setModal }) => {
   const { getResumeInfo } = useResume();
@@ -46,17 +48,16 @@ export const OtherSkills = ({ setModal }) => {
         <h2>Add Other Skills</h2>
         <Input
           name="description"
-          placeholder="Degree"
+          placeholder="Skill"
           type="text"
           register={register}
           error={errors.description?.message}
           setHeight="60px"
           setWidth="70%"
         />
-        <Input
+        <Select
           name="level"
-          placeholder="level"
-          type="text"
+          options={levelSkills}
           register={register}
           error={errors.level?.message}
           setHeight="60px"
