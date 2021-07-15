@@ -7,18 +7,32 @@ export const TokenProvider = ({ children }) => {
   const [userToken, setUserToken] = useState(
     localStorage.getItem("@DevJobs:Token:User") || ""
   );
-  const [userId, setUserId] = useState();
+  const [userId, setUserId] = useState(localStorage.getItem("@DevJobs:User:Id") || "");
+
+
+  const getUserId = () => {
+    console.log(localStorage.getItem("@DevJobs:User:Id"))
+   return localStorage.getItem("@DevJobs:User:Id")
+  }
 
   useEffect(() => {
     if (userToken !== "") {
       const decoded = jwt_decode(userToken);
       const { sub } = decoded;
-      setUserId(sub);
+      localStorage.setItem("@DevJobs:User:Id", sub);
     }
-  }, [userToken]);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setUserToken("");
+    setUserId("");
+  };
 
   return (
-    <TokenContext.Provider value={{ userToken, setUserToken, userId }}>
+    <TokenContext.Provider
+      value={{ userToken, setUserToken, userId, handleLogout, getUserId }}
+    >
       {children}
     </TokenContext.Provider>
   );

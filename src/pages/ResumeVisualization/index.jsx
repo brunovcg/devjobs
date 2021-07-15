@@ -1,19 +1,31 @@
 import Button from "../../components/Button";
 import { Container } from "./styles";
 import Header from "../../components/Header";
-import { testUsers } from "../../utils/userResumeInfo";
+import { useResume } from "../../providers/ResumeDownload";
 import {
   FaGraduationCap,
   FaCreativeCommonsNd,
   FaBriefcase,
   FaLaptopCode,
   FaTools,
+  FaLinkedin,
+  FaPhoneAlt,
+  FaHome,
+  FaEnvelope,
 } from "react-icons/fa";
 
 const VisualizationResume = () => {
   const windowPrint = () => {
     window.print();
   };
+
+  const {
+    resumeObjective,
+    resumeEducation,
+    resumeOtherSkills,
+    resumeExperience,
+    resumeTechSkills,
+  } = useResume();
 
   const backPage = () => {
     window.history.back();
@@ -44,33 +56,25 @@ const VisualizationResume = () => {
         <main>
           <section className="summary">
             <article className="name">
-              <h2>
-                {testUsers.users
-                  .filter((x) => x.id === 1)
-                  .map((x) => x.firstName)}
-              </h2>
-              <h2>
-                {testUsers.users
-                  .filter((x) => x.id === 1)
-                  .map((x) => x.lastName)}
-              </h2>
+              <h2>{resumeObjective && resumeObjective.firstName}</h2>
+              <h2>{resumeObjective && resumeObjective.lastName}</h2>
             </article>
             <article className="personalInfo">
               <h3>
-                {testUsers.users
-                  .filter((x) => x.id === 1)
-                  .map((x) => x.address)}
+                {resumeObjective && resumeObjective.address}
+                <FaHome />
               </h3>
               <h3>
-                {testUsers.users.filter((x) => x.id === 1).map((x) => x.phone)}
+                {resumeObjective && resumeObjective.phone}
+                <FaPhoneAlt />
               </h3>
               <h3>
-                {testUsers.users.filter((x) => x.id === 1).map((x) => x.email)}
+                {resumeObjective && resumeObjective.email}
+                <FaEnvelope />
               </h3>
               <h3>
-                {testUsers.users
-                  .filter((x) => x.id === 1)
-                  .map((x) => x.linkedinProfile)}
+                {resumeObjective && resumeObjective.linkedinProfile}
+                <FaLinkedin />
               </h3>
             </article>
           </section>
@@ -78,20 +82,15 @@ const VisualizationResume = () => {
             <h2>
               <FaCreativeCommonsNd /> &nbsp; Objective
             </h2>
-            <p>
-              {testUsers.users
-                .filter((x) => x.id === 1)
-                .map((x) => x.summary.objective)}
-            </p>
+            <p>{resumeObjective.objective && resumeObjective.objective}</p>
           </section>
           <section className="education">
             <h2>
               <FaGraduationCap /> &nbsp;Education
             </h2>
 
-            {testUsers.education
-              .filter((x) => x.userId === 1)
-              .map((x, index) => (
+            {resumeEducation &&
+              resumeEducation.map((x, index) => (
                 <article key={index}>
                   <div className="educationInfo">
                     <span className="degreeTitle">{x.degree}&nbsp;</span>
@@ -113,9 +112,8 @@ const VisualizationResume = () => {
               <FaBriefcase /> &nbsp; Experience
             </h2>
 
-            {testUsers.experience
-              .filter((x) => x.userId === 1)
-              .map((x, index) => (
+            {resumeExperience &&
+              resumeExperience.map((x, index) => (
                 <article key={index}>
                   <div className="jobInfo">
                     <span className="jobTitle">{x.role}&nbsp;</span>
@@ -136,9 +134,8 @@ const VisualizationResume = () => {
               <FaLaptopCode /> &nbsp; Tech Skills
             </h2>
             <div className="skillBox">
-              {testUsers.techSkills
-                .filter((x) => x.userId === 1)
-                .map((x, index) => (
+              {resumeTechSkills &&
+                resumeTechSkills.map((x, index) => (
                   <article key={index}>
                     <div className="skillsInfo">
                       <div className="skillName">{x.description}: &nbsp;</div>
@@ -149,11 +146,12 @@ const VisualizationResume = () => {
             </div>
           </section>
           <section className="otherSkills">
-            <h2><FaTools/> &nbsp; Other Skills</h2>
+            <h2>
+              <FaTools /> &nbsp; Other Skills
+            </h2>
             <div className="skillBox">
-              {testUsers.otherSkills
-                .filter((x) => x.userId === 1)
-                .map((x, index) => (
+              {resumeOtherSkills &&
+                resumeOtherSkills.map((x, index) => (
                   <article key={index}>
                     <div className="skillsInfo">
                       <div className="skillName">{x.description}: &nbsp;</div>

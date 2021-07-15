@@ -11,8 +11,10 @@ export const Home = () => {
   return (
     <>
       <Header
-        setLeft={<HeaderLink setName="For Companies" setPath="/companyRegister" />}
-        setRight={<HeaderLink setName="For Devs" setPath="/login"/>}
+        setLeft={
+          <HeaderLink setName="For Companies" setPath="/companyRegister" />
+        }
+        setRight={<HeaderLink setName="For Devs" setPath="/login" />}
       />
 
       <Container>
@@ -27,14 +29,13 @@ export const Home = () => {
             <h2>For Companies</h2>
             <div className="companiesTitleBox">
               <p>Search for resumes on our Engine...</p>
-         
             </div>
           </article>
 
           <article className="companiesText">
             <p>
-              You can search easily form DEVs with the skills needed using our
-              filters.
+              Using our filters you can search easily for DEVs with the skills
+              you need.
             </p>
             <figure>
               <img src={resumeHome} alt="resumeHome" />
@@ -51,9 +52,9 @@ export const Home = () => {
               <img src={dev} alt="dev" />
             </figure>
             <p>
-              You get templates to make easier to format your Resume. Companies
-              will be able to check it for it in our search engine. You can also
-              receive a message from them.
+              You get templates to make it easier to format your Resume.
+              Companies will be able to search for it in our search engine. You
+              can also receive and view messages from them.
             </p>
           </article>
         </section>

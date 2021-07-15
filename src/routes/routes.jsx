@@ -10,6 +10,7 @@ import CompanyRegister from "../pages/CompanyRegister";
 import Messages from "../pages/Messages";
 import VisualizationResume from "../pages/ResumeVisualization";
 import CompanyLogin from "../pages/CompanyLogin";
+import Resume from "../pages/Resume";
 
 const Routes = () => {
   return (
@@ -20,8 +21,10 @@ const Routes = () => {
       <Route path="/register" exact component={Register} />
       <Route path="/companyRegister" exact component={CompanyRegister} />
       <Route path="/companyLogin" exact component={CompanyLogin} />
-      <Route path="/messages" exact component={Messages} />
+      <Route isPrivate={true} path="/messages" exact component={Messages} />
+      <Route isPrivate={true} path="/resume" exact component={Resume} />
       <Route
+        isPrivate={true}
         path="/visualizationResume"
         exact
         component={VisualizationResume}
@@ -33,3 +36,4 @@ const Routes = () => {
 };
 
 export default Routes;
+

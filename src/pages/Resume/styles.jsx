@@ -6,9 +6,13 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-around;
   width: 100vw;
-  min-height: 90vh;
+  min-height: 100vh;
 
-   .summary,
+  main{
+    height: 90vh;
+    background: var(--gradient-white)
+  }
+
   .objective,
   .education,
   .experience,
@@ -29,10 +33,22 @@ export const Container = styled.div`
       color: var(--blue);
       font-size: 2rem;
       margin: 5px 0 5px 0;
+
+      button {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
 
     article {
-      margin-top: 25px;
+      margin-top: 20px;
+      border: 1px solid var(--grey);
+      padding: 5px;
+      background-color: var(--white);
     }
 
     div,
@@ -46,43 +62,20 @@ export const Container = styled.div`
     }
   }
 
-  .header {
-    margin-bottom: 0px;
-  }
-
-  .summary {
-    display: flex;
-    justify-content: space-between;
-    padding: 60px;
-    background: var(--light-grey);
-
-    .name {
-      color: var(--dark-grey);
-      h2 {
-        font-size: 4rem;
-      }
-    }
-    .personalInfo {
-      text-align: end;
-      color: var(--dark-grey);
-      width: 30%;
-      h3 {
-        font-size: 1.4rem;
-        word-wrap: break-word;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        width: 100%;
-        margin: 10px 0;
-        svg{
-          margin-left: 20px;
-        }
-        
-      }
-    }
-  }
-
   .objective {
+    p {
+      border: 1px var(--grey) solid;
+      padding: 5px;
+      background-color: var(--white);
+      button {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
 
   .education {
@@ -90,14 +83,24 @@ export const Container = styled.div`
       .educationInfo {
         display: flex;
         width: fit-content;
+        align-items: center;
         justify-content: space-between;
 
         .degreeTitle {
-          color: maroon;
+          color: var(--maroon);
         }
 
         .school {
           color: var(--dark-grey);
+        }
+
+        button {
+          width: 30px;
+          height: 30px;
+          font-size: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
 
@@ -123,13 +126,23 @@ export const Container = styled.div`
         display: flex;
         width: fit-content;
         justify-content: space-between;
+        align-items: center;
 
         .jobTitle {
-          color: maroon;
+          color: var(--maroon);
         }
 
         .company {
           color: var(--dark-grey);
+        }
+
+        button {
+          width: 30px;
+          height: 30px;
+          font-size: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
 
@@ -156,22 +169,38 @@ export const Container = styled.div`
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
-
+      
+      article{
+        display: flex;
+        justify-content: space-around;
+        
+        margin: 5px;
       .skillsInfo {
         display: flex;
-        margin: 0 30px 0 0;
+        align-items: center;
+        
+        
 
         .skillName {
-          color: maroon;
+          color: var(--maroon);
           font-size: 1.3rem;
         }
 
         .skillLevel {
           font-size: 1.3rem;
         }
+
+        button {
+          width: 30px;
+          height: 30px;
+          font-size: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
-  }
+  }}
 
   @media (max-width: 500px) {
     .summary,
@@ -210,24 +239,6 @@ export const Container = styled.div`
       .personalInfo {
         padding-top: 30px;
         width: 100%;
-      }
-    }
-  }
-
-  @media print {
-    .noPrint,
-    .noPrint * {
-      display: none !important;
-
-    }
-    @page {
-      margin: 0;
-      size: auto;
-      page-break-before: always;
-      body {
-        @media print {
-          margin: 2cm 0;
-        }
       }
     }
   }

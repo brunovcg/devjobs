@@ -4,9 +4,9 @@ export const Container = styled.div`
   width: ${(props) => props.setWidth};
   height: ${(props) => props.setHeight};
 
-  input {
+  textarea {
     background: var(--grey);
-    padding-left: 10px;
+    padding: 10px;
     color: var(--dark-grey);
     font-size: 1.4rem;
     width: 100%;
@@ -14,6 +14,7 @@ export const Container = styled.div`
     border: none;
     font-weight: bold;
     border-radius: 11px;
+    overflow-y: auto;
        &::placeholder {
       color: var(--white);
     }
