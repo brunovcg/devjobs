@@ -1,7 +1,7 @@
 import Header from '../../components/Header';
 import Button from "../../components/Button";
 import Select from "../../components/Select";
-import { disponibility, seniority, specialization } from "../../utils/index";
+import { languages, levelSkills } from "../../utils/index";
 import {
   ContainerPage,
   ContainerSearch,
@@ -9,63 +9,109 @@ import {
   SearchBar,
 } from "./styles";
 import CardDev from "../../components/CardDev";
-import API from "../../services/api";
+import api from "../../services/api";
 import { useState, useEffect } from 'react';
+import { useToken } from "../../providers/TokenProvider";
+import { useHistory } from "react-router-dom";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
 const Search = () => {
 
-  const [users, setUsers] = useState([]);
-  const [searchSpecialization, setSearchSpecialization] = useState('');
-  const [searchSeniority, setSearchSeniority] = useState('');
-  const [searchDisponibility, setSearchDisponibility] = useState('');
-  const [searchDevList, setSearchDevList] = useState([]);
+  const { handleLogout } = useToken();
+  const history = useHistory();
 
-  const GetDev = () => {
-    API.get("/db").then((response) => setUsers(response.data.users));
+  const [users, setUsers] = useState([]);
+  const [techSkills, setTechSkills] = useState([]);
+  const [searchList, setSearchList] = useState([]);
+  const [skill, setSkill] = useState("")
+  const [level, setLevel] = useState("")
+
+  const schema = yup.object().shape({
+    description: yup.string().required("Description required"),
+    level: yup.string().required("Level required"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const sendToHome = () => {
+    handleLogout();
+    history.push("/");
+  };
+
+  const GetDevInfo = () => {
+    api.get("/users").then((response) => setUsers(response.data));
+    api.get(`/techSkills`).then((response) => setTechSkills(response.data));
   }
 
-  const handleSearch = () => {
-    const searchFilter = users.filter(user => user.summary.speciality === searchSpecialization)
+  const JoinInfo = () => {
+    setSearchList([users, techSkills]);
+  }
+  
+  const handleSearch = ({ description, level }) => {
+    setSkill(description)
+    setLevel(level)
+    api.get(`/techSkills?description_like=${description}&level_like=${level}`)
   }
   
   useEffect(() => {
-    GetDev()
+    GetDevInfo()
+    JoinInfo()
   }, [])
-
-  console.log(searchSpecialization)
-  console.log(searchSeniority)
-  console.log(searchDisponibility)
-
+  
+  console.log(searchList);
+  console.log(skill, level)
+  
   return (
     <>
       <Header 
         setRight={<Button
-          setColor="var(--red)" setSize="large" setClick={""}
+          setColor="var(--red)" setSize="large" setClick={sendToHome}
           >Logout</Button>
         }
       />
       <ContainerPage>
         <ContainerSearch>
           <SearchBar>
-            <Select options={specialization} value={searchSpecialization} onChange={(event) => setSearchSpecialization(event.target.value)}/>
-            <Select options={seniority} value={searchSeniority} onChange={(event) => setSearchSeniority(event.target.value)}/>
-            <Select options={disponibility} value={searchDisponibility} onChange={(event) => setSearchDisponibility(event.target.value)}/>
-            <Button setColor="var(--dark-grey)" setSize="large" setClick={""}>
-              Search
-            </Button>
+            <form onSubmit={handleSubmit(handleSearch)}>
+            <h3>Choose language and level</h3>
+            <Select
+              name="description"
+              options={languages}
+              register={register}
+              error={errors.description?.message}
+              setHeight="60px"
+              setWidth="100%"
+            />
+            <Select
+              name="level"
+              options={levelSkills}
+              register={register}
+              error={errors.description?.message}
+              setHeight="60px"
+              setWidth="100%"
+            />
+              <Button 
+                type="submit" 
+                setColor="var(--dark-grey)" 
+                setSize="large" 
+              >Search</Button>
+            </form>
           </SearchBar>
         </ContainerSearch>
         <ContainerCards>
           {
             users.map(user => (
-              user.summary &&
               <CardDev
                 key={user.id}
                 name={`${user.firstName} ${user.lastName}`}
-                city={user.summary.city}
-                speciality={user.summary.speciality}
-                disponibility={user.summary.disponibility}
-                experience={`${user.summary.experienceTime} months`}
               />
             ))
           }
