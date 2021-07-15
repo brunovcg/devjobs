@@ -1,5 +1,5 @@
 import { Link, useHistory } from 'react-router-dom';
-import { FormStyled, Container, Text, Page } from './styles';
+import { FormStyled, Container, Text, Page, Box } from './styles';
 import { useToken } from "../../providers/TokenProvider";
 import Button from '../../components/Button';
 import api from '../../services/api';
@@ -85,7 +85,7 @@ const Register = () => {
     });
   }
   return (
-  <>
+  <Box>
   <Header />
   <Page>
   <Container>
@@ -193,7 +193,7 @@ const Register = () => {
   <Text>If you already have an account, <Link to='/login'>sign in here.</Link></Text>
   <Text>*Required field.</Text>
   </Page>
-  </>
+  </Box>
   );
 }
 

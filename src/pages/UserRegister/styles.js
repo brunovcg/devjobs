@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const Box = styled.div`
+  background: var(--gradient-white);
+`
+
 export const Page = styled.div`
   display: flex;
   flex-direction: column;
