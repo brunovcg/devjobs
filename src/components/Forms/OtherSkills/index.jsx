@@ -53,7 +53,7 @@ export const OtherSkills = ({ setModal }) => {
           register={register}
           error={errors.description?.message}
           setHeight="60px"
-          setWidth="70%"
+          setWidth="60%"
         />
         <Select
           name="level"
@@ -61,7 +61,7 @@ export const OtherSkills = ({ setModal }) => {
           register={register}
           error={errors.level?.message}
           setHeight="60px"
-          setWidth="70%"
+          setWidth="60%"
         />
 
         <div className="buttonBox">

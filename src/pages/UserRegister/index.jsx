@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FormStyled, Container, Text, Page } from './styles';
 import { useToken } from "../../providers/TokenProvider";
@@ -9,7 +8,6 @@ import jwt_decode from "jwt-decode";
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../../components/Header';
@@ -18,7 +16,8 @@ import Header from '../../components/Header';
 const Register = () => {
   const PasswordStrength = (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/);
   const NameValidation = (/^[a-z][a-z\s]*$/i);
-  const PhoneValidation = (/^\([0-9]{2}\)[0-9]{5}-[0-9]{4}/)
+  const PhoneValidation = (/\(?([0-9]{2})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/)
+  //   const PhoneValidation = (/^\([0-9]{2}\)[0-9]{5}-[0-9]{4}/)
   const { setUserToken } = useToken();
 
   const schema = yup.object().shape({
@@ -69,7 +68,7 @@ const Register = () => {
     api
       .post('/register', user)
       .then((response)=> {
-        toast.success('Account created successfully'); 
+        toast.info('Account created successfully'); 
                    
         const { accessToken } = response.data;
         localStorage.setItem('@DevJobs:Token:User', JSON.stringify(accessToken));

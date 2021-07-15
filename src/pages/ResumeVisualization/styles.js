@@ -53,7 +53,7 @@ export const Container = styled.div`
   .summary {
     display: flex;
     justify-content: space-between;
-    padding: 60px 60px;
+    padding: 60px;
     background: var(--light-grey);
 
     .name {
@@ -67,8 +67,17 @@ export const Container = styled.div`
       color: var(--dark-grey);
       width: 30%;
       h3 {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         word-wrap: break-word;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        svg{
+          margin-left: 20px;
+        }
+        
       }
     }
   }

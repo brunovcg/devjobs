@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.main`
-  height: 85vh;
+  height: 90vh;
   background: var(--gradient-sunny);
 
 

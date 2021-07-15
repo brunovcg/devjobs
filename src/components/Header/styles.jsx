@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HalfMoon = styled.div`
   background: var(--white);
-  z-index: 1;
+  z-index: 0;
   text-align: center;
   border-radius: 50% / 0 0 100% 100%;
   width: 44%;
@@ -54,7 +54,7 @@ export const Container = styled.div`
     props.setColor ? props.setColor : "var(--grey-header)"};
   border-bottom: 1px solid
     ${(props) => (props.setBorder ? props.setBorder : "var(--grey)")};
-  height: 15vh;
+  height: 10vh;
 
   .left,
   .right {
