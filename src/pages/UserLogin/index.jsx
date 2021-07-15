@@ -10,6 +10,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import Header from "../../components/Header";
+import { useResume } from "../../providers/ResumeDownload";
 
 const UserLogin = () => {
   const { setUserToken } = useToken();
@@ -18,6 +19,8 @@ const UserLogin = () => {
     email: yup.string().email("Invalid e-mail").required("Required field"),
     password: yup.string().min(6).required("Required field"),
   });
+
+  const {getResumeInfo} = useResume()
 
   const history = useHistory();
 
@@ -43,7 +46,7 @@ const UserLogin = () => {
         const decoded = jwt_decode(accessToken);
         const { sub } = decoded;
         localStorage.setItem("@DevJobs:User:Id", sub);
-
+        getResumeInfo(sub);
         return history.push("/dashboard");
       })
       .catch((err) => {
@@ -51,6 +54,8 @@ const UserLogin = () => {
         console.log(err);
       });
   };
+
+  
 
   return (
     <Box>
