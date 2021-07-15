@@ -1,7 +1,6 @@
 <div align="center">
 
-# DEVJOBS
-
+<img src="./src/assets/LogoAPI.png">
 </div>
 
 <br></br>
@@ -20,13 +19,9 @@ Our app serves as a platform where software developers can make a beautiful resu
 
 </div>
 
-<br></br>
-
 ### **For developers**
 
 DevJobs is a very easy to use app, after you have registered you'll be directed to the dashboard, there you'll have two options, either click on messages and check if you have received any mail from companies or click on resume. On the page resume you'll be able to create your resume and print it as a pdf.
-
-<br></br>
 
 ### **For companies**
 
