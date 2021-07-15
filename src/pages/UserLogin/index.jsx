@@ -15,9 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "../../components/Header";
 
 const UserLogin = () => {
-  const { setUserToken} = useToken();
-
-
+  const { setUserToken } = useToken();
 
   const schema = yup.object().shape({
     email: yup.string().email("Invalid e-mail").required("Required field"),
@@ -48,7 +46,6 @@ const UserLogin = () => {
         const decoded = jwt_decode(accessToken);
         const { sub } = decoded;
         localStorage.setItem("@DevJobs:User:Id", sub);
-              
 
         return history.push("/dashboard");
       })

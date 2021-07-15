@@ -1,8 +1,6 @@
-import customStyles from "../../../utils/customStyles";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useToken } from "../../../providers/TokenProvider/";
 import api from "../../../services/api";
 import Input from "../../Input";
 import Button from "../../Button";

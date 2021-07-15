@@ -11,7 +11,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <button onClick={()=>console.log(resumeInfo.users.objective)}>teste</button>
       <ToastContainer />
       <Routes />
     </div>

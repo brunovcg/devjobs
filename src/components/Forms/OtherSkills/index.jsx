@@ -1,16 +1,16 @@
-import customStyles from "../../../utils/customStyles";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useToken } from "../../../providers/TokenProvider/";
 import api from "../../../services/api";
 import Input from "../../Input";
 import Button from "../../Button";
 import { Container } from "../styles";
-import Select from "../../Select";
+import { useResume } from "../../../providers/ResumeDownload";
 
-export const OtherSkills = () => {
-  const { userId } = useToken();
+export const OtherSkills = ({ setModal }) => {
+  const { getResumeInfo } = useResume();
+
+  const userId = localStorage.getItem("@DevJobs:User:Id");
 
   const schema = yup.object().shape({
     description: yup.string().required("Description required"),
@@ -26,12 +26,18 @@ export const OtherSkills = () => {
     resolver: yupResolver(schema),
   });
 
-  const submitFunction = (data) => {
-    const Skills = { OtherSkills: data, userId: userId };
+  const submitFunction = ({ description, level }) => {
+    const info = { description, level, userId: userId };
     api
-    .post(`/otherSkills`, Skills)
-    .then((response) => {})
-    .catch((err) => {console.log(err)});
+      .post(`/otherSkills`, info)
+      .then((response) => {
+        getResumeInfo(userId);
+        reset();
+        setModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -56,17 +62,16 @@ export const OtherSkills = () => {
           setHeight="60px"
           setWidth="70%"
         />
-        
+
         <div className="buttonBox">
-          <Button
-            type="submit"
-            setSize="large"
-            setColor="var(--blue)"
-           
-          >
+          <Button type="submit" setSize="large" setColor="var(--blue)">
             Submit
           </Button>
-          <Button setSize="large" setColor="var(--red)">
+          <Button
+            setSize="large"
+            setColor="var(--red)"
+            setClick={() => setModal()}
+          >
             Cancel
           </Button>
         </div>

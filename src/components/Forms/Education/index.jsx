@@ -1,15 +1,16 @@
-import customStyles from "../../../utils/customStyles";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useToken } from "../../../providers/TokenProvider/";
 import api from "../../../services/api";
 import Input from "../../Input";
 import Button from "../../Button";
 import { Container } from "../styles";
+import { useResume } from "../../../providers/ResumeDownload";
 
-export const Education = () => {
-  const { userId } = useToken();
+export const Education = ({ setModal }) => {
+  const userId = localStorage.getItem("@DevJobs:User:Id");
+
+  const { getResumeInfo } = useResume();
   const schema = yup.object().shape({
     degree: yup.string().required("Degree required"),
     school: yup.string().required("School required"),
@@ -27,17 +28,36 @@ export const Education = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmitFunctionEducation = (data) => {
-    const Education = { Education: data, userId: userId };
+  const onSubmitFunctionEducation = ({
+    degree,
+    school,
+    dateFrom,
+    dateTo,
+    description,
+  }) => {
+    const infos = {
+      degree,
+      school,
+      dateFrom,
+      dateTo,
+      description,
+      userId: userId,
+    };
     api
-    .post(`/education`,Education)
-    .then((response) => {})
-    .catch((err) => {console.log(Education, err)});
+      .post(`/education`, infos)
+      .then((response) => {
+        getResumeInfo(userId);
+        reset();
+        setModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <Container>
-      <form>
+      <form onSubmit={handleSubmit(onSubmitFunctionEducation)}>
         <h2>Add Education</h2>
         <Input
           name="degree"
@@ -85,15 +105,14 @@ export const Education = () => {
           setWidth="70%"
         />
         <div className="buttonBox">
-          <Button
-            type="submit"
-            setSize="large"
-            setColor="var(--blue)"
-            setClick={handleSubmit(onSubmitFunctionEducation)}
-          >
+          <Button type="submit" setSize="large" setColor="var(--blue)">
             Submit
           </Button>
-          <Button setSize="large" setColor="var(--red)" setClick={''}>
+          <Button
+            setSize="large"
+            setColor="var(--red)"
+            setClick={() => setModal()}
+          >
             Cancel
           </Button>
         </div>
