@@ -57,7 +57,7 @@ const UserLogin = () => {
       <Header />
       <Page>
         <FormStyled>
-          <h1>Login</h1>
+          <h2>Login</h2>
           <Input
             placeholder="E-mail"
             register={register}
