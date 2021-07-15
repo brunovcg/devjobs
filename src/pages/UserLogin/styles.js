@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
+export const Box = styled.div`
+  min-height: 100vh;
+
+`
+
 export const Page = styled.div`
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 90vh;
   align-items: center;
   justify-content: center;
 

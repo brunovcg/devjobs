@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-export const Box = styled.div`
-  min-height: 100vh;
-  background: var(--gradient-white);
-`
-
 export const Page = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,7 +26,8 @@ export const Container = styled.div`
   margin-bottom: 15px;
   margin-top: 30px;
 
-  h2 {
+  h1 {
+    color: white;
     margin-bottom: 15px;
   }
 
@@ -40,10 +36,6 @@ export const Container = styled.div`
     max-width: 550px;
     background: var(--dark-grey);
     border-radius: 15px;
-
-    h2 {
-      color: white;
-    }
   }
 `;
 

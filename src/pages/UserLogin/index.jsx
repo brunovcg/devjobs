@@ -1,4 +1,4 @@
-import { FormStyled, Page, Text } from "./styles";
+import { FormStyled, Page, Text, Box } from "./styles";
 import { useToken } from "../../providers/TokenProvider";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
@@ -53,7 +53,7 @@ const UserLogin = () => {
   };
 
   return (
-    <>
+    <Box>
       <Header />
       <Page>
         <FormStyled>
@@ -91,7 +91,7 @@ const UserLogin = () => {
           <Link to="/register">sign up here.</Link>
         </Text>
       </Page>
-    </>
+    </Box>
   );
 };
 
