@@ -38,7 +38,6 @@ export const ResumeProvider = ({ children }) => {
       .get(`/users?id=${userId}`, apiConfig)
       .then((response) => {
         setResumeObjective(response.data[0])
-        toast.info('Resume ready for edit!');
       })
       .catch((_) => console.log("something went wrong"));
 

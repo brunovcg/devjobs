@@ -1,14 +1,20 @@
 import { Redirect, Route as ReactDOMRoute } from "react-router-dom";
 import { useToken } from "../providers/TokenProvider";
 
-const Route = ({ isPrivate = false, component : Component, ...rest }) => {
+const Route = ({isOpen, isPrivate = false, component : Component, ...rest }) => {
   const { userToken } = useToken();
 
   return (
     <ReactDOMRoute
       {...rest}
       render={() => {
-        return isPrivate === !!userToken 
+
+        return isOpen ?
+
+        <Component/> :
+
+
+        isPrivate === !!userToken 
         ? (
           <Component />
         ) 

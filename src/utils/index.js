@@ -4,7 +4,11 @@ export const seniority = ['Junior', 'Middle', 'Senior'];
 
 export const specialization = ['Front-end', 'Back-end', 'DevOps', 'Mobile', 'Full-stack'];
 
-export const levelSkills = ['Beginner', 'Intermediate', 'Advanced'];
+export const levelSkills = [
+    'Beginner', 
+    'Intermediate', 
+    'Advanced'
+];
 
 export const languages = [
     "JavaScript",
