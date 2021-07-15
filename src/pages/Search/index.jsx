@@ -11,13 +11,14 @@ import {
 import CardDev from "../../components/CardDev";
 import API from "../../services/api";
 import { useState, useEffect } from 'react';
+import { useResume } from "../../providers/ResumeDownload";
 
 const Search = () => {
 
   const [users, setUsers] = useState([]);
   const [searchLanguages, setSearchLanguages] = useState('');
   const [searchLevelSkills, setSearchLevelSkills] = useState('');
-  const [searchList, setSearchList] = useState([]);
+  const [searchList, setSearchList] = useResume();
 
   const GetDev = () => {
     API.get("/db").then((response) => setUsers(response.data.users));
@@ -32,6 +33,8 @@ const Search = () => {
     GetDev()
   }, [])
 
+  console.log(users)
+
   return (
     <>
       <Header 
@@ -43,8 +46,8 @@ const Search = () => {
       <ContainerPage>
         <ContainerSearch>
           <SearchBar>
-            <Select options={languages} setSearchLanguages={languages}/>
-            <Select options={levelSkills} inputValue={searchLevelSkills} onChange={(event) => setSearchLevelSkills(event.target.value)}/>
+            <Select options={languages}/>
+            <Select options={levelSkills}/>
             <Button setColor="var(--dark-grey)" setSize="large" setClick={handleSearch}>
               Search
             </Button>
@@ -53,14 +56,9 @@ const Search = () => {
         <ContainerCards>
           {
             users.map(user => (
-              user.summary &&
               <CardDev
                 key={user.id}
                 name={`${user.firstName} ${user.lastName}`}
-                city={user.summary.city}
-                speciality={user.summary.speciality}
-                disponibility={user.summary.disponibility}
-                experience={`${user.summary.experienceTime} months`}
               />
             ))
           }
