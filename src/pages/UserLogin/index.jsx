@@ -1,4 +1,4 @@
-import { FormStyled, Page, Text } from "./styles";
+import { FormStyled, Page, Text, Box } from "./styles";
 import { useToken } from "../../providers/TokenProvider";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
@@ -10,6 +10,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import Header from "../../components/Header";
+import { useResume } from "../../providers/ResumeDownload";
 
 const UserLogin = () => {
   const { setUserToken } = useToken();
@@ -18,6 +19,8 @@ const UserLogin = () => {
     email: yup.string().email("Invalid e-mail").required("Required field"),
     password: yup.string().min(6).required("Required field"),
   });
+
+  const {getResumeInfo} = useResume()
 
   const history = useHistory();
 
@@ -43,7 +46,7 @@ const UserLogin = () => {
         const decoded = jwt_decode(accessToken);
         const { sub } = decoded;
         localStorage.setItem("@DevJobs:User:Id", sub);
-
+        getResumeInfo(sub);
         return history.push("/dashboard");
       })
       .catch((err) => {
@@ -52,12 +55,14 @@ const UserLogin = () => {
       });
   };
 
+  
+
   return (
-    <>
+    <Box>
       <Header />
       <Page>
         <FormStyled>
-          <h1>Login</h1>
+          <h2>Login</h2>
           <Input
             placeholder="E-mail"
             register={register}
@@ -91,7 +96,7 @@ const UserLogin = () => {
           <Link to="/register">sign up here.</Link>
         </Text>
       </Page>
-    </>
+    </Box>
   );
 };
 

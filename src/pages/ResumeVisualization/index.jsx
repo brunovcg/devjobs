@@ -13,13 +13,29 @@ import {
   FaHome,
   FaEnvelope,
 } from "react-icons/fa";
+import customStyles from "../../utils/customStyles";
+import { useEffect,useState } from "react";
+import Modal from "react-modal";
+import {Messages} from '../../components/Forms/MessagesForm'
 
 const VisualizationResume = () => {
   const windowPrint = () => {
     window.print();
   };
 
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  const setModal = () => {
+ 
+    setIsOpen(!modalIsOpen);
+  };
+
+
+  const renderUser = localStorage.getItem("@DevJobs:Render:User") || null;
+
   const {
+    getResumeInfo,
     resumeObjective,
     resumeEducation,
     resumeOtherSkills,
@@ -30,6 +46,12 @@ const VisualizationResume = () => {
   const backPage = () => {
     window.history.back();
   };
+
+  useEffect(() => {
+    if (renderUser) {
+      getResumeInfo(renderUser);
+    }
+  }, []);
 
   return (
     <>
@@ -54,12 +76,29 @@ const VisualizationResume = () => {
         </div>
 
         <main>
+        <Modal
+            isOpen={modalIsOpen}
+            style={customStyles}
+            contentLabel="Example Modal"
+            onRequestClose={setModal}
+            ariaHideApp={false}
+          >
+           <Messages setModal={setModal} userId={renderUser}/>
+          </Modal>
+
+
+
           <section className="summary">
             <article className="name">
               <h2>{resumeObjective && resumeObjective.firstName}</h2>
               <h2>{resumeObjective && resumeObjective.lastName}</h2>
             </article>
             <article className="personalInfo">
+              <div className="noPrint">
+                {renderUser && (
+                  <Button setColor="var(--green)" setClick={setModal}>Contato</Button>
+                )}
+              </div>
               <h3>
                 {resumeObjective && resumeObjective.address}
                 <FaHome />

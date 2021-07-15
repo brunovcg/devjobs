@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
+export const Box = styled.div`
+  background: var(--gradient-white);
+`
+
 export const Page = styled.div`
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 90vh;
+  min-height: 80vh;
   align-items: center;
   justify-content: center;
 
@@ -25,10 +29,18 @@ export const FormStyled = styled.form`
   opacity: 0.8;
   margin-bottom: 15px;
 
+  h2 {
+    color: black;
+  }
+
   @media (min-width: 768px) {
     max-width: 450px;
     background: var(--dark-grey);
     border-radius: 15px;
+
+    h2 {
+      color: white;
+    }
   }
 `;
 
