@@ -23,11 +23,6 @@ const Search = () => {
 
   const [techRequest, setTechRequest] = useState([]);
   const [userRequest, setUserRequest] = useState([]);
-  // const [users, setUsers] = useState([]);
-  // const [techSkills, setTechSkills] = useState([]);
-  // const [searchList, setSearchList] = useState([]);
-  // const [skill, setSkill] = useState("")
-  // const [level, setLevel] = useState("")
 
   const schema = yup.object().shape({
     description: yup.string().required("Description required"),
@@ -68,9 +63,6 @@ const Search = () => {
 
   return (
     <>
-      <button onClick={() => console.log(userRequest, techRequest)}>
-        teste
-      </button>
       <Header
         setRight={
           <Button setColor="var(--red)" setSize="large" setClick={sendToHome}>
@@ -106,25 +98,18 @@ const Search = () => {
           </SearchBar>
         </ContainerSearch>
         <ContainerCards>
-          {
-            userRequest
-              .filter((user) => techRequest.includes(user.userId))
-              .map((userX) => (
-                <div className="cardDevBox" key={userX.id}>
-                  <CardDev
-                    name={`${userX.firstName} ${userX.lastName}`}
-                    phone={userX.phone}
-                    email={userX.email}
-                    userId={userX.id}
-                  />
-                </div>
-              ))
-
-            // <CardDev
-            //   key={user.id}
-            //   name={`${user.firstName} ${user.lastName}`}
-            // />
-          }
+          {userRequest
+            .filter((user) => techRequest.includes(user.userId))
+            .map((userX) => (
+              <div className="cardDevBox" key={userX.id}>
+                <CardDev
+                  name={`${userX.firstName} ${userX.lastName}`}
+                  phone={userX.phone}
+                  email={userX.email}
+                  userId={userX.id}
+                />
+              </div>
+            ))}
         </ContainerCards>
       </ContainerPage>
     </>

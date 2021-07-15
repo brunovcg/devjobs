@@ -25,13 +25,13 @@ const Messages = () => {
   useEffect(() => {
     console.log(userId);
     api
-      .get(`/users/${userId}/messages`)
+      .get(`/messages?userId=${userId}`)
       .then((response) => setPersonalMessages(response.data))
       .catch((err) => {
         toast.error("Request didn't work, try again");
         console.log(err);
       });
-    // eslint-disable-next-line
+    
   }, []);
 
   const deleteMessage = (idToBeRemoved) => {
