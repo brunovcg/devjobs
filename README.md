@@ -65,7 +65,7 @@ We hope that in future we can implement the option of having different resume la
 
 </div>
 
-This application was build as an assignment at Kenzie Academy Brazil, where we are currently enrolled in a full-stack course.
+This application was build as an assignment at Kenzie Academy Brazil, where we are currently enrolled in a full-stack course, we used git flow and scrum methodology.
 
 <div align ="center">
 
