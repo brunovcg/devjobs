@@ -63,7 +63,7 @@ const CompanyRegister = () => {
   <Header />  
   <Page>
   <FormStyled>    
-    <h1>Company Register</h1>
+    <h2>Company Register</h2>
     <Input 
       placeholder='Company Name' 
       register={register}

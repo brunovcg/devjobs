@@ -27,6 +27,7 @@ export const FormStyled = styled.form`
 
   h2{
     color: black;
+    margin-bottom: 15px;
   }
 
   @media (min-width: 768px) {
