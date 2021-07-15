@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
+export const ContainerPage = styled.div`
+  background-image: var(--gradient-white);
+`;
 export const Container = styled.div`
   text-align: center;
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,7 +19,7 @@ export const Container = styled.div`
 
 export const Message = styled.div`
   background-color: var(--light-grey);
-  margin: 20px;
+
   height: 80%;
   width: 80%;
   top: 0;
@@ -61,7 +63,23 @@ export const MessageContent = styled.div`
 
 export const Title = styled.div`
   text-align: center;
-  margin-top: 2.5rem;
+  padding-top: 6%;
+  padding-bottom: 4%;
   font-family: "Cormorant Garamond", serif;
   font-size: 1.5rem;
+`;
+export const Name = styled.div`
+  text-align: left;
+  background-color: var(--grey);
+  height: 40px;
+  width: 94%;
+  padding: 8px;
+  margin: 10px;
+  text-overflow: clip;
+  font-family: "Cormorant", serif;
+  overflow: visible;
+  overflow-wrap: break-word;
+  h3 {
+    font-size: 1.2rem;
+  }
 `;
