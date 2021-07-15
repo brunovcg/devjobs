@@ -16,6 +16,7 @@ export default createGlobalStyle`
         --blue-sky: #75D8EE;
         --grey-header: #ececec;
         --maroon: #812D37;
+        --green: #18c223;
     }
 
     * {
