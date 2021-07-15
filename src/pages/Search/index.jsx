@@ -9,7 +9,7 @@ import {
   SearchBar,
 } from "./styles";
 import CardDev from "../../components/CardDev";
-import API from "../../services/api";
+import api from "../../services/api";
 import { useState, useEffect } from 'react';
 import { useToken } from "../../providers/TokenProvider";
 import { useHistory } from "react-router-dom";
@@ -47,8 +47,8 @@ const Search = () => {
   };
 
   const GetDevInfo = () => {
-    API.get("/users").then((response) => setUsers(response.data));
-    API.get(`/techSkills`).then((response) => setTechSkills(response.data));
+    api.get("/users").then((response) => setUsers(response.data));
+    api.get(`/techSkills`).then((response) => setTechSkills(response.data));
   }
 
   const JoinInfo = () => {
@@ -58,8 +58,7 @@ const Search = () => {
   const handleSearch = ({ description, level }) => {
     setSkill(description)
     setLevel(level)
-    API.get(`/techSkills?description_like=${description}&level_like=${level}`)
-    .then((response) => setTechSkills(response.data))
+    api.get(`/techSkills?description_like=${description}&level_like=${level}`)
   }
   
   useEffect(() => {
