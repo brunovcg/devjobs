@@ -1,19 +1,19 @@
-import customStyles from "../../../utils/customStyles";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useToken } from "../../../providers/TokenProvider/";
 import api from "../../../services/api";
 import Input from "../../Input";
 import Button from "../../Button";
 import { Container } from "../styles";
+import { useResume } from "../../../providers/ResumeDownload";
 
-export const Objective = () => {
-  const { userId } = useToken();
+export const Objective = ({setModal}) => {
+  const  userId  = localStorage.getItem("@DevJobs:User:Id");
+
+  const { getResumeInfo } = useResume();
 
   const schema = yup.object().shape({
     objective: yup.string().required("Degree required"),
-
   });
 
   const {
@@ -25,38 +25,47 @@ export const Objective = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmitFunctionObjective = (data) => {
-    const Objective = { Objective: data, userId: userId };
+  const submitFunction = ({ objective }) => {
+    const infos = { objective: objective, userId: userId };
     api
-    .post(`/objective`, Objective)
-    .then((response) => {})
-    .catch((err) => {console.log(err)});
+      .patch(`/users/${userId}`, infos)
+      .then((response) => {
+        getResumeInfo(userId);
+        reset()
+        setModal()
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <Container>
-      <form>
+      <form onSubmit={handleSubmit(submitFunction)}>
         <h2>Objective</h2>
         <Input
           name="objective"
-          placeHolder="Describe your Objective"
+          placeholder="Describe your Objective"
           type="text"
           register={register}
-          error={errors.degree?.message}
+          error={errors.objective?.message}
           setHeight="200px"
           setWidth="70%"
         />
-       
+
         <div className="buttonBox">
           <Button
             type="submit"
             setSize="large"
             setColor="var(--blue)"
-            setClick={handleSubmit(onSubmitFunctionObjective)}
           >
             Submit
           </Button>
-          <Button setSize="large" setColor="var(--red)" setClick={""}>
+          <Button
+            setSize="large"
+            setColor="var(--red)"
+            setClick={() => setModal()}
+          >
             Cancel
           </Button>
         </div>

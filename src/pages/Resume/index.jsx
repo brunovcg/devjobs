@@ -3,21 +3,19 @@ import { Container } from "./styles";
 import { useState } from "react";
 import Modal from "react-modal";
 import Header from "../../components/Header";
-import { levelSkills, specialization } from "../../utils";
 import { useToken } from "../../providers/TokenProvider";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import customStyles from "../../utils/customStyles";
-import { testUsers } from "../../utils/userResumeInfo";
 import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
 import { Education } from "../../components/Forms/Education";
 import { Experience } from "../../components/Forms/Experience";
 import { Objective } from "../../components/Forms/Objective";
-import { useEffect } from "react";
 import { TechSkills } from "../../components/Forms/TechSkills";
 import { OtherSkills } from "../../components/Forms/OtherSkills";
-import {useResume} from '../../providers/ResumeDownload'
+import { useResume } from "../../providers/ResumeDownload";
+import { useEffect } from "react";
 
 const Resume = () => {
   const history = useHistory();
@@ -25,9 +23,17 @@ const Resume = () => {
   const visualization = () => {
     history.push("/visualizationResume");
   };
-
-  const { userId, handleLogout } = useToken();
-  const {getResumeInfo} = useResume();
+  const userId = localStorage.getItem("@DevJobs:User:Id");
+  const { handleLogout } = useToken();
+  const {
+    getResumeInfo,
+    resumeObjective,
+    resumeEducation,
+    resumeOtherSkills,
+    resumeExperience,
+    resumeMessages,
+    resumeTechSkills,
+  } = useResume();
 
   const sendToHome = () => {
     handleLogout();
@@ -39,22 +45,22 @@ const Resume = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const setModal = (path) => {
-    setFormChoice(path);
+    setFormChoice(path ? path : "");
     setIsOpen(!modalIsOpen);
   };
 
+  const deleteAny = (endpoint, id) => {
+    api.delete(`/${endpoint}/${id}`).then((_) => {
+      getResumeInfo(userId);
+    });
+  };
 
- const deleteAny = (endpoint, id) => {
-  api.delete(
-    `http.api.com/${endpoint}/${id}`
-  )}
-
-
-  useEffect(() => {}, []);
+  useEffect(() => {
+    getResumeInfo(userId);
+  }, []);
 
   return (
     <>
-    <button onClick={()=> getResumeInfo()}>teste</button>
       <Container color={"var(--dark-grey)"}>
         <div className="noPrint header">
           <Header
@@ -68,7 +74,11 @@ const Resume = () => {
               </Button>
             }
             setRight={
-              <Button setSize={"large"} setColor="var(--red)" setClick={sendToHome}>
+              <Button
+                setSize={"large"}
+                setColor="var(--red)"
+                setClick={sendToHome}
+              >
                 Logout
               </Button>
             }
@@ -81,17 +91,18 @@ const Resume = () => {
             style={customStyles}
             contentLabel="Example Modal"
             onRequestClose={setModal}
+            ariaHideApp={false}
           >
             {formChoice === "Education" ? (
-              <Education />
+              <Education setModal={setModal} />
             ) : formChoice === "Experience" ? (
-              <Experience />
+              <Experience setModal={setModal}/>
             ) : formChoice === "Objective" ? (
-              <Objective />
+              <Objective setModal={setModal} />
             ) : formChoice === "TechSkills" ? (
-              <TechSkills />
+              <TechSkills setModal={setModal} />
             ) : (
-              <OtherSkills />
+              <OtherSkills setModal={setModal} />
             )}
           </Modal>
 
@@ -102,14 +113,7 @@ const Resume = () => {
                 <FaRegEdit />
               </Button>
             </h2>
-            <p>
-              {testUsers.users
-                .filter((x) => x.id === 1)
-                .map((x) => x.summary.objective)}
-              <Button setClick={()=> console.log("excluir")} setColor="var(--red)">
-                <FaTrashAlt />
-              </Button>
-            </p>
+            <p>{resumeObjective.objective && resumeObjective.objective}</p>
           </section>
           <section className="education">
             <h2>
@@ -119,15 +123,17 @@ const Resume = () => {
               </Button>
             </h2>
 
-            {testUsers.education
-              .filter((x) => x.userId === 1)
-              .map((x, index) => (
+            {resumeEducation &&
+              resumeEducation.map((x, index) => (
                 <article key={index}>
                   <div className="educationInfo">
                     <span className="degreeTitle">{x.degree}&nbsp;</span>
 
                     <span className="school">| {x.school}</span>
-                    <Button setClick={()=> console.log("excluir")} setColor="var(--red)">
+                    <Button
+                      setClick={() => deleteAny("education", x.id)}
+                      setColor="var(--red)"
+                    >
                       <FaTrashAlt />
                     </Button>
                   </div>
@@ -149,15 +155,17 @@ const Resume = () => {
               </Button>
             </h2>
 
-            {testUsers.experience
-              .filter((x) => x.userId === 1)
-              .map((x, index) => (
+            {resumeExperience &&
+              resumeExperience.map((x, index) => (
                 <article key={index}>
                   <div className="jobInfo">
                     <span className="jobTitle">{x.role}&nbsp;</span>
 
                     <span className="company">| {x.company}</span>
-                    <Button setClick={()=> console.log("excluir")} setColor="var(--red)">
+                    <Button
+                      setClick={() => deleteAny("experience", x.id)}
+                      setColor="var(--red)"
+                    >
                       <FaTrashAlt />
                     </Button>
                   </div>
@@ -178,14 +186,16 @@ const Resume = () => {
               </Button>
             </h2>
             <div className="skillBox">
-              {testUsers.techSkills
-                .filter((x) => x.userId === 1)
-                .map((x, index) => (
+              {resumeTechSkills &&
+                resumeTechSkills.map((x, index) => (
                   <article key={index}>
                     <div className="skillsInfo">
                       <div className="skillName">{x.description}: &nbsp;</div>
                       <div className="skillLevel">{x.level}</div>
-                      <Button setClick={()=> console.log("excluir")} setColor="var(--red)">
+                      <Button
+                        setClick={() => deleteAny("techSkills", x.id)}
+                        setColor="var(--red)"
+                      >
                         <FaTrashAlt />
                       </Button>
                     </div>
@@ -202,14 +212,16 @@ const Resume = () => {
               </Button>
             </h2>
             <div className="skillBox">
-              {testUsers.otherSkills
-                .filter((x) => x.userId === 1)
-                .map((x, index) => (
+              {resumeOtherSkills &&
+                resumeOtherSkills.map((x, index) => (
                   <article key={index}>
                     <div className="skillsInfo">
                       <div className="skillName">{x.description}: &nbsp;</div>
                       <div className="skillLevel">{x.level}</div>
-                      <Button setClick={()=> console.log("excluir")} setColor="var(--red)">
+                      <Button
+                        setClick={() => deleteAny("otherSkills", x.id)}
+                        setColor="var(--red)"
+                      >
                         <FaTrashAlt />
                       </Button>
                     </div>

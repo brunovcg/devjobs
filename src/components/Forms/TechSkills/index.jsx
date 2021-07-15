@@ -1,16 +1,18 @@
-import customStyles from "../../../utils/customStyles";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useToken } from "../../../providers/TokenProvider/";
 import api from "../../../services/api";
 import Input from "../../Input";
 import Button from "../../Button";
 import { Container } from "../styles";
+import { useResume } from "../../../providers/ResumeDownload";
 import Select from "../../Select";
+import { languages,levelSkills } from "../../../utils";
 
-export const TechSkills = () => {
-  const { userId } = useToken();
+export const TechSkills = ({ setModal }) => {
+  const userId = localStorage.getItem("@DevJobs:User:Id");
+
+  const { getResumeInfo } = useResume();
 
   const schema = yup.object().shape({
     description: yup.string().required("Description required"),
@@ -26,47 +28,50 @@ export const TechSkills = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmitFunctionTechSkills = (data) => {
-    const Skills = { TechSkills: data, userId: userId };
+  const onSubmitFunctionTechSkills = ({ description, level }) => {
+    const info = { description, level, userId: userId };
     api
-    .post(`/techSkills`, Skills)
-    .then((response) => {})
-    .catch((err) => {console.log(err)});
+      .post(`/techSkills`, info)
+      .then((response) => {
+        getResumeInfo(userId);
+        reset();
+        setModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <Container>
-      <form>
+      <form onSubmit={handleSubmit(onSubmitFunctionTechSkills)}>
         <h2>Add Tech Skills</h2>
-        <Input
+        <Select
           name="description"
-          placeHolder="Degree"
-          type="text"
+          options={languages}
           register={register}
           error={errors.description?.message}
           setHeight="60px"
           setWidth="70%"
         />
-        <Input
+        <Select
           name="level"
-          placeHolder="level"
-          type="text"
+          options={levelSkills}
           register={register}
           error={errors.level?.message}
           setHeight="60px"
           setWidth="70%"
         />
-        
+
         <div className="buttonBox">
-          <Button
-            type="submit"
-            setSize="large"
-            setColor="var(--blue)"
-            setClick={handleSubmit(onSubmitFunctionTechSkills)}
-          >
+          <Button type="submit" setSize="large" setColor="var(--blue)">
             Submit
           </Button>
-          <Button setSize="large" setColor="var(--red)" setClick={""}>
+          <Button
+            setSize="large"
+            setColor="var(--red)"
+            setClick={() => setModal()}
+          >
             Cancel
           </Button>
         </div>

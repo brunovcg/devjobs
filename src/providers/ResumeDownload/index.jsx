@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import api from "../../services/api";
 
 export const ResumeContext = createContext();
@@ -7,18 +7,16 @@ export const ResumeProvider = ({ children }) => {
   const [userToken, setUserToken] = useState(
     localStorage.getItem("@DevJobs:Token:User") || ""
   );
-  const [userId, setUserId] = useState(
-    localStorage.getItem("@DevJobs:User:Id") || ""
-  );
 
-  const endpoints = [
-    "users",
-    "education",
-    "experience",
-    "messages",
-    "techSkills",
-    "otherSkills",
-  ];
+  const userId = localStorage.getItem("@DevJobs:User:Id");
+
+  // const endpoints = [
+  //   "education",
+  //   "experience",
+  //   "messages",
+  //   "techSkills",
+  //   "otherSkills",
+  // ];
 
   const apiConfig = {
     headers: {
@@ -27,22 +25,79 @@ export const ResumeProvider = ({ children }) => {
     },
   };
 
-  const getResumeInfo = (optionalId) => {
-    let resumeInfo = {};
+  const [resumeObjective, setResumeObjective] = useState([]);
+  const [resumeEducation, setResumeEducation] = useState([]);
+  const [resumeMessages, setResumeMessages] = useState([]);
+  const [resumeExperience, setResumeExperience] = useState([]);
+  const [resumeTechSkills, setResumeTechSkills] = useState([]);
+  const [resumeOtherSkills, setResumeOtherSkills] = useState([]);
 
-    for (let i = 0; i < endpoints.length; i++) {
-      api
-        .get(`/${endpoints[i]}/${optionalId ? optionalId : userId}`, apiConfig)
-        .then((response) => (resumeInfo[endpoints[i]] = response.data))
-        .catch((_) => console.log("something went wrong"));
-    }
+  const getResumeInfo = (userId) => {
+    api
+      .get(`/users?id=${userId}`, apiConfig)
+      .then((response) => setResumeObjective(response.data[0]))
+      .catch((_) => console.log("something went wrong"));
 
-    console.log(resumeInfo)
+    api
+      .get(`/education?userId=${userId}`, apiConfig)
+      .then((response) => setResumeEducation(response.data))
+      .catch((_) => console.log("something went wrong"));
+    api
+      .get(`/experience?userId=${userId}`, apiConfig)
+      .then((response) => setResumeExperience(response.data))
+      .catch((_) => console.log("something went wrong"));
+
+    api
+      .get(`/messages?userId=${userId}`, apiConfig)
+      .then((response) => setResumeMessages(response.data))
+      .catch((_) => console.log("something went wrong"));
+
+    api
+      .get(`/techSkills?userId=${userId}`, apiConfig)
+      .then((response) => setResumeTechSkills(response.data))
+      .catch((_) => console.log("something went wrong"));
+
+    api
+      .get(`/otherSkills?userId=${userId}`, apiConfig)
+      .then((response) => setResumeOtherSkills(response.data))
+      .catch((_) => console.log("something went wrong"));
+
+    // api
+    // .get(`/experience?userId=${userId}`, apiConfig)
+    // .then((response) =>
+    //   setResume((prevState) => {
+    //     return { ...prevState, experience: response.data };
+    //   })
+    // )
+    // .catch((_) => console.log("something went wrong"));
+
+    // for (let i = 0; i < endpoints.length; i++) {
+    //   api
+    //     .get(`/${endpoints[i]}?userId=${userId}`, apiConfig)
+    //     .then((response) =>
+    //       setResume((prevState) => {
+    //         return { ...prevState, [endpoints[i]]: response.data };
+    //       })
+    //     )
+    //     .catch((_) => console.log("something went wrong"));
+    // }
   };
 
-  // const [resume]
-
-  return <ResumeContext.Provider value={{getResumeInfo}}>{children}</ResumeContext.Provider>;
+  return (
+    <ResumeContext.Provider
+      value={{
+        getResumeInfo,
+        resumeObjective,
+        resumeEducation,
+        resumeOtherSkills,
+        resumeExperience,
+        resumeMessages,
+        resumeTechSkills
+      }}
+    >
+      {children}
+    </ResumeContext.Provider>
+  );
 };
 
 export const useResume = () => useContext(ResumeContext);

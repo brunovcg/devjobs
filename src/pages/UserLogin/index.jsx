@@ -1,4 +1,3 @@
-import React from "react";
 import { FormStyled, Page, Text } from "./styles";
 import { useToken } from "../../providers/TokenProvider";
 import Button from "../../components/Button";
