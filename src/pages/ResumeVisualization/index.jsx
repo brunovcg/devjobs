@@ -83,7 +83,7 @@ const VisualizationResume = () => {
             onRequestClose={setModal}
             ariaHideApp={false}
           >
-           <Messages setModal={setModal}/>
+           <Messages setModal={setModal} userId={renderUser}/>
           </Modal>
 
 

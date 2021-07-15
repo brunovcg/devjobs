@@ -7,14 +7,14 @@ import Button from "../../Button";
 import { Container } from "../styles";
 import { useResume } from "../../../providers/ResumeDownload";
 import TextArea from "../../TextArea";
+import { toast } from "react-toastify";
 
-export const Messages = ({ setModal }) => {
-  const userId = localStorage.getItem("@DevJobs:User:Id");
-
+export const Messages = ({ setModal, userId }) => {
   const { getResumeInfo } = useResume();
   const schema = yup.object().shape({
+    name: yup.string().required("Role required"),
     message: yup.string().required("Role required"),
-    email: yup.string().email().required("Company required"),
+    companyEmail: yup.string().email().required("Company required"),
   });
 
   const {
@@ -26,18 +26,20 @@ export const Messages = ({ setModal }) => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmitFunctionExperience = ({ email, message }) => {
+  const onSubmitFunctionMessage = ({ companyEmail, name, message }) => {
     const infos = {
-      email,
+      companyEmail,
+      name,
       message,
       userId: userId,
     };
     api
-      .post(`/message`, infos)
+      .post(`/messages`, infos)
       .then((res) => {
         getResumeInfo(userId);
         reset();
         setModal();
+        toast.info("Message delivered")
       })
       .catch((err) => {
         console.log(err);
@@ -46,14 +48,23 @@ export const Messages = ({ setModal }) => {
 
   return (
     <Container>
-      <form onSubmit={handleSubmit(onSubmitFunctionExperience)}>
+      <form onSubmit={handleSubmit(onSubmitFunctionMessage)}>
         <h2>Send Message</h2>
         <Input
-          name="email"
+          name="name"
+          placeholder="Companies Name"
+          type="text"
+          register={register}
+          error={errors.name?.message}
+          setHeight="60px"
+          setWidth="100%"
+        />
+        <Input
+          name="companyEmail"
           placeholder="What's your email"
           type="text"
           register={register}
-          error={errors.email?.message}
+          error={errors.companyEmail?.message}
           setHeight="60px"
           setWidth="100%"
         />
@@ -62,7 +73,7 @@ export const Messages = ({ setModal }) => {
           placeholder="Send your message"
           register={register}
           error={errors.message?.message}
-          setHeight="100px"
+          setHeight="300px"
           setWidth="100%"
         />
         <div className="buttonBox">
