@@ -11,46 +11,100 @@ import {
 import CardDev from "../../components/CardDev";
 import API from "../../services/api";
 import { useState, useEffect } from 'react';
-import { useResume } from "../../providers/ResumeDownload";
+import { useToken } from "../../providers/TokenProvider";
+import { useHistory } from "react-router-dom";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
 const Search = () => {
 
-  const [users, setUsers] = useState([]);
-  const [searchLanguages, setSearchLanguages] = useState('');
-  const [searchLevelSkills, setSearchLevelSkills] = useState('');
-  const [searchList, setSearchList] = useResume();
+  const { handleLogout } = useToken();
+  const history = useHistory();
 
-  const GetDev = () => {
-    API.get("/db").then((response) => setUsers(response.data.users));
+  const [users, setUsers] = useState([]);
+  const [techSkills, setTechSkills] = useState([]);
+  const [searchList, setSearchList] = useState([]);
+  const [skill, setSkill] = useState("")
+  const [level, setLevel] = useState("")
+
+  const schema = yup.object().shape({
+    description: yup.string().required("Description required"),
+    level: yup.string().required("Level required"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const sendToHome = () => {
+    handleLogout();
+    history.push("/");
+  };
+
+  const GetDevInfo = () => {
+    API.get("/users").then((response) => setUsers(response.data));
+    API.get(`/techSkills`).then((response) => setTechSkills(response.data));
   }
 
-  const handleSearch = () => {
-    console.log(`language ${searchLanguages}`);
-    console.log(`level skill ${searchLevelSkills}`);
+  const JoinInfo = () => {
+    setSearchList([users, techSkills]);
+  }
+  
+  const handleSearch = ({ description, level }) => {
+    setSkill(description)
+    setLevel(level)
+    API.get(`/techSkills?description_like=${description}&level_like=${level}`)
+    .then((response) => setTechSkills(response.data))
   }
   
   useEffect(() => {
-    GetDev()
+    GetDevInfo()
+    JoinInfo()
   }, [])
-
-  console.log(users)
-
+  
+  console.log(searchList);
+  console.log(skill, level)
+  
   return (
     <>
       <Header 
         setRight={<Button
-          setColor="var(--red)" setSize="large" setClick={""}
+          setColor="var(--red)" setSize="large" setClick={sendToHome}
           >Logout</Button>
         }
       />
       <ContainerPage>
         <ContainerSearch>
           <SearchBar>
-            <Select options={languages}/>
-            <Select options={levelSkills}/>
-            <Button setColor="var(--dark-grey)" setSize="large" setClick={handleSearch}>
-              Search
-            </Button>
+            <form onSubmit={handleSubmit(handleSearch)}>
+            <h3>Choose language and level</h3>
+            <Select
+              name="description"
+              options={languages}
+              register={register}
+              error={errors.description?.message}
+              setHeight="60px"
+              setWidth="100%"
+            />
+            <Select
+              name="level"
+              options={levelSkills}
+              register={register}
+              error={errors.description?.message}
+              setHeight="60px"
+              setWidth="100%"
+            />
+              <Button 
+                type="submit" 
+                setColor="var(--dark-grey)" 
+                setSize="large" 
+              >Search</Button>
+            </form>
           </SearchBar>
         </ContainerSearch>
         <ContainerCards>
