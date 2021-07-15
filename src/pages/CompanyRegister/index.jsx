@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FormStyled, Page, Text } from './styles';
+import { FormStyled, Page, Text, Box } from './styles';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import api from '../../services/api';
@@ -59,7 +59,7 @@ const CompanyRegister = () => {
 
 
   return (
-  <>
+  <Box>
   <Header />  
   <Page>
   <FormStyled>    
@@ -113,7 +113,7 @@ const CompanyRegister = () => {
 
   <Text>If you already have an account, <Link to='/companyLogin'>sign in here.</Link></Text>
   </Page>
-  </>    
+  </Box>    
   );
 }
 
