@@ -5,13 +5,10 @@ import Input from "../../components/Input";
 import api from "../../services/api";
 import jwt_decode from "jwt-decode";
 import { useHistory, Link } from "react-router-dom";
-
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Header from "../../components/Header";
 
 const UserLogin = () => {
@@ -37,7 +34,7 @@ const UserLogin = () => {
       .post("/login", data)
       .then((response) => {
         const { accessToken } = response.data;
-
+        toast.info('Welcome!');
         localStorage.setItem(
           "@DevJobs:Token:User",
           JSON.stringify(accessToken)

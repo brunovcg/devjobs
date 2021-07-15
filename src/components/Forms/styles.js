@@ -7,23 +7,30 @@ export const Container = styled.div`
   height: 100%;
 
   form {
-      margin-top: 30px;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: 100%;
     width: 80%;
 
-    h2{
-        color: var(--dark-grey);
-        margin-bottom: 15px;
+    h2 {
+      color: var(--dark-grey);
+      font-size: 2rem;
+      height: 10%;
+      margin-bottom: 30px;
     }
 
-    div {
+    .inputBox {
       width: 100%;
+      display:flex;
+      justify-content: center;
+      height: 65%;
     }
 
     .buttonBox {
+      height: 15%;
       width: 100%;
       display: flex;
       justify-content: center;

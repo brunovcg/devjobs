@@ -6,7 +6,12 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-around;
   width: 100vw;
-  min-height: 90vh;
+  min-height: 100vh;
+
+  main{
+    height: 90vh;
+    background: var(--gradient-white)
+  }
 
   .objective,
   .education,
@@ -43,6 +48,7 @@ export const Container = styled.div`
       margin-top: 20px;
       border: 1px solid var(--grey);
       padding: 5px;
+      background-color: var(--white);
     }
 
     div,
@@ -56,14 +62,11 @@ export const Container = styled.div`
     }
   }
 
-  .header {
-    margin-bottom: 0px;
-  }
-
   .objective {
     p {
       border: 1px var(--grey) solid;
       padding: 5px;
+      background-color: var(--white);
       button {
         width: 30px;
         height: 30px;
@@ -84,7 +87,7 @@ export const Container = styled.div`
         justify-content: space-between;
 
         .degreeTitle {
-          color: maroon;
+          color: var(--maroon);
         }
 
         .school {
@@ -126,7 +129,7 @@ export const Container = styled.div`
         align-items: center;
 
         .jobTitle {
-          color: maroon;
+          color: var(--maroon);
         }
 
         .company {
@@ -179,7 +182,7 @@ export const Container = styled.div`
         
 
         .skillName {
-          color: maroon;
+          color: var(--maroon);
           font-size: 1.3rem;
         }
 
