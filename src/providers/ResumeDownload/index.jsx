@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import api from "../../services/api";
+import { toast } from 'react-toastify';
 
 export const ResumeContext = createContext();
 
@@ -35,7 +36,10 @@ export const ResumeProvider = ({ children }) => {
   const getResumeInfo = (userId) => {
     api
       .get(`/users?id=${userId}`, apiConfig)
-      .then((response) => setResumeObjective(response.data[0]))
+      .then((response) => {
+        setResumeObjective(response.data[0])
+        toast.info('Resume ready for edit!');
+      })
       .catch((_) => console.log("something went wrong"));
 
     api

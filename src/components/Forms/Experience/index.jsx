@@ -6,6 +6,7 @@ import Input from "../../Input";
 import Button from "../../Button";
 import { Container } from "../styles";
 import { useResume } from "../../../providers/ResumeDownload";
+import TextArea from "../../TextArea";
 
 export const Experience = ({ setModal }) => {
   const userId = localStorage.getItem("@DevJobs:User:Id");
@@ -66,7 +67,7 @@ export const Experience = ({ setModal }) => {
           register={register}
           error={errors.role?.message}
           setHeight="60px"
-          setWidth="70%"
+          setWidth="100%"
         />
         <Input
           name="company"
@@ -75,7 +76,7 @@ export const Experience = ({ setModal }) => {
           register={register}
           error={errors.company?.message}
           setHeight="60px"
-          setWidth="70%"
+          setWidth="100%"
         />
         <Input
           name="dateFrom"
@@ -84,7 +85,7 @@ export const Experience = ({ setModal }) => {
           register={register}
           error={errors.dateFrom?.message}
           setHeight="60px"
-          setWidth="70%"
+          setWidth="100%"
         />
         <Input
           name="dateTo"
@@ -93,16 +94,15 @@ export const Experience = ({ setModal }) => {
           register={register}
           error={errors.dateTo?.message}
           setHeight="60px"
-          setWidth="70%"
+          setWidth="100%"
         />
-        <Input
+        <TextArea
           name="description"
           placeholder="Description"
-          type="text"
           register={register}
           error={errors.description?.message}
-          setHeight="60px"
-          setWidth="70%"
+          setHeight="100px"
+          setWidth="100%"
         />
         <div className="buttonBox">
           <Button type="submit" setSize="large" setColor="var(--blue)">

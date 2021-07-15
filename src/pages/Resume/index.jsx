@@ -31,8 +31,7 @@ const Resume = () => {
     resumeEducation,
     resumeOtherSkills,
     resumeExperience,
-    resumeMessages,
-    resumeTechSkills,
+    resumeTechSkills
   } = useResume();
 
   const sendToHome = () => {
@@ -52,6 +51,7 @@ const Resume = () => {
   const deleteAny = (endpoint, id) => {
     api.delete(`/${endpoint}/${id}`).then((_) => {
       getResumeInfo(userId);
+      toast.info('Info deleted!'); 
     });
   };
 
@@ -60,9 +60,8 @@ const Resume = () => {
   }, []);
 
   return (
-    <>
       <Container color={"var(--dark-grey)"}>
-        <div className="noPrint header">
+        <div className="header">
           <Header
             setLeft={
               <Button
@@ -231,7 +230,6 @@ const Resume = () => {
           </section>
         </main>
       </Container>
-    </>
   );
 };
 

@@ -15,6 +15,7 @@ export default createGlobalStyle`
         --yellow: #FDCC12;      
         --blue-sky: #75D8EE;
         --grey-header: #ececec;
+        --maroon: #812D37;
     }
 
     * {
@@ -29,7 +30,7 @@ export default createGlobalStyle`
         -moz-osx-font-smoothing: grayscale;
     }
 
-    body, input, button, h3, h4, h5, h6, p{
+    body, input, button, h3, h4, h5, h6, p, textarea, select{
         font-family: 'Cormorant', serif;
     }
 
