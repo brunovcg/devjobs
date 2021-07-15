@@ -1,41 +1,70 @@
-import { Container, DevInfo } from "./styles";
+import { Container } from "./styles";
 import Button from "../Button";
-import {useResume} from '../../providers/ResumeDownload'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
+import Modal from "react-modal";
+import customStyles from "../../utils/customStyles";
+import { UserPreview } from "../UserPreview";
+import { useState } from "react";
 
-const CardDev = ({userId, name, email, phone, experience }) => {
+const CardDev = ({
+  userId,
+  name,
+  email,
+  phone,
+  address,
+  linkedinProfile,
+  objective,
+  birthDate,
+}) => {
+  const history = useHistory();
 
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const openDetails = () => {
+    localStorage.setItem("@DevJobs:Render:User", JSON.stringify(userId));
+    setIsOpen(!modalIsOpen);
+  };
 
-
-
-  const {getResumeInfo} = useResume()
-
-  const history = useHistory()
-
-  const openDetails = ( ) =>{
-    localStorage.setItem(
-      "@DevJobs:Render:User",
-      JSON.stringify(userId))}
+  const setModal = () => {
+    setIsOpen(!modalIsOpen);
+  };
 
   const renderResume = () => {
-
-    
-    history.push('/visualizationResume')
-  }
-
+    history.push("/visualizationResume");
+  };
 
   return (
-    <Container>
-      <Button setClick={openDetails}>{name}</Button>
+    <>
+      <Modal
+        isOpen={modalIsOpen}
+        style={customStyles}
+        contentLabel="Example Modal"
+        onRequestClose={setModal}
+        ariaHideApp={false}
+      >
+        <UserPreview
+          renderResume={renderResume}
+          setModal={setModal}
+          name={name}
+          email={email}
+          phone={phone}
+          address={address}
+          linkedinProfile={linkedinProfile}
+          objective={objective}
+          birthDate={birthDate}
+        />
+      </Modal>
 
-      <DevInfo>
-        <h3>{phone}</h3>
-        <h3>{email}</h3>
-        <h3>{experience}</h3>
-      </DevInfo>
+      <Container>
+        <div className="buttonBox">
+          <Button setClick={openDetails}>{name}</Button>
+        </div>
 
-      <button onClick={renderResume}>teste</button>
-    </Container>
+        <div className="devInfo">
+          <h3>{phone}</h3>
+        </div>
+        <div className="buttonBoxResume"></div>
+      </Container>
+    </>
   );
 };
 
