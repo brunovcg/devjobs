@@ -32,7 +32,7 @@ export default createGlobalStyle`
     }
 
     body, input, button, h3, h4, h5, h6, p, textarea, select{
-        font-family: 'Cormorant', serif;
+        font-family: 'Carrois Gothic', serif;
     }
 
     h1 {
