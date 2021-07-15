@@ -24,7 +24,7 @@ const Routes = () => {
       <Route isPrivate={true} path="/messages" exact component={Messages} />
       <Route isPrivate={true} path="/resume" exact component={Resume} />
       <Route
-        isPrivate={true}
+        isOpen={true}
         path="/visualizationResume"
         exact
         component={VisualizationResume}
@@ -36,4 +36,3 @@ const Routes = () => {
 };
 
 export default Routes;
-
