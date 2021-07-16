@@ -88,6 +88,11 @@ export const Container = styled.main`
         font-weight: bold;
         font-family: "Carrois Gothic", sans-serif;
         transform: translateY(-60px);
+
+        @media (max-height: 700px) {
+          font-size: 1rem;
+          transform: translateY(-20px);
+        }
       }
 
       figure {
@@ -153,6 +158,11 @@ export const Container = styled.main`
         color: var(--dark-grey);
         font-weight: bold;
         font-family: "Carrois Gothic", sans-serif;
+
+        @media (max-height: 700px) {
+          font-size: 1rem;
+          transform: translateY(-20px);
+        }
       }
     }
   }
@@ -224,6 +234,11 @@ export const Container = styled.main`
           font-weight: bold;
           font-family: "Carrois Gothic", sans-serif;
           font-size: 0.8rem;
+
+          @media (max-height: 700px) {
+            font-size: 0.7rem;
+            transform: translateY(20px);
+          }
         }
       }
     }
