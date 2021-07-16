@@ -47,7 +47,7 @@ export const Container = styled.main`
         border-top-left-radius: 11px;
         color: var(--white);
         font-size: 1rem;
-        font-family: "Cormorant", serif;
+        font-family: "Carrois Gothic", sans-serif;
         padding: 5px;
       }
 
@@ -61,10 +61,9 @@ export const Container = styled.main`
           width: 100%;
           padding: 5px;
           font-weight: bold;
-          font-size: 1.4rem;
+          font-size: 1rem;
+          font-family: "Carrois Gothic", sans-serif;
         }
-
-    
       }
     }
 
@@ -85,12 +84,20 @@ export const Container = styled.main`
         color: var(--white);
         font-size: 1.5rem;
         font-weight: bold;
+        font-family: "Carrois Gothic", sans-serif;
+        transform: translateY(-60px);
+
+        @media (max-height: 700px) {
+          font-size: 1rem;
+          transform: translateY(-20px);
+        }
       }
 
       figure {
         width: 100%;
         display: flex;
         justify-content: center;
+        transform: translateY(-40px);
         img {
           width: 80vw;
         }
@@ -123,6 +130,7 @@ export const Container = styled.main`
         background: var(--blue);
         color: var(--white);
         border-radius: 11px;
+        font-family: "Carrois Gothic", sans-serif;
         box-shadow: -9px 12px 15px -6px #000000;
       }
     }
@@ -146,6 +154,12 @@ export const Container = styled.main`
         font-size: 1.5rem;
         color: var(--dark-grey);
         font-weight: bold;
+        font-family: "Carrois Gothic", sans-serif;
+
+        @media (max-height: 700px) {
+          font-size: 1rem;
+          transform: translateY(-20px);
+        }
       }
     }
   }
@@ -153,7 +167,7 @@ export const Container = styled.main`
   .aboutUs {
     background: var(--dark-grey);
     height: 80vh;
-    min-height: fit-content;
+    min-height: 100vh;
 
     h2 {
       height: 10%;
@@ -163,12 +177,17 @@ export const Container = styled.main`
       align-items: flex-end;
       justify-content: center;
       font-size: 2rem;
+      font-family: "Carrois Gothic", sans-serif;
     }
 
     p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: 5%;
       text-align: center;
       color: var(--light-grey);
+      font-family: "Carrois Gothic", sans-serif;
     }
 
     .group {
@@ -179,7 +198,7 @@ export const Container = styled.main`
       align-items: center;
       padding: 2px;
       .groupMember {
-        height: 30%;
+        height: 25%;
         width: 33vw;
 
         display: flex;
@@ -190,7 +209,9 @@ export const Container = styled.main`
 
         a {
           color: var(--grey);
-          height: 60%;
+          height: 70%;
+          display: flex;
+          align-items: flex-end;
 
           figure {
             img {
@@ -198,17 +219,31 @@ export const Container = styled.main`
               border-radius: 50%;
               width: 80px;
               box-shadow: -9px 12px 15px -6px #000000;
+              transition: 0.4s;
+
               :hover {
                 width: 90px;
+                box-shadow: -10px 13px 20px -6px #00000099;
+                transition: 0.4s;
               }
             }
           }
         }
 
-        p {
-          height: 15%;
-          color: var(--white);
-          font-weight: bold;
+        .devInfo {
+          height: 30%;
+          p {
+            height: 50%;
+            color: var(--white);
+            font-weight: bold;
+            font-family: "Carrois Gothic", sans-serif;
+            font-size: 0.8rem;
+          }
+
+          @media (max-height: 700px) {
+            font-size: 0.7rem;
+            transform: translateY(20px);
+          }
         }
       }
     }
@@ -221,7 +256,7 @@ export const Container = styled.main`
       figure {
         width: 30%;
         img {
-          width: 400px;
+          width: 70vh;
         }
       }
     }
@@ -234,18 +269,17 @@ export const Container = styled.main`
         height: 90px;
 
         h2 {
-          font-size: 1.6rem;
+          font-size: 1.3rem;
+          padding: 0 25px;
         }
 
         .companiesTitleBox {
           width: 80%;
           p {
             width: 100%;
-            font-size: 1.5rem;
-            padding: 0 10px;
+            font-size: 1.3rem;
+            padding: 0 20px;
           }
-
-     
         }
       }
 
@@ -254,16 +288,17 @@ export const Container = styled.main`
 
         p {
           align-items: center;
-          width: 40%;
-          padding: 0 0px 0 30px;
+          width: 50%;
+          padding: 0 0 0 50px;
           margin-right: 35px;
           font-size: 2rem;
-          line-height: 3rem;
+          line-height: 3.5rem;
         }
 
         figure {
-          width: 40%;
+          width: 50%;
           img {
+            width: 80%;
           }
         }
       }
@@ -272,8 +307,10 @@ export const Container = styled.main`
     .forDevs {
       .forDevsTitle {
         h2 {
-          width: 200px;
-          height: 60px;
+          padding: 2% 0;
+          width: 250px;
+          height: 80px;
+          font-size: 1.3rem;
         }
       }
 
@@ -285,15 +322,16 @@ export const Container = styled.main`
           display: flex;
           justify-content: center;
           img {
-            width: 95%;
+            width: 60%;
           }
         }
 
         p {
-          width: 55%;
+          width: 50%;
           font-size: 2rem;
-          padding: 0 70px;
-          line-height: 3rem;
+          padding: 0 100px 0 0;
+          line-height: 3.5rem;
+          font-family: "Carrois Gothic", sans-serif;
         }
       }
     }
@@ -302,6 +340,7 @@ export const Container = styled.main`
       height: 95vh;
       p {
         font-size: 1.3rem;
+        padding: 10px 0;
       }
 
       .group {
@@ -313,6 +352,8 @@ export const Container = styled.main`
           height: 45%;
 
           a {
+            height: 70%;
+            align-items: flex-start;
             figure {
               img {
                 width: 110px;
@@ -323,8 +364,15 @@ export const Container = styled.main`
             }
           }
 
-          p {
-            font-size: 1.4rem;
+          .devInfo {
+            margin-top: 50px;
+            height: 30%;
+            p {
+              height: 40%;
+              padding: 0;
+              font-size: 1.2rem;
+              transform: translateY(-70px);
+            }
           }
         }
       }

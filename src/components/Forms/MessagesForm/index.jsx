@@ -39,7 +39,7 @@ export const Messages = ({ setModal, userId }) => {
         getResumeInfo(userId);
         reset();
         setModal();
-        toast.info("Message delivered")
+        toast.info("Message delivered");
       })
       .catch((err) => {
         console.log(err);

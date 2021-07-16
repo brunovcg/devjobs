@@ -19,8 +19,7 @@ const UserLogin = () => {
     email: yup.string().email("Invalid e-mail").required("Required field"),
     password: yup.string().min(6).required("Required field"),
   });
-
-  const {getResumeInfo} = useResume()
+  const { getResumeInfo } = useResume();
 
   const history = useHistory();
 
@@ -37,7 +36,7 @@ const UserLogin = () => {
       .post("/login", data)
       .then((response) => {
         const { accessToken } = response.data;
-        toast.info('Welcome!');
+        toast.info("Welcome!");
         localStorage.setItem(
           "@DevJobs:Token:User",
           JSON.stringify(accessToken)
@@ -51,11 +50,8 @@ const UserLogin = () => {
       })
       .catch((err) => {
         toast.error("Invalid e-mail or password");
-        console.log(err);
       });
   };
-
-  
 
   return (
     <Box>
@@ -85,7 +81,7 @@ const UserLogin = () => {
           <Button
             setClick={handleSubmit(onSubmitFunction)}
             setSize="large"
-            setColor="blue"
+            setColor="var(--blue)"
           >
             Sign In
           </Button>

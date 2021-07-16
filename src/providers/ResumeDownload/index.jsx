@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from "react";
 import api from "../../services/api";
-import { toast } from 'react-toastify';
 
 export const ResumeContext = createContext();
 
@@ -9,7 +8,7 @@ export const ResumeProvider = ({ children }) => {
     localStorage.getItem("@DevJobs:Token:User") || ""
   );
 
-  const userId = localStorage.getItem("@DevJobs:User:Id");
+  // const userId = localStorage.getItem("@DevJobs:User:Id");
 
   // const endpoints = [
   //   "education",
@@ -37,7 +36,7 @@ export const ResumeProvider = ({ children }) => {
     api
       .get(`/users?id=${userId}`, apiConfig)
       .then((response) => {
-        setResumeObjective(response.data[0])
+        setResumeObjective(response.data[0]);
       })
       .catch((_) => console.log("something went wrong"));
 
@@ -95,7 +94,13 @@ export const ResumeProvider = ({ children }) => {
         resumeOtherSkills,
         resumeExperience,
         resumeMessages,
-        resumeTechSkills
+        resumeTechSkills,
+        setResumeObjective,
+        setResumeEducation,
+        setResumeMessages,
+        setResumeExperience,
+        setResumeTechSkills,
+        setResumeOtherSkills,
       }}
     >
       {children}

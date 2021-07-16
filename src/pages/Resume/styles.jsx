@@ -8,9 +8,9 @@ export const Container = styled.div`
   width: 100vw;
   min-height: 100vh;
 
-  main{
+  main {
     height: 90vh;
-    background: var(--gradient-white)
+    background: var(--gradient-white);
   }
 
   .objective,
@@ -169,38 +169,37 @@ export const Container = styled.div`
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
-      
-      article{
+
+      article {
         display: flex;
         justify-content: space-around;
-        
+
         margin: 5px;
-      .skillsInfo {
-        display: flex;
-        align-items: center;
-        
-        
-
-        .skillName {
-          color: var(--maroon);
-          font-size: 1.3rem;
-        }
-
-        .skillLevel {
-          font-size: 1.3rem;
-        }
-
-        button {
-          width: 30px;
-          height: 30px;
-          font-size: 1rem;
+        .skillsInfo {
           display: flex;
-          justify-content: center;
           align-items: center;
+
+          .skillName {
+            color: var(--maroon);
+            font-size: 1.3rem;
+          }
+
+          .skillLevel {
+            font-size: 1.3rem;
+          }
+
+          button {
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
     }
-  }}
+  }
 
   @media (max-width: 500px) {
     .summary,

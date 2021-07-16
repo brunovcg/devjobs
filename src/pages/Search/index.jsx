@@ -2,12 +2,7 @@ import Header from "../../components/Header";
 import Button from "../../components/Button";
 import Select from "../../components/Select";
 import { languages, levelSkills } from "../../utils/index";
-import {
-  ContainerPage,
-  ContainerSearch,
-  ContainerCards,
-  SearchBar,
-} from "./styles";
+import { Container } from "./styles";
 import CardDev from "../../components/CardDev";
 import api from "../../services/api";
 import { useState, useEffect } from "react";
@@ -16,6 +11,7 @@ import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const Search = () => {
   const { handleLogout } = useToken();
@@ -33,6 +29,7 @@ const Search = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -47,7 +44,12 @@ const Search = () => {
       .get(`/techSkills?description_like=${description}&level_like=${level}`)
       .then((res) => {
         setTechRequest(res.data.map((item) => item.userId.toString()));
-        console.log(res.data);
+        reset();
+        if (JSON.stringify(res.data) === "[]") {
+          toast.error("The are no results for this search, try again!");
+        } else {
+          toast.info("Showing results");
+        }
       });
   };
 
@@ -70,11 +72,10 @@ const Search = () => {
           </Button>
         }
       />
-      <ContainerPage>
-        <ContainerSearch>
-          <SearchBar>
-            <form onSubmit={handleSubmit(handleSearch)}>
-              <h3>Choose language and level</h3>
+      <Container>
+        <div className="containerSearch">
+          <form onSubmit={handleSubmit(handleSearch)}>
+            <div className="selectBox">
               <Select
                 name="description"
                 options={languages}
@@ -87,17 +88,19 @@ const Search = () => {
                 name="level"
                 options={levelSkills}
                 register={register}
-                error={errors.description?.message}
+                error={errors.level?.message}
                 setHeight="60px"
                 setWidth="100%"
               />
+            </div>
+            <div className="buttonBox">
               <Button type="submit" setColor="var(--dark-grey)" setSize="large">
                 Search
               </Button>
-            </form>
-          </SearchBar>
-        </ContainerSearch>
-        <ContainerCards>
+            </div>
+          </form>
+        </div>
+        <div className="cardContainer">
           {userRequest
             .filter((user) => techRequest.includes(user.userId))
             .map((userX) => (
@@ -105,13 +108,17 @@ const Search = () => {
                 <CardDev
                   name={`${userX.firstName} ${userX.lastName}`}
                   phone={userX.phone}
-                  email={userX.email}
                   userId={userX.id}
+                  address={userX.address}
+                  linkedinProfile={userX.linkedinProfile}
+                  email={userX.email}
+                  objective={userX.objective}
+                  birthDate={userX.birthDate}
                 />
               </div>
             ))}
-        </ContainerCards>
-      </ContainerPage>
+        </div>
+      </Container>
     </>
   );
 };

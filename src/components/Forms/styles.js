@@ -16,7 +16,7 @@ export const Container = styled.div`
     width: 80%;
 
     h2 {
-      color: var(--dark-grey);
+      color: var(--maroon);
       font-size: 2rem;
       height: 10%;
       margin-bottom: 30px;
@@ -24,7 +24,7 @@ export const Container = styled.div`
 
     .inputBox {
       width: 100%;
-      display:flex;
+      display: flex;
       justify-content: center;
       height: 65%;
     }

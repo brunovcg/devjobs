@@ -14,7 +14,7 @@ export const Container = styled.div`
     border: none;
     font-weight: bold;
     border-radius: 11px;
-       &::placeholder {
+    &::placeholder {
       color: var(--white);
     }
   }
@@ -25,5 +25,9 @@ export const Container = styled.div`
     width: 100%;
     height: 40%;
     padding-left: 10px;
+
+    @media (max-width: 500px) {
+      font-size: 1rem;
+    }
   }
 `;

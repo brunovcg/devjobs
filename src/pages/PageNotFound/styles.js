@@ -4,7 +4,6 @@ export const Container = styled.main`
   height: 90vh;
   background: var(--gradient-sunny);
 
-
   .sun {
     display: flex;
     justify-content: center;
@@ -53,9 +52,8 @@ export const Container = styled.main`
         position: absolute;
         top: 0;
         z-index: 2;
-        :hover{
+        :hover {
           width: 200px;
-
         }
       }
     }

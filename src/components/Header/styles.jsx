@@ -19,8 +19,8 @@ export const HalfMoon = styled.div`
     div {
       background-color: var(--blue);
       color: white;
-      height: 100px;
-      width: 100px;
+      height: 115px;
+      width: 115px;
       border-radius: 50%;
       text-align: center;
       margin-top: 50px;
@@ -29,12 +29,23 @@ export const HalfMoon = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: width 0.3s, height 1s;
+      box-shadow: -0.5px 0.5px 10px #4040402f;
       h1 {
+        transition: 0.5s;
         font-size: 1.2rem;
       }
       :hover {
-        height: 110px;
-        width: 110px;
+        transition: width 0.3s, height 1s;
+        height: 120px;
+        width: 120px;
+        box-shadow: -0.5px 0.5px 20px #4040402f;
+
+        h1 {
+          transition: 0.5s;
+          font-size: 1.4rem;
+          text-shadow: -0.5px 0.5px 10px #e9eef11f;
+        }
       }
       @media (min-width: 500px) {
         margin-top: 60px;

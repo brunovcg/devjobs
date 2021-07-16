@@ -2,12 +2,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import api from "../../../services/api";
-import Input from "../../Input";
 import Button from "../../Button";
 import { Container } from "../styles";
 import { useResume } from "../../../providers/ResumeDownload";
 import Select from "../../Select";
-import { languages,levelSkills } from "../../../utils";
+import { languages, levelSkills } from "../../../utils";
 
 export const TechSkills = ({ setModal }) => {
   const userId = localStorage.getItem("@DevJobs:User:Id");
