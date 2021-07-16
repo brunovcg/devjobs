@@ -27,7 +27,8 @@ export const FormStyled = styled.form`
   height: 400px;
   padding: 20px;
   opacity: 0.8;
-  margin-bottom: 15px;
+  margin-top: 30px;
+  margin-bottom: 10px;
 
   h2 {
     color: var(--dark-grey);
@@ -50,6 +51,7 @@ export const FormStyled = styled.form`
 export const Text = styled.p`
   text-align: center;
   margin-bottom: 15px;
+  padding: 0 30px;
 
   a {
     color: var(--blue);

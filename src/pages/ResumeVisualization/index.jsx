@@ -96,7 +96,7 @@ const VisualizationResume = () => {
             <article className="personalInfo">
               <div className="noPrint">
                 {renderUser && (
-                  <Button setColor="var(--green)" setClick={setModal}>Contato</Button>
+                  <Button setColor="var(--green)" setClick={setModal} setSize="huge">Contact DEV</Button>
                 )}
               </div>
               <h3>

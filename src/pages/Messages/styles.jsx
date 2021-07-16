@@ -7,9 +7,14 @@ export const ContainerPage = styled.div`
 export const Container = styled.div`
   text-align: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 
   button {
     margin-bottom: 10px;
@@ -44,12 +49,16 @@ export const Email = styled.div`
   padding: 8px;
   margin: 10px;
   text-overflow: clip;
-  font-family: "Cormorant", serif;
+  font-family: "Carrois Gothic", sans-serif;
   overflow: visible;
   overflow-wrap: break-word;
   border-radius: 10px;
   h3 {
     font-size: 1.2rem;
+    @media (max-width: 500px) {
+      height: 120px;
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -62,15 +71,19 @@ export const MessageContent = styled.div`
   padding: 6px;
   overflow-y: scroll;
   font-size: 1.2rem;
-  font-family: "Cormorant", serif;
+  font-family: "Carrois Gothic", sans-serif;
   border-radius: 10px;
+  @media (max-width: 500px) {
+    height: 110px;
+    font-size: 1rem;
+  }
 `;
 
 export const Title = styled.div`
   text-align: center;
   padding-top: 6%;
   padding-bottom: 4%;
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Carrois Gothic", sans-serif;
   font-size: 1.5rem;
   padding-top: 5rem;
   padding-bottom: 2rem;
@@ -84,11 +97,16 @@ export const Name = styled.div`
   padding: 8px;
   margin: 10px;
   text-overflow: clip;
-  font-family: "Cormorant", serif;
+  font-family: "Carrois Gothic", sans-serif;
   overflow: visible;
   overflow-wrap: break-word;
   border-radius: 10px;
   h3 {
     font-size: 1.2rem;
+
+    @media (max-width: 500px) {
+      height: 110px;
+      font-size: 1rem;
+    }
   }
 `;

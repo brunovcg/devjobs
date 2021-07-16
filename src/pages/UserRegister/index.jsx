@@ -37,7 +37,7 @@ const Register = () => {
       .required("Required field")
       .matches(
         PasswordStrength,
-        "Use lowercase, uppercase, numbers and symbols."
+        "Lower, uppercase, number and symbols."
       ),
     linkedinProfile: yup.string(),
     address: yup.string(),

@@ -61,8 +61,7 @@ export const Home = () => {
 
         <section className="aboutUs">
           <h2>About Us</h2>
-          <p>Click photos to check linked-in</p>
-
+        
           <div className="group">
             {members.map((item, index) => (
               <div className="groupMember" key={index}>
@@ -71,8 +70,10 @@ export const Home = () => {
                     <img src={item.image} alt={item.name} />
                   </figure>
                 </a>
-                <p>{item.role}</p>
-                <p>{item.name}</p>
+                <div className="devInfo">
+                  <p>{item.role}</p>
+                  <p>{item.name}</p>
+                </div>
               </div>
             ))}
           </div>

@@ -30,6 +30,11 @@ export const Container = styled.div`
   margin-bottom: 15px;
   margin-top: 30px;
 
+  @media (max-width:500px){
+    margin-top: 0;
+    padding-top: 0;
+  }
+
   h2 {
     color: var(--dark-grey);
     margin-bottom: 2.5rem;
@@ -59,6 +64,7 @@ export const FormStyled = styled.form`
 export const Text = styled.p`
   text-align: center;
   margin-bottom: 15px;
+  padding: 0 30px;
 
   a {
     color: var(--blue);

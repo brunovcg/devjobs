@@ -1,101 +1,149 @@
 import styled from "styled-components";
 
-export const ContainerPage = styled.div`
+export const Container = styled.div`
   background-image: var(--gradient-white);
-`;
-
-export const ContainerOptions = styled.div`
+  height: 90vh;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 10% 2%;
+  width: 100%;
 
-  @media (max-width: 500px) {
-   flex-direction: column;
-   padding: 20%;
-  }
-`;
-
-export const ContainerTitleImg = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50%;
-  height: 30vh;
-  font-size: 1.7rem;
-  color: var(--dark-grey);
-
-  h3 {
-    font-size: 2.5rem;
-    font-family: "Carrois Gothic", sans-serif;
+  .imageResume {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     @media (max-width: 500px) {
-      font-size: 1.7rem;
+      width: 100%;
+      margin-top: 50px;
     }
-  }
 
-  a {
-    text-align: center;
-    padding: 10% 0;
-    position: relative;
-    transition: 0.5s;
-
-    .messageLength {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: var(--red);
-      color: var(--white);
-      font-weight: bold;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+    h3 {
+      height: 30%;
+      display: flex;
+      align-items: center;
       font-size: 2rem;
-      transition: 0.5s;
-      box-shadow: -4px 7px 7px -3px #00000099;
-      display: ${(props) => {
-        if (props.hasInfo === 0) {
-          return "none";
-        } else {
-          return "flex";
+      color: var(--dark-grey);
+    }
+
+    .resumeBox {
+      height: 70%;
+      @media (max-width: 500px) {
+        width: 100%;
+      }
+      a {
+        :hover {
+          opacity: 70%;
+          transform: translateY(5%);
+          transition: 0.5s;
+        }
+        @media (max-width: 500px) {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+        .resume {
+          @media (max-width: 500px) {
+            width: 130px;
+          }
         }
       }
-    };
+    }
+  }
 
-      p {
-        margin: 0 auto;
-        font-family: "Carrois Gothic", sans-serif;
-        transition: 0.5s;
-      }
+  .imageMessage {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 500px) {
+      width: 100%;
     }
 
-    :hover {
-      opacity: 70%;
-      transform: translateY(5%);
-      transition: 0.5s;
+    h3 {
+      height: 30%;
+      display: flex;
+      align-items: center;
+      font-size: 2rem;
+      color: var(--dark-grey);
+    }
 
-      .messageLength {
-        box-shadow: -3px 6px 6px -3px #00000099;
+    .messageBox {
+      height: 70%;
+
+      @media (max-width: 500px) {
+        width: 100%;
       }
+      a {
+        @media (max-width: 500px) {
+          display: flex;
+          flex-direction: row-reverse;
+          justify-content: center;
+        }
 
-      p {
-        text-shadow: -1px -1px 2px #ffffff99;
-        transition: 0.5s;
+        .message {
+          :hover {
+            opacity: 70%;
+            transform: translateY(5%);
+            transition: 0.5s;
+          }
+          @media (max-width: 500px) {
+            width: 50%;
+          }
+        }
+
+        .messageLength {
+          display: flex;
+          justify-content: flex-end;
+          position: relative;
+
+          .alert {
+            background: var(--red);
+            color: var(--white);
+            width: 80px;
+            height: 80px;
+            display: ${(props) => (props.hasInfo > 0 ? "flex" : "none")};
+            font-size: 2rem;
+            justify-content: center;
+            font-weight: bold;
+            align-items: center;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -40px;
+            right: -20px;
+
+            @media (max-width: 500px) {
+              width: 60px;
+              height: 60px;
+              bottom: -30px;
+            }
+          }
+        }
       }
     }
   }
-`;
 
-export const StyledImg = styled.img`
-  width: 100%;
-  height: 100%;
-  transition: 0.5s;
-
-  :hover {
-    opacity: 70%;
-    transform: translateY(5%);
-    transition: 0.5s;
+  @media (max-width: 500px) {
+    flex-direction: column;
   }
 `;
 
+// .imageResume {
+//   height: 50%;
+//   width: 100%;
 
+//   .resumeBox {
+//     width: 100%;
+//     height: 100%;
+//     align-items: center;
+//     a {
+//       height:100%auto;
+//       .resume{
+//         width: 50%;
+//       }
+//     }
+//   }
+// }

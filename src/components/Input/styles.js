@@ -17,6 +17,8 @@ export const Container = styled.div`
        &::placeholder {
       color: var(--white);
     }
+
+    
   }
   div {
     color: var(--red);
@@ -25,5 +27,11 @@ export const Container = styled.div`
     width: 100%;
     height: 40%;
     padding-left: 10px;
+
+    @media (max-width:500px){
+      font-size: 1rem;
+    }
   }
+
+
 `;

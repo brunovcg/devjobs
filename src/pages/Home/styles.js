@@ -64,8 +64,6 @@ export const Container = styled.main`
           font-size: 1rem;
           font-family: "Carrois Gothic", sans-serif;
         }
-
-    
       }
     }
 
@@ -143,7 +141,6 @@ export const Container = styled.main`
       align-items: center;
       justify-content: center;
       height: 100%;
-      
 
       figure {
         img {
@@ -170,7 +167,7 @@ export const Container = styled.main`
   .aboutUs {
     background: var(--dark-grey);
     height: 80vh;
-    min-height: fit-content;
+    min-height: 100vh;
 
     h2 {
       height: 10%;
@@ -184,6 +181,9 @@ export const Container = styled.main`
     }
 
     p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: 5%;
       text-align: center;
       color: var(--light-grey);
@@ -198,7 +198,7 @@ export const Container = styled.main`
       align-items: center;
       padding: 2px;
       .groupMember {
-        height: 30%;
+        height: 25%;
         width: 33vw;
 
         display: flex;
@@ -209,7 +209,9 @@ export const Container = styled.main`
 
         a {
           color: var(--grey);
-          height: 60%;
+          height: 70%;
+          display: flex;
+          align-items: flex-end;
 
           figure {
             img {
@@ -228,12 +230,15 @@ export const Container = styled.main`
           }
         }
 
-        p {
-          height: 15%;
-          color: var(--white);
-          font-weight: bold;
-          font-family: "Carrois Gothic", sans-serif;
-          font-size: 0.8rem;
+        .devInfo {
+          height: 30%;
+          p {
+            height: 50%;
+            color: var(--white);
+            font-weight: bold;
+            font-family: "Carrois Gothic", sans-serif;
+            font-size: 0.8rem;
+          }
 
           @media (max-height: 700px) {
             font-size: 0.7rem;
@@ -251,7 +256,7 @@ export const Container = styled.main`
       figure {
         width: 30%;
         img {
-          width: 700px;
+          width: 70vh;
         }
       }
     }
@@ -275,8 +280,6 @@ export const Container = styled.main`
             font-size: 1.3rem;
             padding: 0 20px;
           }
-
-     
         }
       }
 
@@ -285,17 +288,17 @@ export const Container = styled.main`
 
         p {
           align-items: center;
-          width: 35%;
-          padding: 0 0 0 100px;
+          width: 50%;
+          padding: 0 0 0 50px;
           margin-right: 35px;
           font-size: 2rem;
           line-height: 3.5rem;
         }
 
         figure {
-          width: 30%;
+          width: 50%;
           img {
-            width: 1000px;
+            width: 80%;
           }
         }
       }
@@ -349,6 +352,8 @@ export const Container = styled.main`
           height: 45%;
 
           a {
+            height: 70%;
+            align-items: flex-start;
             figure {
               img {
                 width: 110px;
@@ -359,9 +364,15 @@ export const Container = styled.main`
             }
           }
 
-          p {
-            font-size: 1.3rem;
-            transform: translateY(-70px);
+          .devInfo {
+            margin-top: 50px;
+            height: 30%;
+            p {
+              height: 40%;
+              padding: 0;
+              font-size: 1.2rem;
+              transform: translateY(-70px);
+            }
           }
         }
       }

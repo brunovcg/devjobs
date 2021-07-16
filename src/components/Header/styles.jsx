@@ -19,8 +19,8 @@ export const HalfMoon = styled.div`
     div {
       background-color: var(--blue);
       color: white;
-      height: 130px;
-      width: 130px;
+      height: 115px;
+      width: 115px;
       border-radius: 50%;
       text-align: center;
       margin-top: 50px;
@@ -37,8 +37,8 @@ export const HalfMoon = styled.div`
       }
       :hover {
         transition: width 0.3s, height 1s;
-        height: 140px;
-        width: 140px;
+        height: 120px;
+        width: 120px;
         box-shadow: -0.5px 0.5px 20px #4040402f;
 
         h1 {
