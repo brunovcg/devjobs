@@ -8,7 +8,7 @@ export const Container = styled.div`
   width: 100vw;
   min-height: 90vh;
 
-   .summary,
+  .summary,
   .objective,
   .education,
   .experience,
@@ -74,10 +74,9 @@ export const Container = styled.div`
         align-items: center;
         width: 100%;
         margin: 10px 0;
-        svg{
+        svg {
           margin-left: 20px;
         }
-        
       }
     }
   }
@@ -218,7 +217,6 @@ export const Container = styled.div`
     .noPrint,
     .noPrint * {
       display: none !important;
-
     }
     @page {
       margin: 0;

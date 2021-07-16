@@ -1,4 +1,3 @@
-import Button from "../../components/Button";
 import HeaderLink from "../../components/HeaderLink";
 import dev from "../../assets/dev.png";
 import resumeHome from "../../assets/resumeHome.png";
@@ -61,7 +60,6 @@ export const Home = () => {
 
         <section className="aboutUs">
           <h2>About Us</h2>
-          <p>Click photos to check linked-in</p>
 
           <div className="group">
             {members.map((item, index) => (
@@ -71,8 +69,10 @@ export const Home = () => {
                     <img src={item.image} alt={item.name} />
                   </figure>
                 </a>
-                <p>{item.role}</p>
-                <p>{item.name}</p>
+                <div className="devInfo">
+                  <p>{item.role}</p>
+                  <p>{item.name}</p>
+                </div>
               </div>
             ))}
           </div>

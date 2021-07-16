@@ -15,7 +15,7 @@ export const Container = styled.div`
     font-weight: bold;
     border-radius: 11px;
     overflow-y: auto;
-       &::placeholder {
+    &::placeholder {
       color: var(--white);
     }
   }
