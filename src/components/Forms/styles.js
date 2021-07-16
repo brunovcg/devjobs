@@ -16,7 +16,7 @@ export const Container = styled.div`
     width: 80%;
 
     h2 {
-      color: var(--dark-grey);
+      color: var(--maroon);
       font-size: 2rem;
       height: 10%;
       margin-bottom: 30px;

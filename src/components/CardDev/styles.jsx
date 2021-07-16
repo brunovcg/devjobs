@@ -7,12 +7,12 @@ export const Container = styled.div`
   align-items: center;
   text-align: center;
   height: fit-content;
-  width: 90%;
+  width: 250px;
   color: white;
   padding-bottom: 10px;
   padding-top: 10px;
   margin-top: 3rem;
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: -9px 12px 15px -6px #000000;
 
   .buttonBox {
@@ -24,6 +24,7 @@ export const Container = styled.div`
       font-size: 1.2rem;
       padding: 10px;
       line-height: 2rem;
+      border: outset 1px var(--white);
     }
   }
 
@@ -37,8 +38,13 @@ export const Container = styled.div`
     h3 {
       display: flex;
       justify-content: center;
+      align-items: center;
       width: 100%;
       font-size: 1rem;
+
+      svg{
+        margin-right: 10px;
+      }
     }
   }
 

@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import customStyles from "../../utils/customStyles";
 import { UserPreview } from "../UserPreview";
 import { useState } from "react";
+import { FaPhoneAlt } from "react-icons/fa";
 
 const CardDev = ({
   userId,
@@ -60,7 +61,7 @@ const CardDev = ({
         </div>
 
         <div className="devInfo">
-          <h3>{phone}</h3>
+          <h3><FaPhoneAlt/>{phone}</h3>
         </div>
         <div className="buttonBoxResume"></div>
       </Container>
