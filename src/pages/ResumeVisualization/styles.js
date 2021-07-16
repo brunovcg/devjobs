@@ -198,6 +198,7 @@ export const Container = styled.div`
     }
     .summary {
       flex-direction: column;
+      padding-top: 70px;
 
       .name {
         h2 {

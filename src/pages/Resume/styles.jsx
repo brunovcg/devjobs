@@ -227,7 +227,7 @@ export const Container = styled.div`
     }
     .summary {
       flex-direction: column;
-
+ 
       .name {
         h2 {
           font-size: 2.5rem;
@@ -239,6 +239,10 @@ export const Container = styled.div`
         padding-top: 30px;
         width: 100%;
       }
+    }
+
+    .objective{
+      padding-top: 60px;
     }
   }
 `;

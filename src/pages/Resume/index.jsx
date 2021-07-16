@@ -54,9 +54,6 @@ const Resume = () => {
     });
   };
 
-  // useEffect(() => {
-  //   getResumeInfo(userId);
-  // }, []);
 
   return (
     <Container color={"var(--dark-grey)"}>
