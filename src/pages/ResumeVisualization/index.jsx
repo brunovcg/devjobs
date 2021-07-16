@@ -14,23 +14,20 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import customStyles from "../../utils/customStyles";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
-import {Messages} from '../../components/Forms/MessagesForm'
+import { Messages } from "../../components/Forms/MessagesForm";
 
 const VisualizationResume = () => {
   const windowPrint = () => {
     window.print();
   };
 
-
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const setModal = () => {
- 
     setIsOpen(!modalIsOpen);
   };
-
 
   const renderUser = localStorage.getItem("@DevJobs:Render:User") || null;
 
@@ -76,17 +73,15 @@ const VisualizationResume = () => {
         </div>
 
         <main>
-        <Modal
+          <Modal
             isOpen={modalIsOpen}
             style={customStyles}
             contentLabel="Example Modal"
             onRequestClose={setModal}
             ariaHideApp={false}
           >
-           <Messages setModal={setModal} userId={renderUser}/>
+            <Messages setModal={setModal} userId={renderUser} />
           </Modal>
-
-
 
           <section className="summary">
             <article className="name">
@@ -96,7 +91,13 @@ const VisualizationResume = () => {
             <article className="personalInfo">
               <div className="noPrint">
                 {renderUser && (
-                  <Button setColor="var(--green)" setClick={setModal} setSize="huge">Contact DEV</Button>
+                  <Button
+                    setColor="var(--green)"
+                    setClick={setModal}
+                    setSize="huge"
+                  >
+                    Contact DEV
+                  </Button>
                 )}
               </div>
               <h3>

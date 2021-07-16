@@ -24,7 +24,7 @@ export const Container = styled.div`
 
     .inputBox {
       width: 100%;
-      display:flex;
+      display: flex;
       justify-content: center;
       height: 65%;
     }

@@ -8,7 +8,6 @@ import {
   FaSmile,
 } from "react-icons/fa";
 
-
 export const UserPreview = ({
   renderResume,
   setModal,
@@ -24,11 +23,36 @@ export const UserPreview = ({
       <div className="infoBox">
         <div className="userInfo">
           <h2>DEVs Preview</h2>
-          <div className ="H3"><h3><FaSmile/>{name}</h3></div>
-          <div className ="H3"><h3><FaEnvelope/>{email}</h3></div>
-          <div className ="H3"><h3><FaPhoneAlt/>{phone}</h3></div>
-          <div className ="H3"><h3><FaHome/>{address}</h3></div>
-          <div className ="H3"><h3><FaLinkedin/>{linkedinProfile}</h3></div>
+          <div className="H3">
+            <h3>
+              <FaSmile />
+              {name}
+            </h3>
+          </div>
+          <div className="H3">
+            <h3>
+              <FaEnvelope />
+              {email}
+            </h3>
+          </div>
+          <div className="H3">
+            <h3>
+              <FaPhoneAlt />
+              {phone}
+            </h3>
+          </div>
+          <div className="H3">
+            <h3>
+              <FaHome />
+              {address}
+            </h3>
+          </div>
+          <div className="H3">
+            <h3>
+              <FaLinkedin />
+              {linkedinProfile}
+            </h3>
+          </div>
           <div className="objective">{objective}</div>
         </div>
       </div>

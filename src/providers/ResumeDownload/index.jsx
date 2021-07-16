@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from "react";
 import api from "../../services/api";
-import { toast } from "react-toastify";
 
 export const ResumeContext = createContext();
 
@@ -9,7 +8,7 @@ export const ResumeProvider = ({ children }) => {
     localStorage.getItem("@DevJobs:Token:User") || ""
   );
 
-  const userId = localStorage.getItem("@DevJobs:User:Id");
+  // const userId = localStorage.getItem("@DevJobs:User:Id");
 
   // const endpoints = [
   //   "education",

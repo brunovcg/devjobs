@@ -1,4 +1,3 @@
-import Button from "../../components/Button";
 import HeaderLink from "../../components/HeaderLink";
 import dev from "../../assets/dev.png";
 import resumeHome from "../../assets/resumeHome.png";
@@ -61,7 +60,7 @@ export const Home = () => {
 
         <section className="aboutUs">
           <h2>About Us</h2>
-        
+
           <div className="group">
             {members.map((item, index) => (
               <div className="groupMember" key={index}>

@@ -7,13 +7,14 @@ export const TokenProvider = ({ children }) => {
   const [userToken, setUserToken] = useState(
     localStorage.getItem("@DevJobs:Token:User") || ""
   );
-  const [userId, setUserId] = useState(localStorage.getItem("@DevJobs:User:Id") || "");
-
+  const [userId, setUserId] = useState(
+    localStorage.getItem("@DevJobs:User:Id") || ""
+  );
 
   const getUserId = () => {
-    console.log(localStorage.getItem("@DevJobs:User:Id"))
-   return localStorage.getItem("@DevJobs:User:Id")
-  }
+    console.log(localStorage.getItem("@DevJobs:User:Id"));
+    return localStorage.getItem("@DevJobs:User:Id");
+  };
 
   useEffect(() => {
     if (userToken !== "") {

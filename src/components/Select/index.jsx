@@ -11,10 +11,7 @@ const Select = ({
 }) => {
   return (
     <Container setHeight={setHeight} setWidth={setWidth}>
-      <select
-        {...register(name)}
-        {...rest}
-      >
+      <select {...register(name)} {...rest}>
         <option defaultValue hidden>
           {name}
         </option>

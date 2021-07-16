@@ -6,7 +6,7 @@ export const Container = styled.div`
     font-weight: bold;
     font-family: "Carrois Gothic", sans-serif;
     text-decoration: none;
-    color: var(--dark-grey); 
+    color: var(--dark-grey);
     border-bottom: 1px solid transparent;
     transition: 0.7s;
 

@@ -35,10 +35,7 @@ const Register = () => {
       .string()
       .min(6, "Minimum 6 digits")
       .required("Required field")
-      .matches(
-        PasswordStrength,
-        "Lower, uppercase, number and symbols."
-      ),
+      .matches(PasswordStrength, "Lower, uppercase, number and symbols."),
     linkedinProfile: yup.string(),
     address: yup.string(),
     phone: yup

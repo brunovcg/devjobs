@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FormStyled, Page, Text, Box } from "./styles";
 import Button from "../../components/Button";

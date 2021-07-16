@@ -30,7 +30,7 @@ export const Container = styled.div`
   margin-bottom: 15px;
   margin-top: 30px;
 
-  @media (max-width:500px){
+  @media (max-width: 500px) {
     margin-top: 0;
     padding-top: 0;
   }

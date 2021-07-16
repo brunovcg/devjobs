@@ -45,7 +45,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="imageMessage" >
+        <div className="imageMessage">
           <h3>Messages</h3>
           <div className="messageBox">
             <Link to="/messages">
