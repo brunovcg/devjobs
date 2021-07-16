@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Box = styled.div`
   background: var(--gradient-white);
-`
+`;
 
 export const Page = styled.div`
   margin-top: 30px;
@@ -30,7 +30,10 @@ export const FormStyled = styled.form`
   margin-bottom: 15px;
 
   h2 {
-    color: black;
+    color: var(--dark-grey);
+    margin-bottom: 2.5rem;
+    margin-top: 1rem;
+    font-size: 2.3rem;
   }
 
   @media (min-width: 768px) {
@@ -47,8 +50,8 @@ export const FormStyled = styled.form`
 export const Text = styled.p`
   text-align: center;
   margin-bottom: 15px;
-  
-  a{
+
+  a {
     color: var(--blue);
     font-weight: bold;
   }

@@ -50,7 +50,6 @@ const UserLogin = () => {
       })
       .catch((err) => {
         toast.error("Invalid e-mail or password");
-        console.log(err);
       });
   };
 
@@ -82,7 +81,7 @@ const UserLogin = () => {
           <Button
             setClick={handleSubmit(onSubmitFunction)}
             setSize="large"
-            setColor="blue"
+            setColor="var(--blue)"
           >
             Sign In
           </Button>
