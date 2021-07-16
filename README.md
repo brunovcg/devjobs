@@ -1,6 +1,7 @@
 <div align="center">
 
-<img src="./src/assets/LogoAPI.png">
+# DEVJOBS
+
 </div>
 
 <br></br>
