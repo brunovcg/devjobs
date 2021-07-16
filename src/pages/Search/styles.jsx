@@ -55,17 +55,20 @@ export const Container = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    padding-bottom: 30px;
 
     .cardDevBox {
       display: flex;
       justify-content: center;
-      width: 30%;
+      width: 28%;
       min-height: 200px;
     }
   }
 
   @media (max-width: 500px) {
+    padding-top: 50px;
     .containerSearch {
+      margin-top: 20px;
       height: fit-content;
       padding: 30px 0;
       width: 80%;
@@ -87,6 +90,19 @@ export const Container = styled.div`
         .buttonBox {
           width: 100%;
         }
+      }
+    }
+
+    .cardContainer {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: fit-content;
+
+      .cardDevBox {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
     }
   }

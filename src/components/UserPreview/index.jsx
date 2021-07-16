@@ -1,5 +1,13 @@
 import { Container } from "./styles";
 import Button from "../Button";
+import {
+  FaLinkedin,
+  FaPhoneAlt,
+  FaHome,
+  FaEnvelope,
+  FaSmile,
+} from "react-icons/fa";
+
 
 export const UserPreview = ({
   renderResume,
@@ -16,12 +24,12 @@ export const UserPreview = ({
       <div className="infoBox">
         <div className="userInfo">
           <h2>DEVs Preview</h2>
-          <h3>{name}</h3>
-          <h3>{email}</h3>
-          <h3>{phone}</h3>
-          <h3>{address}</h3>
-          <h3>{linkedinProfile}</h3>
-          <h3>{objective}</h3>
+          <div className ="H3"><h3><FaSmile/>{name}</h3></div>
+          <div className ="H3"><h3><FaEnvelope/>{email}</h3></div>
+          <div className ="H3"><h3><FaPhoneAlt/>{phone}</h3></div>
+          <div className ="H3"><h3><FaHome/>{address}</h3></div>
+          <div className ="H3"><h3><FaLinkedin/>{linkedinProfile}</h3></div>
+          <div className="objective">{objective}</div>
         </div>
       </div>
       <div className="buttonBox">

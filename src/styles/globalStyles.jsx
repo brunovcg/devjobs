@@ -31,8 +31,8 @@ export default createGlobalStyle`
         -moz-osx-font-smoothing: grayscale;
     }
 
-    body, input, button, h3, h4, h5, h6, p, textarea, select{
-        font-family: 'Carrois Gothic', serif;
+    body, input, button, h2, h3, h4, h5, h6, p, textarea, select{
+        font-family: 'Carrois Gothic', sans-serif;
     }
 
     h1 {

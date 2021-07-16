@@ -13,7 +13,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
-
 const Search = () => {
   const { handleLogout } = useToken();
   const history = useHistory();
@@ -59,8 +58,6 @@ const Search = () => {
       setUserRequest(res.data);
     });
   };
-
- 
 
   useEffect(() => {
     getUsers();
