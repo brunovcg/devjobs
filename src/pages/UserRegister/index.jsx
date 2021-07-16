@@ -18,7 +18,7 @@ const Register = () => {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/;
   const NameValidation = /^[a-z][a-z\s]*$/i;
   const PhoneValidation = /\(?([0-9]{2})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
-  //   const PhoneValidation = (/^\([0-9]{2}\)[0-9]{5}-[0-9]{4}/)
+
   const { setUserToken } = useToken();
 
   const { getResumeInfo } = useResume();
@@ -37,7 +37,7 @@ const Register = () => {
       .required("Required field")
       .matches(
         PasswordStrength,
-        "Weak password, use lowercase, uppercase, numbers and symbols."
+        "Use lowercase, uppercase, numbers and symbols."
       ),
     linkedinProfile: yup.string(),
     address: yup.string(),
@@ -103,7 +103,6 @@ const Register = () => {
         toast.error(
           "An error has occurred, try again using a different e-mail."
         );
-        console.log(err);
       });
   };
   return (

@@ -18,8 +18,8 @@ import { useHistory } from "react-router-dom";
 import { useResume } from "../../providers/ResumeDownload";
 const Messages = () => {
   const [personalMessages, setPersonalMessages] = useState([]);
-  const {getResumeInfo} = useResume()
-  const { handleLogout, userToken } = useToken();
+  const { getResumeInfo } = useResume();
+  const { handleLogout } = useToken();
   const [userId, setUserId] = useState(
     localStorage.getItem("@DevJobs:User:Id")
   );
@@ -30,18 +30,14 @@ const Messages = () => {
       .then((response) => setPersonalMessages(response.data))
       .catch((err) => {
         toast.error("Request didn't work, try again");
-        console.log(err);
       });
-    
   }, []);
 
   const deleteMessage = (idToBeRemoved) => {
-    console.log(idToBeRemoved);
-    api
-      .delete(`/messages/${idToBeRemoved}`).then(
-        (res)=> {getResumeInfo(userId)}
-      )
-      .catch((error) => console.log(error));
+    api.delete(`/messages/${idToBeRemoved}`).then((res) => {
+      getResumeInfo(userId);
+    });
+
     setPersonalMessages(
       personalMessages.filter((item) => item.id !== idToBeRemoved)
     );
